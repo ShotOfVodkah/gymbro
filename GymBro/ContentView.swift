@@ -53,9 +53,14 @@ struct Tab: View {
                 Button(action: {
                     self.index = 0
                 }) {
-                    Image(systemName: "tray.circle.fill")
-                        .resizable()
-                        .frame(width: 35, height: 35)
+                    VStack(spacing: 2){
+                        Image(systemName: "tray.circle.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                        
+                        Text("Feeds")
+                            .font(.system(size: 10))
+                    }
                 }
                 .foregroundColor(self.index == 0 ? Color("PurpleColor") : Color.gray)
 
@@ -64,9 +69,14 @@ struct Tab: View {
                 Button(action: {
                     self.index = 1
                 }) {
-                    Image(systemName: "figure.2.circle.fill")
-                        .resizable()
-                        .frame(width: 35, height: 35)
+                    VStack(spacing: 2){
+                        Image(systemName: "figure.2.circle.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                        
+                        Text("Team")
+                            .font(.system(size: 10))
+                    }
                 }
                 .foregroundColor(self.index == 1 ? Color("PurpleColor") : Color.gray)
 
@@ -87,9 +97,14 @@ struct Tab: View {
                 Button(action: {
                     self.index = 3
                 }) {
-                    Image(systemName: "figure.run.circle.fill")
-                        .resizable()
-                        .frame(width: 35, height: 35)
+                    VStack(spacing: 2){
+                        Image(systemName: "figure.run.circle.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                        
+                        Text("Personal")
+                            .font(.system(size: 10))
+                    }
                 }
                 .foregroundColor(self.index == 3 ? Color("PurpleColor") : Color.gray)
 
@@ -98,9 +113,14 @@ struct Tab: View {
                 Button(action: {
                     self.index = 4
                 }) {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
-                        .frame(width: 35, height: 35)
+                    VStack(spacing: 2){
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                        
+                        Text("Account")
+                            .font(.system(size: 10))
+                    }
                 }
                 .foregroundColor(self.index == 4 ? Color("PurpleColor") : Color.gray)
             }
