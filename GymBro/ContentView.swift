@@ -7,27 +7,42 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @State private var index = 2
 
     var body: some View {
-        ZStack {
-            Color.white.ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Color.white.ignoresSafeArea()
 
-            VStack {
-                Spacer()
+                VStack {
+                    if index == 0 {
+                        FeedList()
+                    } else if index == 1 {
+                        GroupAchievements()
+                    } else if index == 2 {
+                        TrainingsList()
+                    } else if index == 3 {
+                        IndividualAchievements()
+                    } else if index == 4 {
+                        Account()
+                    }
 
-                Tab(index: $index)
-                    .background(Color("TabBar").ignoresSafeArea(.all, edges: .bottom))
+                    Spacer()
+
+                    Tab(index: $index)
+                        .background(Color("TabBar").ignoresSafeArea(.all, edges: .bottom))
+                }
             }
         }
     }
 }
 
-
 #Preview {
     ContentView()
 }
+
 
 struct Tab: View {
     @Binding var index: Int
@@ -38,9 +53,9 @@ struct Tab: View {
                 Button(action: {
                     self.index = 0
                 }) {
-                    Image(systemName: "tray.full.fill")
+                    Image(systemName: "tray.circle.fill")
                         .resizable()
-                        .frame(width: 25, height: 25)
+                        .frame(width: 35, height: 35)
                 }
                 .foregroundColor(self.index == 0 ? Color("PurpleColor") : Color.gray)
 
@@ -49,9 +64,9 @@ struct Tab: View {
                 Button(action: {
                     self.index = 1
                 }) {
-                    Image(systemName: "globe")
+                    Image(systemName: "figure.2.circle.fill")
                         .resizable()
-                        .frame(width: 25, height: 25)
+                        .frame(width: 35, height: 35)
                 }
                 .foregroundColor(self.index == 1 ? Color("PurpleColor") : Color.gray)
 
@@ -65,16 +80,16 @@ struct Tab: View {
                         .frame(width: 70, height: 70)
                 }
                 .foregroundColor(self.index == 2 ? Color("PurpleColor") : Color.gray)
-                .offset(y: -20)
+                .offset(y: -15)
 
                 Spacer(minLength: geometry.size.width * 0.01)
 
                 Button(action: {
                     self.index = 3
                 }) {
-                    Image(systemName: "globe")
+                    Image(systemName: "figure.run.circle.fill")
                         .resizable()
-                        .frame(width: 25, height: 25)
+                        .frame(width: 35, height: 35)
                 }
                 .foregroundColor(self.index == 3 ? Color("PurpleColor") : Color.gray)
 
@@ -83,9 +98,9 @@ struct Tab: View {
                 Button(action: {
                     self.index = 4
                 }) {
-                    Image(systemName: "globe")
+                    Image(systemName: "person.crop.circle.fill")
                         .resizable()
-                        .frame(width: 25, height: 25)
+                        .frame(width: 35, height: 35)
                 }
                 .foregroundColor(self.index == 4 ? Color("PurpleColor") : Color.gray)
             }
