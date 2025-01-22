@@ -11,7 +11,7 @@ struct FeedList: View {
     var body: some View {
         Text("Экран 1")
             .font(.largeTitle)
-            .foregroundColor(.purple)
+            .foregroundColor(Color("PurpleColor"))
     }
 }
 

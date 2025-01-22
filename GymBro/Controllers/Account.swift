@@ -11,7 +11,7 @@ struct Account: View {
     var body: some View {
         Text("Экран 5")
             .font(.largeTitle)
-            .foregroundColor(.purple)
+            .foregroundColor(Color("PurpleColor"))
     }
 }
 

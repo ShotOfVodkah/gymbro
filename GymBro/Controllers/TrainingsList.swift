@@ -11,7 +11,7 @@ struct TrainingsList: View {
     var body: some View {
         Text("Экран 3")
             .font(.largeTitle)
-            .foregroundColor(.purple)
+            .foregroundColor(Color("PurpleColor"))
     }
 }
 

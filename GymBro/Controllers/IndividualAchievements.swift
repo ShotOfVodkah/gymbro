@@ -11,7 +11,7 @@ struct IndividualAchievements: View {
     var body: some View {
         Text("Экран 4")
             .font(.largeTitle)
-            .foregroundColor(.purple)
+            .foregroundColor(Color("PurpleColor"))
     }
 }
 
