@@ -21,7 +21,6 @@ struct WorkoutWidget: View {
             .opacity(0.8)
                      
             HStack(alignment: .center) {
-                    // Текст с иконкой chevron.right
                 Text(workout.name)
                     .font(.system(size: 25))
                     .fontWeight(.semibold)
@@ -29,12 +28,12 @@ struct WorkoutWidget: View {
                     
                 Image(systemName: "chevron.right")
                     .font(.system(size: 20))
-                    .foregroundColor(.white) // Белый цвет иконки
+                    .foregroundColor(.white)
 
-                Spacer() // Разделитель для выравнивания системной иконки вправо
+                Spacer()
                 Image(systemName: workout.icon)
-                    .font(.system(size: 90)) // Увеличение размера иконки
-                    .foregroundColor(.white) // Цвет иконки
+                    .font(.system(size: 90))
+                    .foregroundColor(.white)
                 }
                 .padding([.leading, .trailing], 16)
         }
