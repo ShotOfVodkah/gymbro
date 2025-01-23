@@ -19,9 +19,11 @@ struct TrainingsList: View {
             //List(workouts) {a in Text(a.name)}
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 30) {
+                    Spacer().frame(height: 1)
                     ForEach(workouts) { workout in
                         WorkoutWidget(workout: workout)
                     }
+                    Spacer().frame(height: 60)
                 }
             }
         }

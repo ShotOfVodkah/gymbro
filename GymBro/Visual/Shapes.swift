@@ -25,3 +25,20 @@ struct Trapezoid: Shape {
         return path
     }
 }
+
+struct TabBar: Shape {
+    func path(in rect: CGRect) -> Path {
+            var path = Path()
+            let width = rect.size.width
+            let height = rect.size.height
+            path.addRect(CGRect(x: 0.4372*width, y: 0.2314*height, width: 0.14976*width, height: 0.53719*height))
+            path.move(to: CGPoint(x: 0, y: 0))
+            path.addCurve(to: CGPoint(x: 0.50725*width, y: 0.44215*height), control1: CGPoint(x: 0.19809*width, y: 0.17267*height), control2: CGPoint(x: 0.28261*width, y: 0.45041*height))
+            path.addCurve(to: CGPoint(x: width, y: 0), control1: CGPoint(x: 0.73188*width, y: 0.43388*height), control2: CGPoint(x: 0.80757*width, y: 0.17267*height))
+            path.addLine(to: CGPoint(x: width, y: height))
+            path.addLine(to: CGPoint(x: 0, y: height))
+            path.addLine(to: CGPoint(x: 0, y: 0))
+            path.closeSubpath()
+            return path
+    }
+}
