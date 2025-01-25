@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var index = 2
+    @State private var isTabVisible = true
     
     var body: some View {
         NavigationStack {
@@ -18,21 +19,21 @@ struct ContentView: View {
                 
                 VStack {
                     if index == 0 {
-                        FeedList()
+                        FeedList(bar: $isTabVisible)
                     } else if index == 1 {
-                        GroupAchievements()
+                        GroupAchievements(bar: $isTabVisible)
                     } else if index == 2 {
-                        TrainingsList()
+                        TrainingsList(bar: $isTabVisible)
                     } else if index == 3 {
-                        IndividualAchievements()
+                        IndividualAchievements(bar: $isTabVisible)
                     } else if index == 4 {
-                        Account()
+                        Account(bar: $isTabVisible)
                     }
                 }
                 
                 VStack {
                     Spacer()
-                    Tab(index: $index)
+                    Tab(index: $index, isVisible:  $isTabVisible)
                         .ignoresSafeArea(.all, edges: .bottom)
                 }
             }

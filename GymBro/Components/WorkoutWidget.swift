@@ -18,7 +18,6 @@ struct WorkoutWidget: View {
                     endPoint: .trailing
                 )
             )
-            .opacity(0.8)
                      
             HStack(alignment: .center) {
                 Text(workout.name)
@@ -32,7 +31,7 @@ struct WorkoutWidget: View {
 
                 Spacer()
                 Image(systemName: workout.icon)
-                    .font(.system(size: 90))
+                    .font(.system(size: 80))
                     .foregroundColor(.white)
                 }
                 .padding([.leading, .trailing], 16)
@@ -42,5 +41,5 @@ struct WorkoutWidget: View {
 }
 
 #Preview {
-    WorkoutWidget(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1"))
+    WorkoutWidget(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: []))
 }

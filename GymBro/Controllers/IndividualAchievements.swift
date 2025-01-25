@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct IndividualAchievements: View {
+    @Binding var bar: Bool
     var body: some View {
         Text("Экран 4")
-            .font(.largeTitle)
-            .foregroundColor(Color("PurpleColor"))
+            .font(.system(size: 35))
+            .fontWeight(.semibold)
+            .foregroundColor(Color("TitleColor"))
     }
 }
 
 #Preview {
-    IndividualAchievements()
+    IndividualAchievements(bar: .constant(true))
 }

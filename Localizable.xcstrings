@@ -3,6 +3,12 @@
   "strings" : {
     "Account" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29,6 +35,12 @@
     },
     "Personal" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49,6 +61,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Команда"
+          }
+        }
+      }
+    },
+    "Новая тренировка" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New workout"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая тренировка"
           }
         }
       }

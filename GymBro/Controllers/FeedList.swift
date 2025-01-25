@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct FeedList: View {
+    @Binding var bar: Bool
     var body: some View {
         Text("Экран 1")
-            .font(.largeTitle)
-            .foregroundColor(Color("PurpleColor"))
+            .font(.system(size: 35))
+            .fontWeight(.semibold)
+            .foregroundColor(Color("TitleColor"))
     }
 }
 
 #Preview {
-    FeedList()
+    FeedList(bar: .constant(true))
 }

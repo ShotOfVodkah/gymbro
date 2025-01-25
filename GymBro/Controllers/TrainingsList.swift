@@ -11,25 +11,53 @@ import FirebaseFirestoreCombineSwift
 
 struct TrainingsList: View {
     @FirestoreQuery(collectionPath: "workouts") var workouts: [Workout]
+    @State var isActive: Bool = false
+    @Binding var bar: Bool
     var body: some View {
-        VStack(){
-            Text("Экран 3")
-                .font(.largeTitle)
-                .foregroundColor(Color("PurpleColor"))
-            //List(workouts) {a in Text(a.name)}
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 30) {
-                    Spacer().frame(height: 1)
-                    ForEach(workouts) { workout in
-                        WorkoutWidget(workout: workout)
+        ZStack {
+            VStack(){
+                HStack{
+                    Text("Экран 3")
+                        .font(.system(size: 35))
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("TitleColor"))
+                    Spacer()
+                    Button {
+                        isActive = true
+                        bar = false
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                        startPoint: .leading,
+                                        endPoint: .trailing))
+                                .frame(width: 50, height: 50)
+                            Image(systemName:"plus.circle")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .foregroundColor(Color.white)
+                        }
                     }
-                    Spacer().frame(height: 60)
                 }
+                .padding(.horizontal, 20)
+                Spacer().frame(height: 30)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 30) {
+                        //Spacer().frame(height: 1)
+                        ForEach(workouts) { workout in
+                            WorkoutWidget(workout: workout)
+                        }
+                        Spacer().frame(height: 60)
+                    }
+                }
+            }
+            if isActive {
+                WorkoutBuilder(isActive: $isActive, bar: $bar)
             }
         }
     }
 }
 
 #Preview {
-    TrainingsList()
+    TrainingsList(bar: .constant(true))
 }

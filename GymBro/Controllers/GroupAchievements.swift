@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct GroupAchievements: View {
+    @Binding var bar: Bool
     var body: some View {
         Text("Экран 2")
-            .font(.largeTitle)
-            .foregroundColor(Color("PurpleColor"))
+            .font(.system(size: 35))
+            .fontWeight(.semibold)
+            .foregroundColor(Color("TitleColor"))
     }
 }
 
 #Preview {
-    GroupAchievements()
+    GroupAchievements(bar: .constant(true))
 }

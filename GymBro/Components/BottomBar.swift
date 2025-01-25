@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Tab: View {
     @Binding var index: Int
+    @Binding var isVisible: Bool
 
     var body: some View {
         GeometryReader { geometry in
@@ -94,6 +95,8 @@ struct Tab: View {
             .padding(.horizontal, 25)
             .frame(height: 130)
             .background(Color("TabBar").clipShape(TabBar()))
+            .opacity(isVisible ? 1 : 0)
+            .allowsHitTesting(isVisible)
         }
         .frame(height: 95)
     }
