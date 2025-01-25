@@ -22,24 +22,31 @@ struct WorkoutBuilder: View {
                     .frame(width: 375, height: 650)
                 Trapezoid()
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),startPoint: .leading,endPoint: .trailing))
-                    .frame(width: 375, height: 120)
+                    .frame(width: 375, height: 150)
                     .scaleEffect(x: 1, y: -1)
-                HStack() {
-                    Text("Новая тренировка")
-                        .font(.system(size: 35))
-                        .fontWeight(.semibold)
-                        .offset(y: 25)
+                VStack(spacing: 0){
+                    HStack() {
+                        Text("Новая тренировка")
+                            .font(.system(size: 35))
+                            .fontWeight(.bold)
+                            .padding([.top, .leading], 15)
+                            .foregroundColor(.white)
+                        Spacer()
+                        Button {
+                            close()
+                        } label: {
+                            Image(systemName: "xmark").resizable()
+                                .frame(width: 20, height: 20)
+                        }
+                        .tint(.white)
+                        .padding([.top, .trailing], 15)
+                    }
+                    Text("Choose the exercises for your workout")
+                        .font(.system(size: 25))
                         .padding(.leading, 15)
                         .foregroundColor(.white)
-                    Spacer()
-                    Button {
-                        close()
-                    } label: {
-                        Image(systemName: "xmark").resizable()
-                            .frame(width: 20, height: 20)
-                    }
-                    .tint(.white)
-                    .padding([.top, .trailing], 15)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
                 }
             }
             .frame(width: 375, height: 600)

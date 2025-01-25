@@ -18,7 +18,8 @@ struct Workout: Identifiable, Decodable {
 struct Ex_detail: Identifiable, Decodable {
     let id = UUID()
     
-    let ex_id: UUID
+    let name: String
+    let muscle_group: String
     let weight: Int
     let sets: Int
     let reps: Int

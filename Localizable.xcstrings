@@ -17,6 +17,16 @@
         }
       }
     },
+    "Choose the exercises for your workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите упражнения для тренировки"
+          }
+        }
+      }
+    },
     "Feeds" : {
       "localizations" : {
         "en" : {
@@ -76,7 +86,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новая тренировка"
+            "value" : "Конструктор"
           }
         }
       }
