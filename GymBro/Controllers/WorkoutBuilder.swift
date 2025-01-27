@@ -15,11 +15,12 @@ struct WorkoutBuilder: View {
     var body: some View {
         ZStack {
             Blur().edgesIgnoringSafeArea(.all)
-                .opacity(opacity) 
+                .opacity(opacity)
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color("TabBar"))
                     .frame(width: 375, height: 650)
+                Exercise_choice()
                 Trapezoid()
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),startPoint: .leading,endPoint: .trailing))
                     .frame(width: 375, height: 150)
@@ -76,4 +77,29 @@ struct WorkoutBuilder: View {
 
 #Preview {
     WorkoutBuilder(isActive: .constant(true), bar: .constant(false))
+}
+
+struct Exercise_choice: View {
+    var mGroups: [String] = ["figure.american.football", "figure.run.treadmill", "figure.roll", "figure.archery", "figure.barre"]
+    
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            Spacer(minLength: 160)
+                ForEach(mGroups, id: \.self) { item in
+                    VStack {
+                        Button {
+                            print("This")
+                        } label: {
+                            MuscleGroupWidget(info: item)
+                        }
+                    }
+                    .background(Color("TabBar"))
+                    .cornerRadius(12)
+                    .shadow(radius: 5)
+                    .padding(.bottom, 10)
+                }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(16)
+    }
 }

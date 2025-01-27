@@ -6,16 +6,16 @@
 //
 import SwiftUI
 
-struct Workout: Identifiable, Decodable {
+struct Workout: Identifiable, Codable {
     let id = UUID()
     
     let icon: String
     let name: String
     let user_id: String
-    let exercises: [UUID]
+    let exercises: [Ex_detail]
 }
 
-struct Ex_detail: Identifiable, Decodable {
+struct Ex_detail: Identifiable, Codable {
     let id = UUID()
     
     let name: String
@@ -32,7 +32,7 @@ struct Exercise: Identifiable, Decodable {
     let muscle_group: String
 }
 
-struct User: Identifiable, Decodable {
+struct User: Identifiable, Codable {
     let id = UUID()
     
     let user_id: String

@@ -11,6 +11,7 @@ import FirebaseFirestoreCombineSwift
 
 struct TrainingsList: View {
     @FirestoreQuery(collectionPath: "workouts") var workouts: [Workout]
+    @State private var offset: CGFloat = -400
     @State var isActive: Bool = false
     @Binding var bar: Bool
     var body: some View {
@@ -53,6 +54,12 @@ struct TrainingsList: View {
             }
             if isActive {
                 WorkoutBuilder(isActive: $isActive, bar: $bar)
+            }
+        }
+        .offset(x: offset)
+        .onAppear {
+            withAnimation(.spring()) {
+                offset = 0
             }
         }
     }
