@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreCombineSwift
 
 struct WorkoutBuilder: View {
     @Binding var isActive: Bool
     @Binding var bar: Bool
+    
+    @FirestoreQuery(collectionPath: "exercises") var exercises: [Exercise]
+    
+    @State private var chosen_exercises: [Exercise] = []
     @State private var offset: CGFloat = 1000
     @State private var opacity: Double = 0
+    
     var body: some View {
         ZStack {
             Blur().edgesIgnoringSafeArea(.all)
@@ -20,7 +27,7 @@ struct WorkoutBuilder: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color("TabBar"))
                     .frame(width: 375, height: 650)
-                Exercise_choice()
+                Exercise_choice(chosen_exercises: $chosen_exercises, exercises: exercises)
                 Trapezoid()
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),startPoint: .leading,endPoint: .trailing))
                     .frame(width: 375, height: 150)
@@ -81,21 +88,18 @@ struct WorkoutBuilder: View {
 
 struct Exercise_choice: View {
     var mGroups: [String] = ["figure.american.football", "figure.run.treadmill", "figure.roll", "figure.archery", "figure.barre"]
+    @Binding var chosen_exercises: [Exercise]
+    var exercises: [Exercise]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             Spacer(minLength: 160)
                 ForEach(mGroups, id: \.self) { item in
                     VStack {
-                        Button {
-                            print("This")
-                        } label: {
-                            MuscleGroupWidget(info: item)
-                        }
+                        MuscleGroupWidget(info: item, array: $chosen_exercises, exercises: exercises)
                     }
                     .background(Color("TabBar"))
                     .cornerRadius(12)
-                    .shadow(radius: 5)
                     .padding(.bottom, 10)
                 }
         }

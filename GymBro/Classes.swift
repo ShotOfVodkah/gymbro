@@ -12,24 +12,18 @@ struct Workout: Identifiable, Codable {
     let icon: String
     let name: String
     let user_id: String
-    let exercises: [Ex_detail]
+    let exercises: [Exercise]
 }
 
-struct Ex_detail: Identifiable, Codable {
+struct Exercise: Identifiable, Codable {
     let id = UUID()
     
     let name: String
     let muscle_group: String
+    let is_selected: Bool
     let weight: Int
     let sets: Int
     let reps: Int
-}
-
-struct Exercise: Identifiable, Decodable {
-    let id = UUID()
-    
-    let name: String
-    let muscle_group: String
 }
 
 struct User: Identifiable, Codable {

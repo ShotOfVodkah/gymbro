@@ -12,54 +12,77 @@ import FirebaseFirestoreCombineSwift
 struct TrainingsList: View {
     @FirestoreQuery(collectionPath: "workouts") var workouts: [Workout]
     @State private var offset: CGFloat = -400
-    @State var isActive: Bool = false
+    @State private var isActive: Bool = false
     @Binding var bar: Bool
+    @State private var selectedWorkout: Workout?
+    @State private var showWorkoutInfo: Bool = false
     var body: some View {
-        ZStack {
-            VStack(){
-                HStack{
-                    Text("Экран 3")
-                        .font(.system(size: 35))
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color("TitleColor"))
-                    Spacer()
-                    Button {
-                        isActive = true
-                        bar = false
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
-                                        startPoint: .leading,
-                                        endPoint: .trailing))
-                                .frame(width: 50, height: 50)
-                            Image(systemName:"plus.circle")
-                                .resizable()
-                                .frame(width: 35, height: 35)
-                                .foregroundColor(Color.white)
+        NavigationStack {
+            ZStack {
+                VStack {
+                    HStack {
+                        Text("Экран 3")
+                            .font(.system(size: 35))
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color("TitleColor"))
+                        Spacer()
+                        Button {
+                            isActive = true
+                            bar = false
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
+                                    .frame(width: 50, height: 50)
+                                Image(systemName: "plus.circle")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                    .foregroundColor(Color.white)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    
+                    Spacer().frame(height: 30)
+                    
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 30) {
+                            ForEach(workouts) { workout in
+                                Button {
+                                    selectedWorkout = workout
+                                    showWorkoutInfo = true
+                                } label: {
+                                    WorkoutWidget(workout: workout)
+                                }
+                            }
+                            Spacer().frame(height: 60)
                         }
                     }
                 }
-                .padding(.horizontal, 20)
-                Spacer().frame(height: 30)
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 30) {
-                        //Spacer().frame(height: 1)
-                        ForEach(workouts) { workout in
-                            WorkoutWidget(workout: workout)
-                        }
-                        Spacer().frame(height: 60)
+                .blur(radius: isActive ? 5 : 0)
+                
+                if isActive {
+                    ZStack {
+                        WorkoutBuilder(isActive: $isActive, bar: $bar)
                     }
                 }
             }
-            if isActive {
-                WorkoutBuilder(isActive: $isActive, bar: $bar)
+            .navigationDestination(isPresented: $showWorkoutInfo) {
+                if let workout = selectedWorkout {
+                    WorkoutInfo(workout: workout)
+                }
             }
-        }
-        .offset(x: offset)
-        .onAppear {
-            withAnimation(.spring()) {
-                offset = 0
+            .offset(x: offset)
+            .onAppear {
+                withAnimation(.spring()) {
+                    offset = 0
+                }
             }
         }
     }
