@@ -79,6 +79,7 @@ struct WorkoutInfo: View {
                     .font(.system(size: 25))
                     .fontWeight(.semibold)
                     .padding(.trailing, 60)
+                    .foregroundColor(.white)
                 
                 Spacer()
             }

@@ -15,6 +15,7 @@ struct WorkoutBuilder: View {
     
     @FirestoreQuery(collectionPath: "exercises") var exercises: [Exercise]
     
+    @State private var ex: [Exercise] = []
     @State private var chosen_exercises: [Exercise] = []
     @State private var offset: CGFloat = 1000
     @State private var opacity: Double = 0
@@ -27,7 +28,7 @@ struct WorkoutBuilder: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color("TabBar"))
                     .frame(width: 375, height: 650)
-                Exercise_choice(chosen_exercises: $chosen_exercises, exercises: exercises)
+                Exercise_choice(chosen_exercises: $chosen_exercises, exercises: $ex)
                 Trapezoid()
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),startPoint: .leading,endPoint: .trailing))
                     .frame(width: 375, height: 150)
@@ -67,6 +68,12 @@ struct WorkoutBuilder: View {
                     opacity = 1
                 }
             }
+            .onChange(of: exercises) { newExercises in
+                self.ex = newExercises
+            }
+            .onChange(of: chosen_exercises) { newChosenExercises in
+                        print("Chosen Exercises Updated: \(newChosenExercises.map { $0.name })")
+                    }
         }
     }
     
@@ -89,14 +96,14 @@ struct WorkoutBuilder: View {
 struct Exercise_choice: View {
     var mGroups: [String] = ["figure.american.football", "figure.run.treadmill", "figure.roll", "figure.archery", "figure.barre"]
     @Binding var chosen_exercises: [Exercise]
-    var exercises: [Exercise]
+    @Binding var exercises: [Exercise]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             Spacer(minLength: 160)
                 ForEach(mGroups, id: \.self) { item in
                     VStack {
-                        MuscleGroupWidget(info: item, array: $chosen_exercises, exercises: exercises)
+                        MuscleGroupWidget(info: item, array: $chosen_exercises, exercises: $exercises)
                     }
                     .background(Color("TabBar"))
                     .cornerRadius(12)
