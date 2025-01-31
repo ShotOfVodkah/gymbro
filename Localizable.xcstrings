@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
     "Account" : {
       "localizations" : {
         "en" : {
@@ -59,6 +62,12 @@
         }
       }
     },
+    "Reps" : {
+
+    },
+    "Sets" : {
+
+    },
     "Team" : {
       "localizations" : {
         "en" : {
@@ -74,6 +83,9 @@
           }
         }
       }
+    },
+    "Weight" : {
+
     },
     "Новая тренировка" : {
       "localizations" : {

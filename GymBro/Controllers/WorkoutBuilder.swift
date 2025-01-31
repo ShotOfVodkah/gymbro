@@ -33,12 +33,14 @@ struct WorkoutBuilder: View {
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),startPoint: .leading,endPoint: .trailing))
                     .frame(width: 375, height: 150)
                     .scaleEffect(x: 1, y: -1)
-                VStack(spacing: 0){
+                VStack(spacing: 10){
                     HStack() {
+                        Spacer()
                         Text("Новая тренировка")
-                            .font(.system(size: 35))
+                            .font(.system(size: 30))
                             .fontWeight(.bold)
-                            .padding([.top, .leading], 15)
+                            .padding(.top, 15)
+                            .padding(.leading, 35)
                             .foregroundColor(.white)
                         Spacer()
                         Button {
@@ -97,20 +99,144 @@ struct Exercise_choice: View {
     var mGroups: [String] = ["figure.american.football", "figure.run.treadmill", "figure.roll", "figure.archery", "figure.barre"]
     @Binding var chosen_exercises: [Exercise]
     @Binding var exercises: [Exercise]
+    @State private var offset: CGFloat = 0
+    @State private var isFinished: Bool = false
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            Spacer(minLength: 160)
-                ForEach(mGroups, id: \.self) { item in
-                    VStack {
-                        MuscleGroupWidget(info: item, array: $chosen_exercises, exercises: $exercises)
-                    }
-                    .background(Color("TabBar"))
-                    .cornerRadius(12)
-                    .padding(.bottom, 10)
+        ZStack {
+            if isFinished {
+                Exercise_finish(chosen_exercises: $chosen_exercises)
+            } else {
+                ScrollView(showsIndicators: false) {
+                    Spacer(minLength: 160)
+                        ForEach(mGroups, id: \.self) { item in
+                            VStack {
+                                MuscleGroupWidget(info: item, array: $chosen_exercises, exercises: $exercises)
+                            }
+                            .background(Color("TabBar"))
+                            .cornerRadius(12)
+                            .padding(.bottom, 10)
+                        }
                 }
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button {
+                            close()
+                        } label: {
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(.white)
+                                .padding(5)
+                                .background(Circle().fill(
+                                            LinearGradient(
+                                                gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                    )
+                                )
+                                .scaleEffect(2.5)
+                        }
+                        .padding(13)
+                    }
+                }
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(16)
+        .offset(x: offset)
+    }
+    
+    private func close() {
+        withAnimation(.spring()) {
+            offset = -400
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                isFinished = true
+            }
+        }
+    }
+}
+
+struct Exercise_finish: View {
+    @Binding var chosen_exercises: [Exercise]
+    @State private var dragged: Exercise?
+    
+    @State private var name: String = ""
+    
+    @State private var offset: CGFloat = 800
+    
+    var body: some View {
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                Spacer(minLength: 160)
+                TextField("Введите текст", text: $name)
+                                .padding()
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Put your exercises in order")
+                    .font(.system(size: 25))
+                    .foregroundColor(Color("TitleColor"))
+                ForEach(chosen_exercises, id: \.self) {exercise in
+                    HStack {
+                        Image(systemName: exercise.muscle_group)
+                            .scaleEffect(1.5)
+                            .padding(.trailing, 10)
+                        Text(exercise.name)
+                            .font(.system(size: 25))
+                        Spacer()
+                        Image(systemName: "text.justify")
+                            .scaleEffect(1.5)
+                    }
+                    .padding()
+                    .background(Color("Background"))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .foregroundColor(Color("TitleColor"))
+                    .onDrag({
+                        self.dragged = exercise
+                        return NSItemProvider()
+                    })
+                    .onDrop(of: [.text], delegate: DragDropDelegate(destinationItem: exercise, selected: $chosen_exercises, draggedItem: $dragged))
+                }
+            }
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .background(Circle().fill(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                )
+                            )
+                            .scaleEffect(2.5)
+                    }
+                    .padding(13)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(16)
+        .offset(x: offset)
+        .onAppear {
+            withAnimation(.spring()) {
+                offset = 400
+            }
+        }
+    }
+    
+    private func close() {
+        withAnimation(.spring()) {
+            
+        }
     }
 }

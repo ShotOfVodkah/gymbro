@@ -15,11 +15,11 @@ struct Workout: Identifiable, Codable {
     let exercises: [Exercise]
 }
 
-struct Exercise: Identifiable, Codable, Equatable {
+struct Exercise: Identifiable, Codable, Equatable, Hashable {
     let id = UUID()
     
-    let name: String
-    let muscle_group: String
+    var name: String
+    var muscle_group: String
     var is_selected: Bool
     var weight: Int
     var sets: Int
