@@ -84,15 +84,18 @@ struct ExerciseWidget: View {
                         .foregroundColor(Color("TitleColor"))
                         .padding(.leading, 40)
                     Spacer()
-                    Image(systemName:  "checkmark.circle.fill")
+                    Image(systemName: exercise.is_selected ? "checkmark.circle.fill" : "circle")
                         .font(.system(size: 30))
                         .padding(.trailing, 10)
-                        .foregroundStyle(LinearGradient(
+                        .foregroundStyle(exercise.is_selected ? LinearGradient(
                             gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
                             startPoint: .leading,
                             endPoint: .trailing
+                        ) : LinearGradient(
+                            gradient: Gradient(colors: [Color.gray, Color.gray]),
+                            startPoint: .leading,
+                            endPoint: .trailing
                         ))
-                        .opacity(exercise.is_selected ? 1 : 0)
                 }
                 .frame(width: 320, height: 50)
                 .background(Color("TabBar"))
@@ -176,5 +179,5 @@ struct NumberToggle: View {
 }
 
 #Preview {
-    MuscleGroupWidget(info: "figure.american.football", array: .constant([]), exercises: .constant([Exercise(name: "my exercise", muscle_group: "figure.american.football", is_selected: true, weight: 0, sets: 0, reps: 0)]))
+    MuscleGroupWidget(info: "figure.american.football", array: .constant([]), exercises: .constant([Exercise(name: "my exercise", muscle_group: "figure.american.football", is_selected: false, weight: 0, sets: 0, reps: 0)]))
 }

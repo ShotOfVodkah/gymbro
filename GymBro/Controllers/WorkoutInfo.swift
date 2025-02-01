@@ -60,10 +60,36 @@ struct WorkoutInfo: View {
             }
             .frame(width: UIScreen.main.bounds.width, height: 100)
             .opacity(opacity)
-            Blur().clipShape(RoundedRectangle(cornerRadius: 20))
-                .padding(.horizontal, 25)
-                .padding(.vertical, 120)
-                .offset(y: 100)
+            ZStack {
+                Blur()
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 120)
+                    .offset(y: 100)
+
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 10) {
+                        ForEach(workout.exercises, id: \.self) { exercise in
+                            HStack {
+                                Image(systemName: exercise.muscle_group)
+                                    .scaleEffect(1.5)
+                                    .padding(.trailing, 10)
+                                Text(exercise.name)
+                                    .font(.system(size: 25))
+                            }
+                            .frame(width: 300)
+                            .padding()
+                            .background(Color("Background").opacity(0.9))
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .foregroundColor(Color("TitleColor"))
+                        }
+                    }
+                    .padding()
+                }
+                .offset(y: 84)
+                .padding(.horizontal, 30)
+                .frame(width: 300, height: 600)
+            }
             HStack {
                 Button {
                     dismiss()
@@ -99,5 +125,5 @@ struct WorkoutInfo: View {
 }
 
 #Preview {
-    WorkoutInfo(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: []))
+    WorkoutInfo(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "my exercise", muscle_group: "figure.american.football", is_selected: true, weight: 0, sets: 0, reps: 0)]))
 }

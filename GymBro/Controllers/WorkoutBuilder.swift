@@ -21,6 +21,8 @@ struct WorkoutBuilder: View {
     @State private var offset: CGFloat = 1000
     @State private var opacity: Double = 0
     
+    @State private var isFinished: Bool = false
+    
     var body: some View {
         ZStack {
             Blur().edgesIgnoringSafeArea(.all)
@@ -29,7 +31,7 @@ struct WorkoutBuilder: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color("TabBar"))
                     .frame(width: 375, height: 650)
-                Exercise_choice(chosen_exercises: $chosen_exercises, exercises: $ex)
+                Exercise_choice(chosen_exercises: $chosen_exercises, exercises: $ex, isFinished: $isFinished, closeAction: close)
                 Trapezoid()
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),startPoint: .leading,endPoint: .trailing))
                     .frame(width: 375, height: 150)
@@ -89,6 +91,8 @@ struct WorkoutBuilder: View {
         withAnimation(.easeOut(duration: 0.5)) {
             opacity = 0
         }
+        chosen_exercises = []
+        isFinished = false
     }
 }
 
@@ -101,12 +105,14 @@ struct Exercise_choice: View {
     @Binding var chosen_exercises: [Exercise]
     @Binding var exercises: [Exercise]
     @State private var offset: CGFloat = 0
-    @State private var isFinished: Bool = false
+    @Binding var isFinished: Bool
+    
+    var closeAction: () -> Void
     
     var body: some View {
         ZStack {
             if isFinished {
-                Exercise_finish(chosen_exercises: $chosen_exercises)
+                Exercise_finish(chosen_exercises: $chosen_exercises, closeAction: closeAction)
             } else {
                 ScrollView(showsIndicators: false) {
                     Spacer(minLength: 160)
@@ -141,6 +147,8 @@ struct Exercise_choice: View {
                                 .scaleEffect(2.5)
                         }
                         .padding(13)
+                        .disabled(chosen_exercises.isEmpty)
+                        .opacity(chosen_exercises.isEmpty ? 0 : 1)
                     }
                 }
             }
@@ -168,36 +176,43 @@ struct Exercise_finish: View {
     
     @State private var offset: CGFloat = 800
     
+    var closeAction: () -> Void
+    
     var body: some View {
         ZStack {
-            ScrollView(showsIndicators: false) {
-                Spacer(minLength: 160)
-                TextField("Введите текст", text: $name)
-                                .padding()
+            VStack(spacing: 10) {
+                Spacer(minLength: 110)
+                Text("Name your workout")
+                    .font(.system(size: 25))
+                    .foregroundColor(Color("TitleColor"))
+                TextField("", text: $name)
+                    .padding(.horizontal,1)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 Text("Put your exercises in order")
                     .font(.system(size: 25))
                     .foregroundColor(Color("TitleColor"))
-                ForEach(chosen_exercises, id: \.self) {exercise in
-                    HStack {
-                        Image(systemName: exercise.muscle_group)
-                            .scaleEffect(1.5)
-                            .padding(.trailing, 10)
-                        Text(exercise.name)
-                            .font(.system(size: 25))
-                        Spacer()
-                        Image(systemName: "text.justify")
-                            .scaleEffect(1.5)
+                ScrollView(showsIndicators: false) {
+                    ForEach(chosen_exercises, id: \.self) {exercise in
+                        HStack {
+                            Image(systemName: exercise.muscle_group)
+                                .scaleEffect(1.5)
+                                .padding(.trailing, 10)
+                            Text(exercise.name)
+                                .font(.system(size: 25))
+                            Spacer()
+                            Image(systemName: "text.justify")
+                                .scaleEffect(1.5)
+                        }
+                        .padding()
+                        .background(Color("Background"))
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .foregroundColor(Color("TitleColor"))
+                        .onDrag({
+                            self.dragged = exercise
+                            return NSItemProvider()
+                        })
+                        .onDrop(of: [.text], delegate: DragDropDelegate(destinationItem: exercise, selected: $chosen_exercises, draggedItem: $dragged))
                     }
-                    .padding()
-                    .background(Color("Background"))
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .foregroundColor(Color("TitleColor"))
-                    .onDrag({
-                        self.dragged = exercise
-                        return NSItemProvider()
-                    })
-                    .onDrop(of: [.text], delegate: DragDropDelegate(destinationItem: exercise, selected: $chosen_exercises, draggedItem: $dragged))
                 }
             }
             
@@ -207,6 +222,7 @@ struct Exercise_finish: View {
                     Spacer()
                     Button {
                         createWorkout(name: name, exercises: chosen_exercises)
+                        closeAction()
                     } label: {
                         Image(systemName: "checkmark")
                             .foregroundColor(.white)
@@ -222,6 +238,8 @@ struct Exercise_finish: View {
                             .scaleEffect(2.5)
                     }
                     .padding(13)
+                    .disabled(name.isEmpty)
+                    .opacity(name.isEmpty ? 0 : 1)
                 }
             }
         }
@@ -232,12 +250,6 @@ struct Exercise_finish: View {
             withAnimation(.spring()) {
                 offset = 400
             }
-        }
-    }
-    
-    private func close() {
-        withAnimation(.spring()) {
-            
         }
     }
 }
