@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
+import Firebase
 
 struct WorkoutBuilder: View {
     @Binding var isActive: Bool
@@ -205,7 +206,7 @@ struct Exercise_finish: View {
                 HStack {
                     Spacer()
                     Button {
-                        
+                        createWorkout(name: name, exercises: chosen_exercises)
                     } label: {
                         Image(systemName: "checkmark")
                             .foregroundColor(.white)

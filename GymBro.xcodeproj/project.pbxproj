@@ -17,7 +17,6 @@
 		5D7A66662D41C9C100FC3EE1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7A66652D41C9C100FC3EE1 /* FirebaseFirestore */; };
 		5D7A66682D41C9C100FC3EE1 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7A66672D41C9C100FC3EE1 /* FirebaseFirestoreCombine-Community */; };
 		5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D872A542D46E46400368978 /* MuscleGroupWidget.swift */; };
-		5DB132CF2D4D7FC400C37DF0 /* DragDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB132CE2D4D7FBB00C37DF0 /* DragDropDelegate.swift */; };
 		5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD680FF2D42A6B2008740B4 /* BottomBar.swift */; };
 		73DA14292D3FD36700960BD8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 73DA14282D3FD36700960BD8 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
@@ -32,13 +31,13 @@
 		5D58A4652D4256AE0004E6C5 /* WorkoutWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutWidget.swift; sourceTree = "<group>"; };
 		5D7A66622D41C91A00FC3EE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D872A542D46E46400368978 /* MuscleGroupWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupWidget.swift; sourceTree = "<group>"; };
-		5DB132CE2D4D7FBB00C37DF0 /* DragDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropDelegate.swift; sourceTree = "<group>"; };
 		5DD680FF2D42A6B2008740B4 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		73DA14282D3FD36700960BD8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D58A4482D42488D0004E6C5 /* Visual */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Visual; sourceTree = "<group>"; };
+		5DB1334E2D4D968D00C37DF0 /* Technical */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Technical; sourceTree = "<group>"; };
 		73DA142A2D3FD65B00960BD8 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -75,7 +74,7 @@
 		5D4909F72CEB7DF000A24F89 /* GymBro */ = {
 			isa = PBXGroup;
 			children = (
-				5DB132CE2D4D7FBB00C37DF0 /* DragDropDelegate.swift */,
+				5DB1334E2D4D968D00C37DF0 /* Technical */,
 				5D58A4632D424B980004E6C5 /* Classes.swift */,
 				5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */,
 				5D4909FA2CEB7DF000A24F89 /* ContentView.swift */,
@@ -124,6 +123,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				5D58A4482D42488D0004E6C5 /* Visual */,
+				5DB1334E2D4D968D00C37DF0 /* Technical */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,
 			);
 			name = GymBro;
@@ -193,7 +193,6 @@
 				5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */,
 				5D58A4642D424B9E0004E6C5 /* Classes.swift in Sources */,
 				5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */,
-				5DB132CF2D4D7FC400C37DF0 /* DragDropDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
