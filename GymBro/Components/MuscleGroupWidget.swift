@@ -22,7 +22,7 @@ struct MuscleGroupWidget: View {
             } label: {
                 ZStack(){
                     BackgroundAnimation().scaleEffect(0.5)
-                        .offset(x: -80)
+                        .offset(x: -100)
                     HStack() {
                         Image(info)
                             .frame(width: 75, height: 75)
@@ -182,5 +182,5 @@ struct NumberToggle: View {
 }
 
 #Preview {
-    MuscleGroupWidget(info: "Arms", array: .constant([]), exercises: .constant([Exercise(name: "my exercise", muscle_group: "figure.american.football", is_selected: false, weight: 0, sets: 0, reps: 0)]))
+    MuscleGroupWidget(info: "Arms", array: .constant([]), exercises: .constant([Exercise(name: "my exercise", muscle_group: "Arms", is_selected: true, weight: 0, sets: 0, reps: 0)]))
 }

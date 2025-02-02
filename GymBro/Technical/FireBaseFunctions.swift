@@ -10,8 +10,8 @@ import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 import Firebase
 
-func createWorkout(name: String, exercises: [Exercise]) {
-    let newWorkout = Workout(icon: "globe.americas.fill",
+func createWorkout(name: String, exercises: [Exercise], icon: String) {
+    let newWorkout = Workout(icon: icon,
                               name: name,
                               user_id: "1",
                               exercises: exercises)

@@ -115,7 +115,7 @@ struct Exercise_choice: View {
                 Exercise_finish(chosen_exercises: $chosen_exercises, closeAction: closeAction)
             } else {
                 ScrollView(showsIndicators: false) {
-                    Spacer(minLength: 160)
+                    Spacer(minLength: 135)
                         ForEach(mGroups, id: \.self) { item in
                             VStack {
                                 MuscleGroupWidget(info: item, array: $chosen_exercises, exercises: $exercises)
@@ -171,8 +171,11 @@ struct Exercise_choice: View {
 struct Exercise_finish: View {
     @Binding var chosen_exercises: [Exercise]
     @State private var dragged: Exercise?
+    @State private var buttonTapped: Bool = false
     
     @State private var name: String = ""
+    @State private var chosen_icon: String = "figure.walk.treadmill"
+    var icons: [String] = ["figure.walk.treadmill", "figure.american.football", "figure.barre", "figure.cooldown", "figure.highintensity.intervaltraining"]
     
     @State private var offset: CGFloat = 800
     
@@ -181,27 +184,60 @@ struct Exercise_finish: View {
     var body: some View {
         ZStack {
             VStack(spacing: 10) {
-                Spacer(minLength: 110)
-                Text("Name your workout")
-                    .font(.system(size: 25))
-                    .foregroundColor(Color("TitleColor"))
-                TextField("", text: $name)
-                    .padding(.horizontal,1)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                Spacer(minLength: 120)
+                HStack {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            buttonTapped.toggle()
+                        }
+                    } label: {
+                        Image(systemName: chosen_icon)
+                            .font(.system(size: 45))
+                            .foregroundColor(Color("TitleColor"))
+                            .frame(width: 70, height: 70)
+                            .background(RoundedRectangle(cornerRadius: 15)
+                                        .fill(Color("Background")))
+                    }
+                    VStack{
+                        Text("Name your workout")
+                            .font(.system(size: 25))
+                            .foregroundColor(Color("TitleColor"))
+                        TextField("", text: $name)
+                            .padding(.horizontal,1)
+                            .padding(.vertical, 5)
+                            .background(RoundedRectangle(cornerRadius: 20)
+                                        .fill(Color("Background"))
+                                )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color("PurpleColor"), lineWidth: 2)
+                            )
+                    }
+                }
+                
+                if buttonTapped {
+                    IconToggle(chosen_icon: $chosen_icon, icons: icons)
+                }
+                
                 Text("Put your exercises in order")
                     .font(.system(size: 25))
                     .foregroundColor(Color("TitleColor"))
                 ScrollView(showsIndicators: false) {
                     ForEach(chosen_exercises, id: \.self) {exercise in
-                        HStack {
-                            Image(systemName: exercise.muscle_group)
-                                .scaleEffect(1.5)
-                                .padding(.trailing, 10)
-                            Text(exercise.name)
-                                .font(.system(size: 25))
-                            Spacer()
-                            Image(systemName: "text.justify")
-                                .scaleEffect(1.5)
+                        ZStack {
+                            BackgroundAnimation().scaleEffect(0.5)
+                                .offset(x: -100)
+                            HStack {
+                                Image(exercise.muscle_group)
+                                    .scaleEffect(0.1)
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 10)
+                                Text(exercise.name)
+                                    .font(.system(size: 25))
+                                Spacer()
+                                Image(systemName: "text.justify")
+                                    .scaleEffect(1.5)
+                            }
                         }
                         .padding()
                         .background(Color("Background"))
@@ -221,7 +257,7 @@ struct Exercise_finish: View {
                 HStack {
                     Spacer()
                     Button {
-                        createWorkout(name: name, exercises: chosen_exercises)
+                        createWorkout(name: name, exercises: chosen_exercises, icon: chosen_icon)
                         closeAction()
                     } label: {
                         Image(systemName: "checkmark")
@@ -244,12 +280,42 @@ struct Exercise_finish: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(16)
+        .padding(10)
         .offset(x: offset)
         .onAppear {
             withAnimation(.spring()) {
                 offset = 400
             }
+        }
+    }
+}
+
+struct IconToggle: View {
+    @Binding var chosen_icon: String
+    var icons: [String]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(icons, id: \.self) { icon in
+                    Button(action: {
+                        chosen_icon = icon
+                    }) {
+                        Image(systemName: icon)
+                            .font(.system(size: 24, weight: .bold))
+                            .frame(width: 60, height: 60)
+                            .scaleEffect(1.5)
+                            .background(chosen_icon == icon ? Color("PurpleColor") : Color("Background"))
+                            .foregroundColor(chosen_icon == icon ? .white : Color("PurpleColor"))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .animation(.easeInOut, value: chosen_icon)
+                    }
+                }
+            }
+            .padding(.horizontal, 6)
+            .padding(.vertical, 6)
+            .background(Color.gray.opacity(0.4))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
 }

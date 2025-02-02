@@ -71,8 +71,9 @@ struct WorkoutInfo: View {
                     VStack(spacing: 10) {
                         ForEach(workout.exercises, id: \.self) { exercise in
                             HStack {
-                                Image(systemName: exercise.muscle_group)
-                                    .scaleEffect(1.5)
+                                Image(exercise.muscle_group)
+                                    .frame(width: 30, height: 30)
+                                    .scaleEffect(0.1)
                                     .padding(.trailing, 10)
                                 Text(exercise.name)
                                     .font(.system(size: 25))
@@ -125,5 +126,5 @@ struct WorkoutInfo: View {
 }
 
 #Preview {
-    WorkoutInfo(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "my exercise", muscle_group: "figure.american.football", is_selected: true, weight: 0, sets: 0, reps: 0)]))
+    WorkoutInfo(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "my exercise", muscle_group: "Chest", is_selected: true, weight: 0, sets: 0, reps: 0)]))
 }
