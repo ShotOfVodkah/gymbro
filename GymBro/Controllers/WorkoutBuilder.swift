@@ -77,7 +77,7 @@ struct WorkoutBuilder: View {
                 self.ex = newExercises
             }
             .onChange(of: chosen_exercises) { newChosenExercises in
-                        print("Chosen Exercises Updated: \(newChosenExercises.map { $0.name })")
+                        print("\(newChosenExercises.map { $0.name })")
                     }
         }
     }
@@ -101,7 +101,7 @@ struct WorkoutBuilder: View {
 }
 
 struct Exercise_choice: View {
-    var mGroups: [String] = ["figure.american.football", "figure.run.treadmill", "figure.roll", "figure.archery", "figure.barre"]
+    var mGroups: [String] = ["Chest", "Back", "Buttocks", "Lower legs", "Arms", "Upper legs", "Shoulders"]
     @Binding var chosen_exercises: [Exercise]
     @Binding var exercises: [Exercise]
     @State private var offset: CGFloat = 0
