@@ -25,8 +25,8 @@ struct WorkoutInfo: View {
     }
     
     let columns = [
-        GridItem(.flexible(), spacing: 16), // Первая колонка
-        GridItem(.flexible(), spacing: 16)  // Вторая колонка
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
     ]
     
     var body: some View {
