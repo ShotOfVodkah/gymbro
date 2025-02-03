@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%lld" : {
 
     },
@@ -46,6 +49,9 @@
         }
       }
     },
+    "Name your workout" : {
+
+    },
     "Personal" : {
       "localizations" : {
         "en" : {
@@ -68,6 +74,9 @@
     "Reps" : {
 
     },
+    "Search" : {
+
+    },
     "Sets" : {
 
     },
@@ -88,9 +97,6 @@
       }
     },
     "Weight" : {
-
-    },
-    "Введите текст" : {
 
     },
     "Новая тренировка" : {

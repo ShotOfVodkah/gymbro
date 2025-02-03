@@ -11,11 +11,17 @@ import FirebaseFirestoreCombineSwift
 
 struct TrainingsList: View {
     @FirestoreQuery(collectionPath: "workouts") var workouts: [Workout]
+    
     @State private var offset: CGFloat = -400
     @State private var isActive: Bool = false
+    
     @Binding var bar: Bool
+    
     @State private var selectedWorkout: Workout?
     @State private var showWorkoutInfo: Bool = false
+    
+    @State private var search: String = ""
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -49,11 +55,19 @@ struct TrainingsList: View {
                     }
                     .padding(.horizontal, 20)
                     
-                    Spacer().frame(height: 30)
+                    TextField("Search", text: $search)
+                        .padding(10)
+                        .background(Color("TabBar"))
+                        .cornerRadius(20)
+                        .overlay(RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color("PurpleColor").opacity(0.6), lineWidth: 3)
+                        )
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 10)
                     
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 30) {
-                            ForEach(workouts) { workout in
+                            ForEach(filtered) { workout in
                                 Button {
                                     selectedWorkout = workout
                                     showWorkoutInfo = true
@@ -87,6 +101,13 @@ struct TrainingsList: View {
         }
     }
 
+    var filtered: [Workout] {
+        if search.isEmpty {
+            return workouts
+        } else {
+            return workouts.filter { $0.name.localizedCaseInsensitiveContains(search) }
+        }
+    }
 }
 
 #Preview {
