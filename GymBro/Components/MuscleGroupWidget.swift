@@ -30,7 +30,7 @@ struct MuscleGroupWidget: View {
                             .foregroundColor(Color("TitleColor"))
                             .padding(.leading, 10)
                         Spacer()
-                        Text(info)
+                        Text(LocalizedStringKey(info))
                             .font(.system(size: 20))
                             .fontWeight(.medium)
                             .foregroundColor(Color("TitleColor"))
@@ -182,5 +182,5 @@ struct NumberToggle: View {
 }
 
 #Preview {
-    MuscleGroupWidget(info: "Arms", array: .constant([]), exercises: .constant([Exercise(name: "my exercise", muscle_group: "Arms", is_selected: true, weight: 0, sets: 0, reps: 0)]))
+    MuscleGroupWidget(info: "Buttocks", array: .constant([]), exercises: .constant([Exercise(name: "my exercise", muscle_group: "Arms", is_selected: true, weight: 0, sets: 0, reps: 0)]))
 }

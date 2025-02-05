@@ -23,6 +23,50 @@
         }
       }
     },
+    "Arms" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Руки"
+          }
+        }
+      }
+    },
+    "Back" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спина"
+          }
+        }
+      }
+    },
+    "Buttocks" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ягодицы"
+          }
+        }
+      }
+    },
+    "Chest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грудь"
+          }
+        }
+      }
+    },
     "Choose the exercises for your workout" : {
       "localizations" : {
         "ru" : {
@@ -49,8 +93,26 @@
         }
       }
     },
+    "Lower legs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нижняя часть ног"
+          }
+        }
+      }
+    },
     "Name your workout" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назови свою тренировку"
+          }
+        }
+      }
     },
     "Personal" : {
       "localizations" : {
@@ -69,13 +131,45 @@
       }
     },
     "Put your exercises in order" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбери порядок выполнения упражнений"
+          }
+        }
+      }
     },
     "Reps" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторения"
+          }
+        }
+      }
     },
     "Sets" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подходы"
+          }
+        }
+      }
+    },
+    "Shoulders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Плечи"
+          }
+        }
+      }
     },
     "Team" : {
       "localizations" : {
@@ -93,8 +187,26 @@
         }
       }
     },
+    "Upper legs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Верхняя часть ног"
+          }
+        }
+      }
+    },
     "Weight" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вес"
+          }
+        }
+      }
     },
     "Новая тренировка" : {
       "localizations" : {
