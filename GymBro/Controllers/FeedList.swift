@@ -14,6 +14,7 @@ struct FeedList: View {
             .font(.system(size: 35))
             .fontWeight(.semibold)
             .foregroundColor(Color("TitleColor"))
+        
     }
 }
 

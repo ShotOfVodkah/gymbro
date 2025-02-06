@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */; };
-		5D4909FB2CEB7DF000A24F89 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909FA2CEB7DF000A24F89 /* ContentView.swift */; };
+		5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909FA2CEB7DF000A24F89 /* LoginView.swift */; };
 		5D4909FD2CEB7DF600A24F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */; };
 		5D490A002CEB7DF600A24F89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */; };
 		5D58A4642D424B9E0004E6C5 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D58A4632D424B980004E6C5 /* Classes.swift */; };
@@ -19,12 +19,15 @@
 		5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D872A542D46E46400368978 /* MuscleGroupWidget.swift */; };
 		5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD680FF2D42A6B2008740B4 /* BottomBar.swift */; };
 		73DA14292D3FD36700960BD8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 73DA14282D3FD36700960BD8 /* Localizable.xcstrings */; };
+		73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4AEDA2D5391F10088A814 /* MainView.swift */; };
+		73E4AEDD2D54FF4F0088A814 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 73E4AEDC2D54FF4F0088A814 /* FirebaseAuth */; };
+		73E4AEE12D551B850088A814 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 73E4AEE02D551B850088A814 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D4909F52CEB7DF000A24F89 /* GymBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
-		5D4909FA2CEB7DF000A24F89 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5D4909FA2CEB7DF000A24F89 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5D58A4632D424B980004E6C5 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
@@ -33,6 +36,7 @@
 		5D872A542D46E46400368978 /* MuscleGroupWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupWidget.swift; sourceTree = "<group>"; };
 		5DD680FF2D42A6B2008740B4 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		73DA14282D3FD36700960BD8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		73E4AEDA2D5391F10088A814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -47,6 +51,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D7A66662D41C9C100FC3EE1 /* FirebaseFirestore in Frameworks */,
+				73E4AEE12D551B850088A814 /* FirebaseStorage in Frameworks */,
+				73E4AEDD2D54FF4F0088A814 /* FirebaseAuth in Frameworks */,
 				5D7A66682D41C9C100FC3EE1 /* FirebaseFirestoreCombine-Community in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,7 +83,8 @@
 				5DB1334E2D4D968D00C37DF0 /* Technical */,
 				5D58A4632D424B980004E6C5 /* Classes.swift */,
 				5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */,
-				5D4909FA2CEB7DF000A24F89 /* ContentView.swift */,
+				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
+				73E4AEDA2D5391F10088A814 /* MainView.swift */,
 				5D58A44C2D4248D60004E6C5 /* Components */,
 				5D58A4482D42488D0004E6C5 /* Visual */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,
@@ -187,7 +194,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D4909FB2CEB7DF000A24F89 /* ContentView.swift in Sources */,
+				5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */,
+				73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */,
 				5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */,
 				5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */,
 				5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */,
@@ -432,6 +440,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D7A66642D41C9C100FC3EE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
+		};
+		73E4AEDC2D54FF4F0088A814 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D7A66642D41C9C100FC3EE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		73E4AEE02D551B850088A814 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D7A66642D41C9C100FC3EE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

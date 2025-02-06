@@ -22,7 +22,8 @@ struct GymBroApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            ContentView() // привет. АГрицаенко
+//            LoginView() // привет. АГрицаенко
+            MainView()
         }
     }
 }

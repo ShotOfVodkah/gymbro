@@ -1,13 +1,14 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  GymBro
 //
-//  Created by Stepan Polyakov on 18.11.2024.
+//  Created by Александра Грицаенко on 05/02/2025.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
+    
     @State private var index = 2
     @State private var isTabVisible = true
     
@@ -41,8 +42,6 @@ struct ContentView: View {
     }
 }
 
-
 #Preview {
-    ContentView()
+    MainView()
 }
-
