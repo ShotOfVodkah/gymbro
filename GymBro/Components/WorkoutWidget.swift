@@ -41,5 +41,5 @@ struct WorkoutWidget: View {
 }
 
 #Preview {
-    WorkoutWidget(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: []))
+    WorkoutWidget(workout: Workout(id: "1", icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: []))
 }

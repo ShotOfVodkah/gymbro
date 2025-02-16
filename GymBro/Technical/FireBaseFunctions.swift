@@ -11,14 +11,16 @@ import FirebaseFirestoreCombineSwift
 import Firebase
 
 func createWorkout(name: String, exercises: [Exercise], icon: String) {
-    let newWorkout = Workout(icon: icon,
-                              name: name,
-                              user_id: "1",
-                              exercises: exercises)
-
     let db = Firestore.firestore()
+    let docRef = db.collection("workouts").document()
+    let newWorkout = Workout(id: docRef.documentID,
+                             icon: icon,
+                             name: name,
+                             user_id: "1",
+                             exercises: exercises)
     
     let workoutData: [String: Any] = [
+        "id": newWorkout.id,
         "name": newWorkout.name,
         "user_id": newWorkout.user_id,
         "icon": newWorkout.icon,
@@ -34,12 +36,11 @@ func createWorkout(name: String, exercises: [Exercise], icon: String) {
         }
     ]
     
-    db.collection("workouts").addDocument(data: workoutData) { error in
+    docRef.setData(workoutData) { error in
         if let error = error {
             print("Ошибка: \(error.localizedDescription)")
         } else {
-            print("Workout добавлен")
+            print("\(docRef.documentID)")
         }
     }
 }
-

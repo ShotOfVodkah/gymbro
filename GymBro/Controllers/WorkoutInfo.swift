@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct WorkoutInfo: View {
     @State private var opacity: Double = 0
@@ -92,10 +93,18 @@ struct WorkoutInfo: View {
                     Text(workout.name)
                         .font(.system(size: 25))
                         .fontWeight(.semibold)
-                        .padding(.trailing, 60)
                         .foregroundColor(.white)
                     
                     Spacer()
+                    
+                    Button {
+                        deleteWorkout()
+                    } label: {
+                        Image(systemName: "trash")
+                            .font(.system(size: 25))
+                            .foregroundColor(.white)
+                    }
+                    .padding(.trailing, 30)
                 }
                 .padding(.top, 65)
                 
@@ -178,11 +187,24 @@ struct WorkoutInfo: View {
             withAnimation(.easeIn(duration: 0.5)) {
                 opacity = 1
             }
+            print(workout.id)
         }
         .navigationBarHidden(true)
+    }
+    
+    private func deleteWorkout() {
+        let db = Firestore.firestore()
+        db.collection("workouts").document(workout.id).delete { error in
+            if let error = error {
+                print("Ошибка: \(error.localizedDescription)")
+            } else {
+                print("Удалено")
+                dismiss()
+            }
+        }
     }
 }
 
 #Preview {
-    WorkoutInfo(workout: Workout(icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "my exercise", muscle_group: "Chest", is_selected: true, weight: 0, sets: 0, reps: 0)]))
+    WorkoutInfo(workout: Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "my exercise", muscle_group: "Chest", is_selected: true, weight: 0, sets: 0, reps: 0)]))
 }

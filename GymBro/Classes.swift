@@ -7,8 +7,7 @@
 import SwiftUI
 
 struct Workout: Identifiable, Codable {
-    let id = UUID()
-    
+    let id: String
     let icon: String
     let name: String
     let user_id: String
