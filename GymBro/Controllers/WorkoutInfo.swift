@@ -98,7 +98,7 @@ struct WorkoutInfo: View {
                     Spacer()
                     
                     Button {
-                        deleteWorkout()
+                        deleteButton()
                     } label: {
                         Image(systemName: "trash")
                             .font(.system(size: 25))
@@ -192,16 +192,9 @@ struct WorkoutInfo: View {
         .navigationBarHidden(true)
     }
     
-    private func deleteWorkout() {
-        let db = Firestore.firestore()
-        db.collection("workouts").document(workout.id).delete { error in
-            if let error = error {
-                print("Ошибка: \(error.localizedDescription)")
-            } else {
-                print("Удалено")
-                dismiss()
-            }
-        }
+    private func deleteButton() {
+        deleteWorkout(id: workout.id)
+        dismiss()
     }
 }
 
