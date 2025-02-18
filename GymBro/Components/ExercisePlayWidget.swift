@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ExercisePlayWidget: View {
     @Binding var exercise: Exercise
-    @State var rotation: CGFloat = 0.0
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("TabBar"))
                 .frame(width: 350, height: 600)
+                .opacity(0.8)
             RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(LinearGradient(
                     gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
@@ -22,7 +22,6 @@ struct ExercisePlayWidget: View {
                     endPoint: .bottom
                 ))
                 .frame(width: 200, height: 700)
-                .rotationEffect(.degrees(rotation))
                 .mask {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(lineWidth: 8)
@@ -135,11 +134,6 @@ struct ExercisePlayWidget: View {
                 }
             }
             .frame(width: 350, height: 600)
-        }
-        .onAppear{
-            withAnimation(.linear(duration: 6).repeatForever(autoreverses: false)) {
-                rotation = 360
-            }
         }
     }
 }

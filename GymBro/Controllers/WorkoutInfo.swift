@@ -11,7 +11,7 @@ import FirebaseFirestore
 struct WorkoutInfo: View {
     @State private var opacity: Double = 0
     @Environment(\.dismiss) private var dismiss
-    var workout: Workout
+    @State var workout: Workout
     
     let mGroups: [String] = ["Chest", "Back", "Buttocks", "Lower legs", "Arms", "Upper legs", "Shoulders"]
     var percentages: [Double] {
@@ -162,9 +162,7 @@ struct WorkoutInfo: View {
                     .padding(.horizontal, 30)
                     .frame(width: 300, height: 530)
                     
-                    Button {
-                        
-                    } label: {
+                    NavigationLink(destination: WorkoutPlayer(workout: $workout)) {
                         Image(systemName: "play.fill")
                             .foregroundColor(.white)
                             .scaleEffect(2.2)

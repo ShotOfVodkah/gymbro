@@ -65,6 +65,8 @@ struct MuscleGroupWidget: View {
 struct ExerciseWidget: View {
     @Binding var array: [Exercise]
     @Binding var exercise: Exercise
+    @State private var index: Int?
+    
     var body: some View {
         ZStack{
             VStack {
@@ -73,6 +75,7 @@ struct ExerciseWidget: View {
                         self.exercise.is_selected.toggle()
                         if exercise.is_selected {
                             array.append(exercise)
+                            index = array.firstIndex(where: { $0.id == exercise.id })
                         } else {
                             if let index = array.firstIndex(where: { $0.id == exercise.id }) {
                                 array.remove(at: index)
@@ -103,14 +106,14 @@ struct ExerciseWidget: View {
                 .frame(width: 320, height: 50)
                 .background(Color("TabBar"))
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                if (exercise.is_selected) {
+                if exercise.is_selected, let i = index {
                     HStack{
                         Text("Sets")
                             .fontWeight(.medium)
                             .foregroundColor(Color("TitleColor"))
                             .padding(.leading, 10)
                         Spacer()
-                        NumberToggle(range: 7, res: $exercise.sets)
+                        NumberToggle(range: 7, res: $array[i].sets)
                             .background(Color("Background"))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .frame(width: 230)
@@ -123,7 +126,7 @@ struct ExerciseWidget: View {
                             .foregroundColor(Color("TitleColor"))
                             .padding(.leading, 10)
                         Spacer()
-                        NumberToggle(range: 30, res: $exercise.reps)
+                        NumberToggle(range: 30, res: $array[i].reps)
                             .background(Color("Background"))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .frame(width: 230)
@@ -136,7 +139,7 @@ struct ExerciseWidget: View {
                             .foregroundColor(Color("TitleColor"))
                             .padding(.leading, 10)
                         Spacer()
-                        NumberToggle(range: 150, res: $exercise.weight)
+                        NumberToggle(range: 150, res: $array[i].weight)
                             .background(Color("Background"))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .frame(width: 230)

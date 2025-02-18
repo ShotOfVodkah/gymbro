@@ -248,6 +248,9 @@ struct Exercise_finish: View {
                             return NSItemProvider()
                         })
                         .onDrop(of: [.text], delegate: DragDropDelegate(destinationItem: exercise, selected: $chosen_exercises, draggedItem: $dragged))
+                        .onAppear {
+                                                    print("Exercise: \(exercise.name), Sets: \(exercise.sets), Reps: \(exercise.reps), Weight: \(exercise.weight)")
+                                                }
                     }
                 }
             }

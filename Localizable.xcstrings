@@ -23,6 +23,9 @@
         }
       }
     },
+    "Adjust your weights" : {
+
+    },
     "Arms" : {
       "extractionState" : "manual",
       "localizations" : {

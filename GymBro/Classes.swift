@@ -11,7 +11,7 @@ struct Workout: Identifiable, Codable {
     let icon: String
     let name: String
     let user_id: String
-    let exercises: [Exercise]
+    var exercises: [Exercise]
 }
 
 struct Exercise: Identifiable, Codable, Equatable, Hashable {
