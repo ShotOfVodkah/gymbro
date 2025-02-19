@@ -68,12 +68,10 @@ struct TrainingsList: View {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 30) {
                             ForEach(filtered) { workout in
-                                Button {
-                                    selectedWorkout = workout
-                                    showWorkoutInfo = true
-                                } label: {
-                                    WorkoutWidget(workout: workout)
-                                }
+                                WorkoutWidget(workout: workout,onTap: {
+                                            selectedWorkout = workout
+                                            showWorkoutInfo = true
+                                })
                             }
                             Spacer().frame(height: 60)
                         }

@@ -12,6 +12,10 @@ struct WorkoutPlayer: View {
     @State private var selected: Int = 0;
     @Environment(\.dismiss) private var dismiss
     
+    @State private var time = 0.0
+    @State private var timer: Timer?
+    
+    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -51,11 +55,27 @@ struct WorkoutPlayer: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
                 HStack {
+                    
+                    Text(formattedTime(time))
+                        .monospacedDigit()
+                        .font(.system(size: 22))
+                        .fontWeight(.medium)
+                        .foregroundColor(Color("TitleColor"))
+                        .padding(.leading, 20)
+                    
                     ProgressBar(value: CGFloat(selected + 1), total: CGFloat(workout.exercises.count))
                             .frame(height: 10)
-                            .padding(.leading, 20)
+                            .padding(.leading, 5)
                             .padding(.trailing, 20)
                             .padding(.vertical, 20)
+                }
+                .onAppear{
+                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        time += 1
+                    }
+                }
+                .onDisappear {
+                    timer?.invalidate()
                 }
                 .background(Color("TabBar").opacity(0.9))
                 .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -63,6 +83,12 @@ struct WorkoutPlayer: View {
             }
         }
         .navigationBarHidden(true)
+    }
+    
+    private func formattedTime(_ time: Double) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 

@@ -24,7 +24,14 @@
       }
     },
     "Adjust your weights" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прибавь вес"
+          }
+        }
+      }
     },
     "Arms" : {
       "extractionState" : "manual",
