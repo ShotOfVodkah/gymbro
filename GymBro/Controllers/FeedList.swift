@@ -52,14 +52,17 @@ class FeedListModel: ObservableObject {
 struct FeedList: View {
     @Binding var bar: Bool
     @StateObject var vm = FeedListModel()
+    @State var shouldNavigateToChatLogView: Bool = false
     
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack {
-//                    Text("CURRENT USER ID: \(vm.chatUser?.uid ?? "")")
                     customNavigationBar
                     messagesView
+                }
+                .navigationDestination(isPresented: $shouldNavigateToChatLogView) {
+                    ChatLogView(chatUser: self.chatUser)
                 }
                 .overlay(newChatButton)
             }
@@ -95,22 +98,26 @@ struct FeedList: View {
         ScrollView {
             ForEach(0..<10, id: \.self) { num in
                 VStack {
-                    HStack(spacing: 15) {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 40))
-                            .padding(5)
-                            .overlay(RoundedRectangle(cornerRadius: 40)
-                                .stroke(lineWidth: 1))
-                        VStack(alignment: .leading) {
-                            Text("Username")
-                                .font(.system(size: 15, weight: .bold))
-                            Text("Message sent to user")
-                                .font(.system(size: 15))
-                                .foregroundColor(.gray)
+                    NavigationLink {
+                        Text("Destination")
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 40))
+                                .padding(5)
+                                .overlay(RoundedRectangle(cornerRadius: 40)
+                                    .stroke(lineWidth: 1))
+                            VStack(alignment: .leading) {
+                                Text("Username")
+                                    .font(.system(size: 15, weight: .bold))
+                                Text("Message sent to user")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.gray)
+                            }
+                            Spacer()
+                            Text("22d")
+                                .font(.system(size: 16, weight: .semibold))
                         }
-                        Spacer()
-                        Text("22d")
-                            .font(.system(size: 16, weight: .semibold))
                     }
                     Divider()
                         .padding(.vertical, 5)
@@ -119,9 +126,11 @@ struct FeedList: View {
         }
     }
     
+    @State var shouldShowNewChatScreen: Bool = false
+    
     private var newChatButton: some View {
         Button {
-            
+            shouldShowNewChatScreen.toggle()
         } label: {
             HStack {
                 Spacer()
@@ -137,7 +146,15 @@ struct FeedList: View {
             .padding(.horizontal)
             
         }.offset(y: 270)
+            .sheet(isPresented: $shouldShowNewChatScreen) {
+                CreateNewChat(didSelectNewUser: { user in
+                    print(user.email)
+                    self.shouldNavigateToChatLogView.toggle()
+                    self.chatUser = user
+                })
+            }
     }
+    @State var chatUser: ChatUser?
 }
 
 #Preview {

@@ -99,6 +99,16 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
     "Chest" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -120,12 +130,32 @@
         }
       }
     },
+    "Choose users for your chat" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите пользователей для чата"
+          }
+        }
+      }
+    },
     "Create Account" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Создать аккаунт"
+          }
+        }
+      }
+    },
+    "Destination" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пункт назначения"
           }
         }
       }
@@ -217,12 +247,32 @@
         }
       }
     },
+    "New Chat" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый чат"
+          }
+        }
+      }
+    },
     "online" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "онлайн"
+          }
+        }
+      }
+    },
+    "Online" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Онлайн"
           }
         }
       }
@@ -366,16 +416,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Конструктор"
-          }
-        }
-      }
-    },
-    "ЧАТ" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ЧАТ"
           }
         }
       }
