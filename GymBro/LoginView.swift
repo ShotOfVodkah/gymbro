@@ -13,6 +13,8 @@ import FirebaseFirestore
 
 struct LoginView: View {
     
+    let didCompleteLogin: () -> ()
+    
     @State var isLoginMode: Bool = false
     @State var email: String = ""
     @State var password: String = ""
@@ -99,6 +101,11 @@ struct LoginView: View {
     @State var loginStatusMessage = "";
     
     private func createNewAccount() {
+//        if self.image == nil {
+//            self.loginStatusMessage = "Please select a profile picture."
+//            return
+//        }
+        
         Auth.auth().createUser(withEmail: email, password: password) {
             result, error in
             if let error = error {
@@ -123,7 +130,8 @@ struct LoginView: View {
                 return
             }
             print("Succeeded to login user: \(result?.user.uid ?? "")")
-            loginStatusMessage = "Succeeded to login user: \(result?.user.uid ?? "")"
+            self.loginStatusMessage = "Succeeded to login user: \(result?.user.uid ?? "")"
+            self.didCompleteLogin()
         }
     }
     
@@ -168,12 +176,14 @@ struct LoginView: View {
                     return
                 }
                 print("User data stored successfully")
+                self.didCompleteLogin()
             }
     }
 }
 
 
 #Preview {
-    LoginView()
+    LoginView(didCompleteLogin: {
+    })
 }
 

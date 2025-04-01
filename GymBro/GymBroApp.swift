@@ -20,10 +20,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct GymBroApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var vm = FeedListModel()
+    
     var body: some Scene {
         WindowGroup {
-//            LoginView() // привет. АГрицаенко
-            MainView()
+            if self.vm.isUserCurrentlyLoggedOut == true {
+                LoginView(didCompleteLogin: {
+                    self.vm.isUserCurrentlyLoggedOut = false
+                }) // привет. АГрицаенко
+            } else {
+                MainView()
+            }
         }
     }
 }

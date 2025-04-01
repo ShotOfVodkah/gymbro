@@ -9,7 +9,10 @@ import SwiftUI
 
 struct Feed: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("ЧАТ")
+            .font(.system(size: 35))
+            .fontWeight(.semibold)
+            .foregroundColor(Color("TitleColor"))
     }
 }
 

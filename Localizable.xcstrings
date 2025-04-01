@@ -4,8 +4,31 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%lld" : {
 
+    },
+    "+ New Chat" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ Новый чат"
+          }
+        }
+      }
+    },
+    "22d" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "22д"
+          }
+        }
+      }
     },
     "Account" : {
       "localizations" : {
@@ -29,6 +52,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прибавь вес"
+          }
+        }
+      }
+    },
+    "Are you sure you want to log out?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите выйти?"
           }
         }
       }
@@ -123,15 +156,22 @@
         }
       }
     },
-    "Hello, World!" : {
-
-    },
     "Log In" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Войти"
+          }
+        }
+      }
+    },
+    "Log out" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти"
           }
         }
       }
@@ -157,12 +197,32 @@
         }
       }
     },
+    "Message sent to user" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сообщение отправленное пользователю"
+          }
+        }
+      }
+    },
     "Name your workout" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Назови свою тренировку"
+          }
+        }
+      }
+    },
+    "online" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "онлайн"
           }
         }
       }
@@ -274,6 +334,27 @@
         }
       }
     },
+    "Username" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользователь"
+          }
+        }
+      }
+    },
+    "USERNAME" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ПОЛЬЗОВАТЕЛЬ"
+          }
+        }
+      }
+    },
     "Weight" : {
       "localizations" : {
         "ru" : {
@@ -300,18 +381,12 @@
         }
       }
     },
-    "Экран 1" : {
+    "ЧАТ" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My feeds"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Мои ленты"
+            "value" : "ЧАТ"
           }
         }
       }

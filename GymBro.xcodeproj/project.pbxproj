@@ -11,7 +11,6 @@
 		5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909FA2CEB7DF000A24F89 /* LoginView.swift */; };
 		5D4909FD2CEB7DF600A24F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */; };
 		5D490A002CEB7DF600A24F89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */; };
-		5D58A4642D424B9E0004E6C5 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D58A4632D424B980004E6C5 /* Classes.swift */; };
 		5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D58A4652D4256AE0004E6C5 /* WorkoutWidget.swift */; };
 		5D7A66632D41C91A00FC3EE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D7A66622D41C91A00FC3EE1 /* GoogleService-Info.plist */; };
 		5D7A66662D41C9C100FC3EE1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7A66652D41C9C100FC3EE1 /* FirebaseFirestore */; };
@@ -31,7 +30,6 @@
 		5D4909FA2CEB7DF000A24F89 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5D58A4632D424B980004E6C5 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		5D58A4652D4256AE0004E6C5 /* WorkoutWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutWidget.swift; sourceTree = "<group>"; };
 		5D7A66622D41C91A00FC3EE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlayWidget.swift; sourceTree = "<group>"; };
@@ -43,7 +41,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D58A4482D42488D0004E6C5 /* Visual */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Visual; sourceTree = "<group>"; };
-		5DB1334E2D4D968D00C37DF0 /* Technical */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Technical; sourceTree = "<group>"; };
+		5DB1334E2D4D968D00C37DF0 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 		73DA142A2D3FD65B00960BD8 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -82,11 +80,10 @@
 		5D4909F72CEB7DF000A24F89 /* GymBro */ = {
 			isa = PBXGroup;
 			children = (
-				5DB1334E2D4D968D00C37DF0 /* Technical */,
-				5D58A4632D424B980004E6C5 /* Classes.swift */,
+				5DB1334E2D4D968D00C37DF0 /* Model */,
 				5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */,
-				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
 				73E4AEDA2D5391F10088A814 /* MainView.swift */,
+				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
 				5D58A44C2D4248D60004E6C5 /* Components */,
 				5D58A4482D42488D0004E6C5 /* Visual */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,
@@ -133,7 +130,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				5D58A4482D42488D0004E6C5 /* Visual */,
-				5DB1334E2D4D968D00C37DF0 /* Technical */,
+				5DB1334E2D4D968D00C37DF0 /* Model */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,
 			);
 			name = GymBro;
@@ -203,7 +200,6 @@
 				5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */,
 				5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */,
 				5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */,
-				5D58A4642D424B9E0004E6C5 /* Classes.swift in Sources */,
 				5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

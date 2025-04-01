@@ -9,8 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var index = 2
+    @State var index = 2
     @State private var isTabVisible = true
+    @StateObject var vm = FeedListModel()
     
     var body: some View {
         NavigationStack {
