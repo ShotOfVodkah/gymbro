@@ -344,17 +344,6 @@
         }
       }
     },
-    "USERNAME" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ПОЛЬЗОВАТЕЛЬ"
-          }
-        }
-      }
-    },
     "Weight" : {
       "localizations" : {
         "ru" : {

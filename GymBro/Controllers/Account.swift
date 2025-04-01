@@ -11,6 +11,7 @@ struct Account: View {
     @Binding var bar: Bool
     @State var shouldShowLogOutOptions: Bool = false
     @StateObject var vm = FeedListModel()
+    @State private var showMainView = false
     
     var body: some View {
         NavigationStack {
@@ -37,11 +38,17 @@ struct Account: View {
                     secondaryButton: .cancel()
                 )
             }
-            .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
+            .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut) {
                 LoginView(didCompleteLogin: {
                     self.vm.isUserCurrentlyLoggedOut = false
                     self.vm.fetchCurrentUser()
+                    self.showMainView = true
                 })
+            }
+            .navigationDestination(isPresented: $showMainView) {
+                MainView()
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
             }
         }
     }
