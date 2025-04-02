@@ -170,6 +170,16 @@
         }
       }
     },
+    "Enter your message here" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите сообщение"
+          }
+        }
+      }
+    },
     "Feeds" : {
       "localizations" : {
         "en" : {

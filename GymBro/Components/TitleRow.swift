@@ -21,7 +21,7 @@ struct TitleRow: View {
             VStack(alignment: .leading) {
                 let username = chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? "Jane Doe"
                 Text("\(username)")
-                    .font(.system(size: 30, weight: .bold))
+                    .font(.system(size: 30, weight: .semibold))
                     .foregroundColor(.white)
                 Text("Online")
                     .font(.system(size: 15))

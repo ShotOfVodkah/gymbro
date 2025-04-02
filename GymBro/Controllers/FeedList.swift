@@ -76,8 +76,9 @@ struct FeedList: View {
             VStack (alignment: .leading, spacing: 5) {
                 let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
                 Text("\(email)")
-                    .font(.system(size: 24, weight: .bold))
-                
+                    .font(.system(size: 35))
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color("TitleColor"))
                 HStack {
                     Circle()
                         .foregroundColor(.green)

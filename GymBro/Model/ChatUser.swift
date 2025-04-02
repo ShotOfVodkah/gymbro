@@ -18,7 +18,9 @@ struct ChatUser: Identifiable {
 }
 
 struct Message: Identifiable {
-    var id, text: String
-    var received: Bool
-    var timestamp: Date
+    var id: String { documentId }
+    let documentId: String
+    let fromId, toId, text: String
+    let received: Bool
+    let timestamp: Date
 }

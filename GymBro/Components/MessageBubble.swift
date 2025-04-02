@@ -36,5 +36,11 @@ struct MessageBubble: View {
 }
 
 #Preview {
-    MessageBubble(message: Message(id: "12345", text: "Hakuna Matata", received: false, timestamp: Date()))
+    MessageBubble(message: Message(documentId: "1",
+                                   fromId: "12345",
+                                   toId: "34567",
+                                   text: "Hakuna Matata",
+                                   received: "12345" != "12345",
+                                   timestamp: Date()))
+    
 }
