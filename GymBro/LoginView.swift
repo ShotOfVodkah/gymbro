@@ -23,78 +23,86 @@ struct LoginView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            ZStack {
+                Color.black
+                    .ignoresSafeArea()
+                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                    .foregroundStyle(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .frame(width: 1000, height: 400)
+                    .rotationEffect(.degrees(135))
+                    .offset(x: -30, y: -370)
+                    .opacity(1.0)
                 
-                VStack(spacing: 20) {
-                    Picker(selection: $isLoginMode, label: Text("picker here")) {
-                        Text("Login")
-                            .tag(true)
-                        Text("Create Account")
-                            .tag(false)
-                    }.pickerStyle(SegmentedPickerStyle())
+                VStack(spacing: 10) {
                     
-                    if !isLoginMode {
-                        Button {
-                            shouldShowImagePicker.toggle()
-                        } label: {
-                            VStack {
-                                if let image = self.image {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 130, height: 130)
-                                        .cornerRadius(130 / 2)
-                                        .overlay(RoundedRectangle(cornerRadius: 130 / 2)
-                                            .stroke(Color("PurpleColor"), lineWidth: 3))
-                                } else {
-                                    Image(systemName: "person.circle.fill")
-                                        .font(.system(size: 130))
-                                        .foregroundColor(Color("PurpleColor"))
-                                        .padding()
-                                }
-                            }
+                    Text("GymBro")
+                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .foregroundColor(.white)
+                        .offset(x: -75, y: -210)
+                    Text("Welcome to GymBro")
+                        .font(.system(size: 20, weight: .light, design: .default))
+                        .foregroundColor(.white)
+                        .offset(x: -75, y: -210)
+                    
+                    TextField("Email", text: $email)
+                        .foregroundColor(.white)
+                        .textFieldStyle(.plain)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .placeholder(when: email.isEmpty) {
+                            Text("Email")
+                                .foregroundColor(.white)
+                                .bold()
                         }
-                    }
+                        .offset(y: -40)
+                    Rectangle()
+                        .frame(width: 350, height: 1)
+                        .foregroundColor(.white)
+                        .offset(y: -40)
                     
-                    Group {
-                        TextField("Email", text: $email)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
-                        SecureField("Password", text: $password)
-                    }   .padding(12)
-                        .background(.white)
+                    SecureField("Password", text: $password)
+                        .foregroundColor(.white)
+                        .textFieldStyle(.plain)
+                        .placeholder(when: password.isEmpty) {
+                            Text("Password")
+                                .foregroundColor(.white)
+                                .bold()
+                        }
+                        .offset(y: -30)
+                    Rectangle()
+                        .frame(width: 350, height: 1)
+                        .foregroundColor(.white)
+                        .offset(y: -30)
                     
                     Button {
-                        handleAction()
+                        if isLoginMode {
+                            loginUser()
+                        } else {
+                            createNewAccount()
+                        }
                     } label: {
-                        HStack {
-                            Spacer()
-                            Text(isLoginMode ? "Log In" : "Create Account")
-                                .foregroundColor(.white)
-                                .padding(.vertical, 15)
-                            Spacer()
-                        }.background(Color("PurpleColor"))
+                        Text(isLoginMode ? "Log in" : "Create Account")
+                            .bold()
+                            .frame(width: 200, height: 40)
+                            .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .top, endPoint: .bottomTrailing)))
+                            .foregroundColor(.white)
                     }
+                    .padding(.top)
+                    .offset(y: 120)
                     
-                    Text(self.loginStatusMessage)
-                        .foregroundColor(.red)
+                    Button {
+                        isLoginMode.toggle()
+                    } label: {
+                        Text(isLoginMode ? "Don't have an Account? Create a new one!" : "Already have an account? Login")
+                            .bold()
+                            .foregroundColor(.white)
+                    }
+                    .padding(.top)
+                    .offset(y: 120)
                 }
-                .padding()
+                .frame(width: 350)
             }
-            .navigationTitle(isLoginMode ? "Log In" : "Create Account")
-            .background(Color(.init(white: 0, alpha: 0.1)))
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-            ImagePicker(image: $image)
-        }
-    }
-    
-    private func handleAction() {
-        if isLoginMode {
-            loginUser()
-        } else {
-            createNewAccount()
         }
     }
     
@@ -115,7 +123,6 @@ struct LoginView: View {
             }
             print("Succeeded to create user: \(result?.user.uid ?? "")")
             loginStatusMessage = "Succeeded to create user: \(result?.user.uid ?? "")"
-            
 //            self.persistImageToStorage() надо будет оплатить подписку и подключить Storage
             self.storeUserInformation()
         }
@@ -186,4 +193,3 @@ struct LoginView: View {
     LoginView(didCompleteLogin: {
     })
 }
-

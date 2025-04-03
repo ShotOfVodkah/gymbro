@@ -20,17 +20,6 @@
         }
       }
     },
-    "22d" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "22д"
-          }
-        }
-      }
-    },
     "Account" : {
       "localizations" : {
         "en" : {
@@ -53,6 +42,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прибавь вес"
+          }
+        }
+      }
+    },
+    "Already have an account? Login" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уже есть аккаунт? Войти"
           }
         }
       }
@@ -151,13 +150,12 @@
         }
       }
     },
-    "Destination" : {
-      "extractionState" : "stale",
+    "Don't have an Account? Create a new one!" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пункт назначения"
+            "value" : "Нет аккаунта? Создайте новый!"
           }
         }
       }
@@ -198,7 +196,17 @@
         }
       }
     },
-    "Log In" : {
+    "GymBro" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GymBro"
+          }
+        }
+      }
+    },
+    "Log in" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -214,16 +222,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выйти"
-          }
-        }
-      }
-    },
-    "Login" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Войти"
           }
         }
       }
@@ -304,9 +302,6 @@
           }
         }
       }
-    },
-    "picker here" : {
-
     },
     "Put your exercises in order" : {
       "localizations" : {
@@ -392,6 +387,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вес"
+          }
+        }
+      }
+    },
+    "Welcome to GymBro" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to GymBro"
           }
         }
       }
