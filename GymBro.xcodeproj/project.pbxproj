@@ -84,10 +84,10 @@
 		5D4909F72CEB7DF000A24F89 /* GymBro */ = {
 			isa = PBXGroup;
 			children = (
-				5DB1334E2D4D968D00C37DF0 /* Model */,
 				5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */,
 				73E4AEDA2D5391F10088A814 /* MainView.swift */,
 				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
+				5DB1334E2D4D968D00C37DF0 /* Model */,
 				5D58A44C2D4248D60004E6C5 /* Components */,
 				5D58A4482D42488D0004E6C5 /* Visual */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,

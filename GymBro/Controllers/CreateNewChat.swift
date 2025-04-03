@@ -6,33 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
-import FirebaseAuth
-
-class CreateNewChatViewModel: ObservableObject {
-    @Published var users = [ChatUser]()
-    @Published var errorMessage = ""
-    
-    init() {
-        fetchAllUsers()
-    }
-
-    private func fetchAllUsers() {
-        Firestore.firestore().collection("usersusers").getDocuments { documentsSnapshot, error in
-            if let error = error {
-                print("Failed to fetch users: \(error.localizedDescription)")
-                return
-            }
-            documentsSnapshot?.documents.forEach { snapshot in
-                let data = snapshot.data()
-                let user = ChatUser(data: data)
-                if user.uid != Auth.auth().currentUser?.uid {
-                    self.users.append(.init(data: data))
-                }
-            }
-        }
-    }
-}
 
 struct CreateNewChat: View {
     let didSelectNewUser: (ChatUser) -> ()

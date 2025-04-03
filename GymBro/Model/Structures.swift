@@ -43,3 +43,31 @@ struct ExistingChats: Identifiable {
         self.timestamp = (data["timestamp"] as? Timestamp)?.dateValue() ?? Date()
     }
 }
+
+struct Workout: Identifiable, Codable {
+    let id: String
+    let icon: String
+    let name: String
+    let user_id: String
+    var exercises: [Exercise]
+}
+
+struct Exercise: Identifiable, Codable, Equatable, Hashable {
+    let id = UUID()
+    
+    var name: String
+    var muscle_group: String
+    var is_selected: Bool
+    var weight: Int
+    var sets: Int
+    var reps: Int
+}
+
+struct User: Identifiable, Codable {
+    let id = UUID()
+    
+    let user_id: String
+    let name: String
+    let friends: [UUID]
+    let feeds: [UUID]
+}
