@@ -20,6 +20,7 @@ class FeedListModel: ObservableObject {
             self.isUserCurrentlyLoggedOut = Auth.auth().currentUser?.uid == nil
         }
         fetchCurrentUser()
+        fetchExistingChats()
     }
     
     func fetchCurrentUser() {
@@ -42,6 +43,30 @@ class FeedListModel: ObservableObject {
         }
     }
     
+    @Published var existingChats = [ExistingChats]()
+    private var firestoreListener: ListenerRegistration?
+    
+    func fetchExistingChats() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        firestoreListener?.remove()
+        self.existingChats.removeAll()
+        firestoreListener = Firestore.firestore().collection("existing_chats").document(uid).collection("messages").order(by: "timestamp").addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                self.errorMessage = "Failed to listen for existing messages: \(error.localizedDescription)"
+                print(self.errorMessage)
+                return
+            }
+            querySnapshot?.documentChanges.forEach { change in
+                if let index = self.existingChats.firstIndex(where: { rm in
+                    return rm.documentID == change.document.documentID
+                }) {
+                    self.existingChats.remove(at: index)
+                }
+                self.existingChats.insert(.init(documentId: change.document.documentID, data: change.document.data()), at: 0)
+            }
+        }
+    }
+    
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
         try? Auth.auth().signOut()
@@ -53,6 +78,7 @@ struct FeedList: View {
     @Binding var bar: Bool
     @StateObject var vm = FeedListModel()
     @State var shouldNavigateToChatLogView: Bool = false
+//    @State private var selectedChatUser: ChatUser?
     
     var body: some View {
         NavigationStack {
@@ -97,10 +123,17 @@ struct FeedList: View {
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(0..<10, id: \.self) { num in
+            ForEach(vm.existingChats) { existingChat in
                 VStack {
-                    NavigationLink {
-                        Text("Destination")
+                    Button {
+                        let user = ChatUser(data: [
+                            "uid": existingChat.fromId == Auth.auth().currentUser?.uid ?? "" ? existingChat.toId : existingChat.fromId,
+                            "email": existingChat.email
+                        ])
+                        print(user.email)
+                        print(user.uid)
+                        self.chatUser = user
+                        shouldNavigateToChatLogView = true
                     } label: {
                         HStack(spacing: 15) {
                             Image(systemName: "person.fill")
@@ -108,16 +141,21 @@ struct FeedList: View {
                                 .padding(5)
                                 .overlay(RoundedRectangle(cornerRadius: 40)
                                     .stroke(lineWidth: 1))
+                                .foregroundColor(Color(.label))
                             VStack(alignment: .leading) {
-                                Text("Username")
+                                Text(existingChat.email)
                                     .font(.system(size: 15, weight: .bold))
-                                Text("Message sent to user")
+                                    .foregroundColor(Color(.label))
+                                Text(existingChat.text)
                                     .font(.system(size: 15))
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color(.darkGray))
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.leading)
                             }
                             Spacer()
-                            Text("22d")
+                            Text(existingChat.timestamp.timeAgoDisplay())
                                 .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(Color(.label))
                         }
                     }
                     Divider()
@@ -128,6 +166,7 @@ struct FeedList: View {
     }
     
     @State var shouldShowNewChatScreen: Bool = false
+    @State var chatUser: ChatUser?
     
     private var newChatButton: some View {
         Button {
@@ -155,7 +194,6 @@ struct FeedList: View {
                 })
             }
     }
-    @State var chatUser: ChatUser?
 }
 
 #Preview {

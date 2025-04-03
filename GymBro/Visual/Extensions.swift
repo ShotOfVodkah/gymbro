@@ -14,6 +14,18 @@ extension View {
     }
 }
 
+extension Date {
+    func timeAgoDisplay() -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.locale = Locale(identifier: "en_US")
+        if Int(Date().timeIntervalSince(self)) < 60 {
+            return "now"
+        }
+        return formatter.localizedString(for: self, relativeTo: Date())
+    }
+}
+
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners

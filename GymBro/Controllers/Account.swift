@@ -42,6 +42,7 @@ struct Account: View {
                 LoginView(didCompleteLogin: {
                     self.vm.isUserCurrentlyLoggedOut = false
                     self.vm.fetchCurrentUser()
+                    self.vm.fetchExistingChats()
                     self.showMainView = true
                 })
             }

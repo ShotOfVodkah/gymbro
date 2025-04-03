@@ -21,6 +21,7 @@
       }
     },
     "22d" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -151,6 +152,7 @@
       }
     },
     "Destination" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -233,16 +235,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нижняя часть ног"
-          }
-        }
-      }
-    },
-    "Message sent to user" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сообщение отправленное пользователю"
           }
         }
       }
@@ -390,16 +382,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Верхняя часть ног"
-          }
-        }
-      }
-    },
-    "Username" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пользователь"
           }
         }
       }
