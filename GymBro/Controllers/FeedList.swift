@@ -88,7 +88,7 @@ struct FeedList: View {
                             Spacer()
                             Text(existingChat.timestamp.timeAgoDisplay())
                                 .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(Color(.label))
+                                .foregroundColor(Color(.darkGray))
                         }
                     }
                     Divider()
@@ -113,12 +113,11 @@ struct FeedList: View {
             }
             .foregroundColor(.white)
             .padding(.vertical)
-            .background(Color("PurpleColor"))
+            .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
             .cornerRadius(50)
             .shadow(radius: 10)
             .padding(.horizontal)
-            
-        }.offset(y: 270)
+        }.offset(y: 260)
             .sheet(isPresented: $shouldShowNewChatScreen) {
                 CreateNewChat(didSelectNewUser: { user in
                     print(user.email)

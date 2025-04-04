@@ -47,12 +47,14 @@ struct ChatLogView: View {
                     }
                 }
                 .padding(.top, 20)
-                .background(.white)
+                .background(Color("Chat"))
                 .cornerRadius(30, corners: [.topLeft, .topRight])
             }
-            .background(Color("PurpleColor"))
+            .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
             .navigationBarHidden(true)
+            .padding(.bottom, -8)
             chatBottomBar
+                .background(Color("Chat"))
         }
     }
     

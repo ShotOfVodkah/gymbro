@@ -46,3 +46,31 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+
+struct buttonView : View {
+    var image = ""
+    var name = ""
+    
+    var body: some View {
+        Button {
+            // handle some action
+        } label: {
+            VStack {
+                HStack(spacing: 15) {
+                    Image(systemName: image)
+                        .font(.system(size: 30))
+                        .foregroundColor(Color("TitleColor"))
+                    Text(name)
+                    Spacer(minLength: 15)
+                    Image(systemName: "chevron.right")
+                }
+                .padding()
+                .foregroundColor(Color(.label))
+                Divider()
+                    .padding(.top, -5)
+            }
+            .padding(.vertical, -5)
+            .padding(.horizontal, 10)
+        }
+    }
+}

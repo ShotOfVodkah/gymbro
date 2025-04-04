@@ -20,6 +20,36 @@
         }
       }
     },
+    "0" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "0 days" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 дней"
+          }
+        }
+      }
+    },
+    "44" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "44"
+          }
+        }
+      }
+    },
     "Account" : {
       "localizations" : {
         "en" : {
@@ -160,6 +190,16 @@
         }
       }
     },
+    "Edit Profile" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить профиль"
+          }
+        }
+      }
+    },
     "Email" : {
       "localizations" : {
         "ru" : {
@@ -192,6 +232,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ленты"
+          }
+        }
+      }
+    },
+    "Friends" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друзья"
           }
         }
       }
@@ -354,6 +404,16 @@
         }
       }
     },
+    "Streak" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стрик"
+          }
+        }
+      }
+    },
     "Team" : {
       "localizations" : {
         "en" : {
@@ -397,6 +457,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to GymBro"
+          }
+        }
+      }
+    },
+    "Workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки"
           }
         }
       }
@@ -461,22 +531,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Индивидуальные Достижения"
-          }
-        }
-      }
-    },
-    "Экран 5" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Account"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Аккаунт"
           }
         }
       }
