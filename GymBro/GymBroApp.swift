@@ -20,7 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct GymBroApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var vm = FeedListModel()
+    @StateObject var vm = AccountModel()
     
     var body: some Scene {
         WindowGroup {

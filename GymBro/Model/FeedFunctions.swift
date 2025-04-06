@@ -212,9 +212,4 @@ class FeedListModel: ObservableObject {
             }
         }
     }
-    
-    func handleSignOut() {
-        isUserCurrentlyLoggedOut.toggle()
-        try? Auth.auth().signOut()
-    }
 }

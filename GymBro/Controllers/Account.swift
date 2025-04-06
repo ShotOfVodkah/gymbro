@@ -10,7 +10,7 @@ import SwiftUI
 struct Account: View {
     @Binding var bar: Bool
     @State var shouldShowLogOutOptions: Bool = false
-    @StateObject var vm = FeedListModel()
+    @StateObject var vm = AccountModel()
     @State private var showMainView = false
     
     var body: some View {
@@ -58,7 +58,6 @@ struct Account: View {
                 LoginView(didCompleteLogin: {
                     self.vm.isUserCurrentlyLoggedOut = false
                     self.vm.fetchCurrentUser()
-                    self.vm.fetchExistingChats()
                     self.showMainView = true
                 })
             }
