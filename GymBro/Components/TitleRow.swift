@@ -19,7 +19,7 @@ struct TitleRow: View {
                     .stroke(lineWidth: 1))
                 .foregroundColor(.white)
             VStack(alignment: .leading) {
-                let username = chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? "Jane Doe"
+                let username = chatUser?.username ?? "Jane Doe"
                 Text("\(username)")
                     .font(.system(size: 30, weight: .semibold))
                     .foregroundColor(.white)

@@ -92,8 +92,8 @@ class ChatLogViewModel: ObservableObject {
         guard let toId = self.chatUser?.uid else { return }
         let document = Firestore.firestore().collection("existing_chats").document(uid).collection("messages").document(toId)
         let data = ["timestamp": Date(), "text": self.message, "fromId": uid, "toId": toId,
-                    "email": self.chatUser?.email ?? "", // username
-                    ] as [String : Any]
+                    "email": self.chatUser?.email ?? "", "username": self.chatUser?.username ?? ""
+        ] as [String : Any]
         document.setData(data) { error in
             if let error = error {
                 self.errorMessage = "Failed to save chat document: \(error.localizedDescription)"
@@ -104,16 +104,26 @@ class ChatLogViewModel: ObservableObject {
         }
         let recipientDocument = Firestore.firestore().collection("existing_chats").document(toId).collection("messages").document(uid)
         guard let email = Auth.auth().currentUser?.email else { return }
-        let recipientData = ["timestamp": Date(), "text": self.message, "fromId": uid, "toId": toId,
-                             "email": email, // username
-                    ] as [String : Any]
-        recipientDocument.setData(recipientData) { error in
-            if let error = error {
-                self.errorMessage = "Failed to save chat document: \(error.localizedDescription)"
-                print(self.errorMessage)
-                return
+        let message = self.message
+        Firestore.firestore().collection("usersusers").document(uid).getDocument { [weak self] snapshot, error in
+            guard let self = self else { return }
+            let currentUsername: String
+            if let username = snapshot?.data()?["username"] as? String {
+                currentUsername = username
+            } else {
+                currentUsername = email
             }
-            print("Successfully saved recipient chat document")
+            let recipientData = ["timestamp": Date(), "text": message, "fromId": uid, "toId": toId,
+                                 "email": email, "username": currentUsername
+            ] as [String : Any]
+            recipientDocument.setData(recipientData) { error in
+                if let error = error {
+                    self.errorMessage = "Failed to save chat document: \(error.localizedDescription)"
+                    print(self.errorMessage)
+                    return
+                }
+                print("Successfully saved recipient chat document")
+            }
         }
     }
 }

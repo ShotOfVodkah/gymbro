@@ -33,8 +33,8 @@ struct FeedList: View {
 //                    Image(systemName: "person.circle.fill")
 //                        .font(.system(size: 45))
             VStack (alignment: .leading, spacing: 5) {
-                let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
-                Text("\(email)")
+                let username = vm.chatUser?.username ?? ""
+                Text("\(username)")
                     .font(.system(size: 35))
                     .fontWeight(.semibold)
                     .foregroundColor(Color("TitleColor"))
@@ -61,7 +61,8 @@ struct FeedList: View {
                     Button {
                         let user = ChatUser(data: [
                             "uid": existingChat.fromId == Auth.auth().currentUser?.uid ?? "" ? existingChat.toId : existingChat.fromId,
-                            "email": existingChat.email
+                            "email": existingChat.email,
+                            "username": existingChat.username
                         ])
                         print(user.email)
                         print(user.uid)
@@ -76,7 +77,7 @@ struct FeedList: View {
                                     .stroke(lineWidth: 1))
                                 .foregroundColor(Color(.label))
                             VStack(alignment: .leading) {
-                                Text(existingChat.email.replacingOccurrences(of: "@gmail.com", with: ""))
+                                Text(existingChat.username)
                                     .font(.system(size: 15, weight: .bold))
                                     .foregroundColor(Color(.label))
                                 Text(existingChat.text)

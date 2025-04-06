@@ -76,6 +76,9 @@
         }
       }
     },
+    "Age" : {
+
+    },
     "Already have an account? Login" : {
       "localizations" : {
         "ru" : {
@@ -117,6 +120,9 @@
           }
         }
       }
+    },
+    "Bio" : {
+
     },
     "Buttocks" : {
       "extractionState" : "manual",
@@ -246,6 +252,9 @@
         }
       }
     },
+    "Gender" : {
+
+    },
     "GymBro" : {
       "localizations" : {
         "ru" : {
@@ -255,6 +264,9 @@
           }
         }
       }
+    },
+    "Height (cm)" : {
+
     },
     "Log in" : {
       "localizations" : {
@@ -373,6 +385,9 @@
         }
       }
     },
+    "Save" : {
+
+    },
     "Search" : {
       "localizations" : {
         "ru" : {
@@ -393,6 +408,16 @@
         }
       }
     },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
     "Shoulders" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -400,6 +425,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Плечи"
+          }
+        }
+      }
+    },
+    "Statistics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статистика"
           }
         }
       }
@@ -441,6 +483,9 @@
         }
       }
     },
+    "Username" : {
+
+    },
     "Weight" : {
       "localizations" : {
         "ru" : {
@@ -451,12 +496,25 @@
         }
       }
     },
+    "Weight (kg)" : {
+
+    },
     "Welcome to GymBro" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to GymBro"
+          }
+        }
+      }
+    },
+    "Workout History" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "История тренировок"
           }
         }
       }

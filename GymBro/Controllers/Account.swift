@@ -16,21 +16,24 @@ struct Account: View {
     var body: some View {
         NavigationStack {
             VStack {
-                let username = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? "UserName"
+                Image(systemName: "person.circle.fill")
+                    .font(.system(size: 100))
+                    .foregroundColor(Color("PurpleColor"))
+                let username = vm.chatUser?.username ?? ""
                 Text("\(username)")
                     .font(.system(size: 35))
                     .fontWeight(.semibold)
                     .foregroundColor(Color("TitleColor"))
-                    .padding(.vertical, 20)
+                    .padding(.bottom, 20)
                 customCountBar
                     .padding(.bottom, 20)
                 buttonEditProfile
                     .padding(.bottom, 20)
                 VStack(spacing: 5) {
-                    buttonView(image: "checkmark.circle.fill", name: "Statistics")
-                    buttonView(image: "figure.dance.circle.fill", name: "Workout History")
-                    buttonView(image: "person.crop.circle.fill.badge.plus", name: "Friends")
-                    buttonView(image: "gear.circle.fill", name: "Settings")
+                    settingsButtonView(image: "checkmark.circle.fill", name: Text("Statistics"))
+                    settingsButtonView(image: "figure.dance.circle.fill", name: Text("Workout History"))
+                    settingsButtonView(image: "person.crop.circle.fill.badge.plus", name: Text("Friends"))
+                    settingsButtonView(image: "gear.circle.fill", name: Text("Settings"))
                 }
                 Button {
                     shouldShowLogOutOptions.toggle()
@@ -115,9 +118,10 @@ struct Account: View {
         }
     }
     
+    @State var shouldShowEditProfileScreen: Bool = false
     private var buttonEditProfile: some View {
         Button {
-            
+            shouldShowEditProfileScreen.toggle()
         } label: {
             HStack {
                 Spacer()
@@ -131,6 +135,9 @@ struct Account: View {
             .cornerRadius(50)
             .shadow(radius: 10)
             .padding(.horizontal, 40)
+        }
+        .sheet(isPresented: $shouldShowEditProfileScreen) {
+            EditProfile()
         }
     }
 }

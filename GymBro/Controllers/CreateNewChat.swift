@@ -48,7 +48,7 @@ struct CreateNewChat: View {
                                 .overlay(RoundedRectangle(cornerRadius: 40)
                                     .stroke(lineWidth: 1))
                                 .foregroundColor(Color("TitleColor"))
-                            Text(user.email)
+                            Text(user.username)
                                 .font(.system(size: 20))
                                 .foregroundColor(Color("TitleColor"))
                             Spacer()

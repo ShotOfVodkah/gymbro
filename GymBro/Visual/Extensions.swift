@@ -47,9 +47,9 @@ struct RoundedCorner: Shape {
     }
 }
 
-struct buttonView : View {
+struct settingsButtonView : View {
     var image = ""
-    var name = ""
+    var name = Text("")
     
     var body: some View {
         Button {
@@ -60,7 +60,7 @@ struct buttonView : View {
                     Image(systemName: image)
                         .font(.system(size: 30))
                         .foregroundColor(Color("TitleColor"))
-                    Text(name)
+                    name
                     Spacer(minLength: 15)
                     Image(systemName: "chevron.right")
                 }
@@ -72,5 +72,90 @@ struct buttonView : View {
             .padding(.vertical, -5)
             .padding(.horizontal, 10)
         }
+    }
+}
+
+struct InfoField: View {
+    var title = Text("")
+    var isNumber: Bool
+    @Binding var text: String
+    @FocusState var isTyping: Bool
+    
+    var body: some View {
+        ZStack(alignment: .leading) {
+            TextField("", text: $text).padding(.leading)
+                .frame(height: 55).focused($isTyping)
+                .keyboardType(isNumber ? .decimalPad : .default)
+                .background(isTyping ? Color("PurpleColor") : Color(.systemGray), in: RoundedRectangle(cornerRadius: 14).stroke(lineWidth: 1))
+            title.padding(.horizontal, 5)
+                .background(Color("Background").opacity(isTyping || !text.isEmpty ? 1 : 0))
+                .foregroundStyle((!text.isEmpty && !isTyping) || isTyping ? Color("PurpleColor") : Color.primary)
+                .padding(.leading).offset(x: isTyping || !text.isEmpty ? 10 : 0,
+                                          y: isTyping || !text.isEmpty ? -28 : 0)
+                .onTapGesture {
+                    isTyping.toggle()
+                }
+        }
+        .animation(.linear(duration: 0.1), value: isTyping)
+        .padding(.vertical, 5)
+    }
+}
+
+struct GenderPickerField: View {
+    var title = Text("")
+    @Binding var selectedGender: String
+    let genders = ["Male", "Female", "Other"]
+    @State private var isExpanded = false
+    
+    var body: some View {
+        ZStack(alignment: .leading) {
+            HStack {
+                Text(selectedGender)
+                    .foregroundColor(.primary)
+                Spacer()
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
+            }
+            .padding()
+            .frame(height: 55)
+            .background(RoundedRectangle(cornerRadius: 14)
+                .stroke(isExpanded ? Color("PurpleColor") : Color(.systemGray), lineWidth: 1))
+            .onTapGesture {withAnimation(.spring()) {isExpanded.toggle()}}
+            
+            title.padding(.horizontal, 5)
+                .background(Color("Background").opacity(isExpanded || !selectedGender.isEmpty ? 1 : 0))
+                .foregroundStyle(!selectedGender.isEmpty ? Color("PurpleColor") : Color.primary)
+                .padding(.leading).offset(x: isExpanded || !selectedGender.isEmpty ? 10 : 0,
+                                          y: isExpanded || !selectedGender.isEmpty ? -28 : 0)
+            
+            if isExpanded {
+                VStack(spacing: 0) {
+                    ForEach(genders, id: \.self) { gender in
+                        Button(action: {withAnimation(.spring()) {
+                            selectedGender = gender
+                            isExpanded = false
+                        }}) {
+                            HStack {
+                                Text(gender)
+                                    .foregroundColor(.white)
+                                Spacer()
+                                if selectedGender == gender {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .padding()
+                            .frame(height: 44)
+                        }
+                        Divider()
+                    }
+                }
+                .background(Color("PurpleColor"))
+                .cornerRadius(14)
+                .zIndex(1)
+            }
+        }
+        .animation(.spring(), value: isExpanded)
+        .padding(.vertical, 5)
     }
 }

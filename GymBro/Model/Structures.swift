@@ -10,11 +10,18 @@ import FirebaseFirestore
 
 struct ChatUser: Identifiable {
     var id: String { uid }
-    let uid, email: String
+    let uid: String
+    var email, username, bio, gender, age, weight, height: String
     
     init(data: [String: Any]) {
         self.uid = data["uid"] as? String ?? ""
         self.email = data["email"] as? String ?? ""
+        self.username = data["username"] as? String ?? ""
+        self.bio = data["bio"] as? String ?? ""
+        self.gender = data["gender"] as? String ?? ""
+        self.age = data["age"] as? String ?? ""
+        self.weight = data["weight"] as? String ?? ""
+        self.height = data["height"] as? String ?? ""
     }
 }
 
@@ -33,6 +40,7 @@ struct ExistingChats: Identifiable {
     let text, email: String
     let fromId, toId: String
     let timestamp: Date
+    let username: String
     
     init(documentId: String, data: [String: Any]) {
         self.documentID = documentId
@@ -41,6 +49,7 @@ struct ExistingChats: Identifiable {
         self.toId = data["toId"] as? String ?? ""
         self.email = data["email"] as? String ?? ""
         self.timestamp = (data["timestamp"] as? Timestamp)?.dateValue() ?? Date()
+        self.username = data["username"] as? String ?? ""
     }
 }
 

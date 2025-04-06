@@ -18,6 +18,11 @@ struct LoginView: View {
     @State var isLoginMode: Bool = false
     @State var email: String = ""
     @State var password: String = ""
+    @State var bio = ""
+    @State var gender = ""
+    @State var age = ""
+    @State var weight = ""
+    @State var height = ""
     
     @State var shouldShowImagePicker: Bool = false
     
@@ -44,7 +49,7 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .offset(x: -75, y: -210)
                     
-                    TextField("Email", text: $email)
+                    TextField("", text: $email)
                         .foregroundColor(.white)
                         .textFieldStyle(.plain)
                         .keyboardType(.emailAddress)
@@ -60,7 +65,7 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .offset(y: -40)
                     
-                    SecureField("Password", text: $password)
+                    SecureField("", text: $password)
                         .foregroundColor(.white)
                         .textFieldStyle(.plain)
                         .placeholder(when: password.isEmpty) {
@@ -172,7 +177,7 @@ struct LoginView: View {
     private func storeUserInformation() {
 //    private func storeUserInformation(imageProfileURL: URL?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let userData = ["uid": uid, "email": self.email]
+        let userData = ["uid": uid, "email": self.email, "username": self.email.replacingOccurrences(of: "@gmail.com", with: ""), "bio": self.bio, "gender": self.gender, "age": self.age, "weight": self.weight, "height": self.height]
 //        "profileImageURL": imageProfileURL.absoluteString
         Firestore.firestore().collection("usersusers")
             .document(uid).setData(userData) {
