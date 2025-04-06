@@ -55,3 +55,45 @@ func deleteWorkout(id: String) {
         }
     }
 }
+
+func saveWorkoutDone(workout: Workout, comment: String) {
+    let db = Firestore.firestore()
+    let docRef = db.collection("workout_done").document()
+    
+    let workoutDone = WorkoutDone(
+        id: docRef.documentID,
+        workout: workout,
+        timestamp: Date(),
+        comment: comment
+    )
+    
+    let workoutDoneData: [String: Any] = [
+        "id": workoutDone.id,
+        "workout": [
+            "id": workout.id,
+            "name": workout.name,
+            "user_id": workout.user_id,
+            "icon": workout.icon,
+            "exercises": workout.exercises.map { exercise in
+                return [
+                    "name": exercise.name,
+                    "muscle_group": exercise.muscle_group,
+                    "is_selected": exercise.is_selected,
+                    "weight": exercise.weight,
+                    "sets": exercise.sets,
+                    "reps": exercise.reps
+                ]
+            }
+        ],
+        "timestamp": Timestamp(date: workoutDone.timestamp),
+        "comment": workoutDone.comment
+    ]
+    
+    docRef.setData(workoutDoneData) { error in
+        if let error = error {
+            print("Ошибка: \(error.localizedDescription)")
+        } else {
+            print("\(docRef.documentID)")
+        }
+    }
+}

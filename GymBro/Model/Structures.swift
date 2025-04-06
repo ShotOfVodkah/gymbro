@@ -72,6 +72,14 @@ struct Exercise: Identifiable, Codable, Equatable, Hashable {
     var reps: Int
 }
 
+struct WorkoutDone: Identifiable, Codable {
+    let id: String
+    
+    let workout: Workout
+    let timestamp: Date
+    let comment: String
+}
+
 struct User: Identifiable, Codable {
     let id = UUID()
     
