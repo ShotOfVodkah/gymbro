@@ -112,7 +112,7 @@ struct WorkoutInfo: View {
                     ForEach(Array(zip(mGroups, percentages)), id: \.0) { group, percentage in
                         
                         VStack(spacing: 2) {
-                            Text(group)
+                            Text(LocalizedStringKey(group))
                                 .font(.system(size: 15))
                                 .foregroundColor(.white)
                             

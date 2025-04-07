@@ -418,7 +418,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Повторения"
+            "value" : "Reps"
           }
         }
       }
@@ -448,7 +448,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Подходы"
+            "value" : "Sets"
           }
         }
       }
@@ -543,7 +543,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вес"
+            "value" : "Weight"
           }
         }
       }
