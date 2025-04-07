@@ -8,10 +8,12 @@
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
+import FirebaseAuth
 
 
 struct WorkoutPlayer: View {
     let db = Firestore.firestore()
+    let uid = Auth.auth().currentUser?.uid
     
     @Binding var workout: Workout;
     @State private var selected: Int = 0;
@@ -162,7 +164,7 @@ struct WorkoutPlayer: View {
                         .padding(.bottom, 10)
                     
                     Button {
-                        db.collection("workouts").document(workout.id).updateData(["exercises": workout.exercises.map { exercise in
+                        db.collection("workouts").document(uid ?? "").collection("workouts_for_id").document(workout.id).updateData(["exercises": workout.exercises.map { exercise in
                             return [
                                 "name": exercise.name,
                                 "muscle_group": exercise.muscle_group,

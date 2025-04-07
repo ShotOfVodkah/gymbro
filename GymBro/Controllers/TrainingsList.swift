@@ -8,9 +8,10 @@
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
+import FirebaseAuth
 
 struct TrainingsList: View {
-    @FirestoreQuery(collectionPath: "workouts") var workouts: [Workout]
+    @FirestoreQuery(collectionPath: "workouts/\(Auth.auth().currentUser?.uid ?? "")/workouts_for_id") var workouts: [Workout]
     
     @State private var offset: CGFloat = -400
     @State private var isActive: Bool = false

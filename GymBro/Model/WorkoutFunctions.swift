@@ -9,10 +9,12 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 import Firebase
+import FirebaseAuth
 
 func createWorkout(name: String, exercises: [Exercise], icon: String) {
     let db = Firestore.firestore()
-    let docRef = db.collection("workouts").document()
+    guard let uid = Auth.auth().currentUser?.uid else { return }
+    let docRef = db.collection("workouts").document(uid).collection("workouts_for_id").document()
     let newWorkout = Workout(id: docRef.documentID,
                              icon: icon,
                              name: name,
@@ -22,7 +24,7 @@ func createWorkout(name: String, exercises: [Exercise], icon: String) {
     let workoutData: [String: Any] = [
         "id": newWorkout.id,
         "name": newWorkout.name,
-        "user_id": newWorkout.user_id,
+        "user_id": uid,
         "icon": newWorkout.icon,
         "exercises": exercises.map { exercise in
             return [
@@ -58,7 +60,8 @@ func deleteWorkout(id: String) {
 
 func saveWorkoutDone(workout: Workout, comment: String) {
     let db = Firestore.firestore()
-    let docRef = db.collection("workout_done").document()
+    guard let uid = Auth.auth().currentUser?.uid else { return }
+    let docRef = db.collection("workout_done").document(uid).collection("workouts_for_id").document()
     
     let workoutDone = WorkoutDone(
         id: docRef.documentID,
@@ -72,7 +75,7 @@ func saveWorkoutDone(workout: Workout, comment: String) {
         "workout": [
             "id": workout.id,
             "name": workout.name,
-            "user_id": workout.user_id,
+            "user_id": uid,
             "icon": workout.icon,
             "exercises": workout.exercises.map { exercise in
                 return [

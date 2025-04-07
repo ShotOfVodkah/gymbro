@@ -77,7 +77,14 @@
       }
     },
     "Age" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возраст"
+          }
+        }
+      }
     },
     "Already have an account? Login" : {
       "localizations" : {
@@ -122,7 +129,14 @@
       }
     },
     "Bio" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Био"
+          }
+        }
+      }
     },
     "Buttocks" : {
       "extractionState" : "manual",
@@ -242,6 +256,16 @@
         }
       }
     },
+    "Finish" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закончить"
+          }
+        }
+      }
+    },
     "Friends" : {
       "localizations" : {
         "ru" : {
@@ -253,7 +277,14 @@
       }
     },
     "Gender" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пол"
+          }
+        }
+      }
     },
     "GymBro" : {
       "localizations" : {
@@ -266,7 +297,14 @@
       }
     },
     "Height (cm)" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рост (см)"
+          }
+        }
+      }
     },
     "Log in" : {
       "localizations" : {
@@ -386,7 +424,14 @@
       }
     },
     "Save" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        }
+      }
     },
     "Search" : {
       "localizations" : {
@@ -484,7 +529,14 @@
       }
     },
     "Username" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя пользователя"
+          }
+        }
+      }
     },
     "Weight" : {
       "localizations" : {
@@ -497,7 +549,14 @@
       }
     },
     "Weight (kg)" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вес (кг)"
+          }
+        }
+      }
     },
     "Welcome to GymBro" : {
       "localizations" : {
@@ -525,6 +584,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тренировки"
+          }
+        }
+      }
+    },
+    "You've finished your workout, add a message to your friends before we notify them!" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы закончили тренировку, добавьте сообщение для своих друзей!"
           }
         }
       }
