@@ -49,7 +49,8 @@ func createWorkout(name: String, exercises: [Exercise], icon: String) {
 
 func deleteWorkout(id: String) {
     let db = Firestore.firestore()
-    db.collection("workouts").document(id).delete { error in
+    guard let uid = Auth.auth().currentUser?.uid else { return }
+    db.collection("workouts").document(uid).collection("workouts_for_id").document(id).delete { error in
         if let error = error {
             print("Ошибка: \(error.localizedDescription)")
         } else {
