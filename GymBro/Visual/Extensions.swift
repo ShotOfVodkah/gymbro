@@ -47,14 +47,12 @@ struct RoundedCorner: Shape {
     }
 }
 
-struct settingsButtonView : View {
+struct settingsButtonView<Destination: View>: View {
     var image = ""
     var name = Text("")
-    
+    var destination: Destination
     var body: some View {
-        Button {
-            // handle some action
-        } label: {
+        NavigationLink(destination: destination) {
             VStack {
                 HStack(spacing: 15) {
                     Image(systemName: image)

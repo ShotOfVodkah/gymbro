@@ -9,9 +9,7 @@ import SwiftUI
 
 struct Account: View {
     @Binding var bar: Bool
-    @State var shouldShowLogOutOptions: Bool = false
     @StateObject var vm = AccountModel()
-    @State private var showMainView = false
     
     var body: some View {
         NavigationStack {
@@ -30,41 +28,12 @@ struct Account: View {
                 buttonEditProfile
                     .padding(.bottom, 20)
                 VStack(spacing: 5) {
-                    settingsButtonView(image: "checkmark.circle.fill", name: Text("Statistics"))
-                    settingsButtonView(image: "figure.dance.circle.fill", name: Text("Workout History"))
-                    settingsButtonView(image: "person.crop.circle.fill.badge.plus", name: Text("Friends"))
-                    settingsButtonView(image: "gear.circle.fill", name: Text("Settings"))
-                }
-                Button {
-                    shouldShowLogOutOptions.toggle()
-                } label: {
-                    Image(systemName: "gear.circle.fill")
-                        .font(.system(size: 35))
-                        .foregroundColor(Color("TitleColor"))
+                    settingsButtonView(image: "checkmark.circle.fill", name: Text("Statistics"), destination: Statistics())
+                    settingsButtonView(image: "figure.dance.circle.fill", name: Text("Workout History"), destination: WorkoutHistory())
+                    settingsButtonView(image: "person.crop.circle.fill.badge.plus", name: Text("Friends"), destination: Friends())
+                    settingsButtonView(image: "gear.circle.fill", name: Text("Settings"), destination: Settings())
                 }
                 Spacer()
-            }
-            .alert(isPresented: $shouldShowLogOutOptions) {
-                Alert(
-                    title: Text("Are you sure you want to log out?"),
-                    primaryButton: .destructive(Text("Log out"), action: {
-                        print("handle log out")
-                        vm.handleSignOut()
-                    }),
-                    secondaryButton: .cancel()
-                )
-            }
-            .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut) {
-                LoginView(didCompleteLogin: {
-                    self.vm.isUserCurrentlyLoggedOut = false
-                    self.vm.fetchCurrentUser()
-                    self.showMainView = true
-                })
-            }
-            .navigationDestination(isPresented: $showMainView) {
-                MainView()
-                    .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(true)
             }
         }
     }
