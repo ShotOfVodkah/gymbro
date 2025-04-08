@@ -11,7 +11,7 @@ import SwiftUI
 struct GymBro_Watch_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(workouts: []) //убрать
         }
     }
 }

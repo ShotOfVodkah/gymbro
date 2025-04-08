@@ -72,9 +72,19 @@
 		73E4AEDA2D5391F10088A814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5D37CA582DA5A3720044CF0D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Animations.swift,
+			);
+			target = 5D37C97C2DA56D190044CF0D /* GymBro Watch Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D37C97E2DA56D190044CF0D /* GymBro Watch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "GymBro Watch Watch App"; sourceTree = "<group>"; };
-		5D58A4482D42488D0004E6C5 /* Visual */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Visual; sourceTree = "<group>"; };
+		5D58A4482D42488D0004E6C5 /* Visual */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5D37CA582DA5A3720044CF0D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Visual; sourceTree = "<group>"; };
 		5DB1334E2D4D968D00C37DF0 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 		73DA142A2D3FD65B00960BD8 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */

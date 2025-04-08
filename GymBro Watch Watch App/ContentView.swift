@@ -10,22 +10,58 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var dataManager = WatchDataManager.shared
         
+    var workouts : [Workout] //убрать
+    
     var body: some View {
-        List {
-            Section("User: \(dataManager.currentUID)") {
-                ForEach(dataManager.workouts) { workout in
-                    VStack(alignment: .leading) {
-                        Text(workout.name)
-                        Text("Exercises: \(workout.exercises.count)")
-                                .font(.caption)
+        ZStack {
+            Color("Background").ignoresSafeArea(.all)
+            BackgroundAnimation().scaleEffect(0.5)
+            VStack {
+                Text("My workouts")
+                    .font(.system(size: 25))
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color("TitleColor"))
+                    .offset(x: -10)
+                ScrollView {
+                    VStack(spacing: 1) {
+                        ForEach(workouts) { workout in
+                            Button {
+                                
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 15).fill(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        ))
+                                    HStack{
+                                        Text(workout.name)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 20))
+                                            .foregroundColor(.white)
+
+                                    }
+                                    .padding([.leading, .trailing], 16)
+                                    
+                                }
+                            }
+                            .frame(width:180, height: 60)
+                        }
                     }
                 }
+                .frame(height: 170)
             }
         }
-        .navigationTitle("My Workouts")
     }
 }
 
+
+
 #Preview {
-    ContentView()
+    ContentView(workouts: [Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0)]), Workout(id: "2" ,icon: "figure.run.treadmill", name: "Work!", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0)])])
 }
