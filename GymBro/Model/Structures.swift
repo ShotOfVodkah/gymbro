@@ -53,7 +53,7 @@ struct ExistingChats: Identifiable {
     }
 }
 
-struct Workout: Identifiable, Codable {
+struct Workout: Identifiable, Codable, Equatable {
     let id: String
     let icon: String
     let name: String

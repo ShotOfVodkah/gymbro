@@ -306,6 +306,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "Log in" : {
       "localizations" : {
         "ru" : {

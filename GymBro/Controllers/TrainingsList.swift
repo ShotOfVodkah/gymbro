@@ -11,7 +11,7 @@ import FirebaseFirestoreCombineSwift
 import FirebaseAuth
 
 struct TrainingsList: View {
-    @FirestoreQuery(collectionPath: "workouts/\(Auth.auth().currentUser?.uid ?? "")/workouts_for_id") var workouts: [Workout]
+    @FirestoreQuery(collectionPath: "workouts/\(Auth.auth().currentUser?.uid ?? "mHrAJHl1jtReIegIyJC8JbIxj7f1")/workouts_for_id") var workouts: [Workout]
     
     @State private var offset: CGFloat = -400
     @State private var isActive: Bool = false
@@ -97,6 +97,12 @@ struct TrainingsList: View {
                     offset = 0
                 }
             }
+        }
+        .onChange(of: workouts) { newWorkouts in
+            WatchSessionManager.shared.sendUserWorkouts(newWorkouts)
+        }
+        .onAppear {
+            WatchSessionManager.shared.sendUserWorkouts(workouts)
         }
     }
 
