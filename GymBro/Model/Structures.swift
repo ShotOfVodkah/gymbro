@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct ChatUser: Identifiable {
+struct ChatUser: Identifiable, Equatable {
     var id: String { uid }
     let uid: String
     var email, username, bio, gender, age, weight, height: String
@@ -78,13 +78,4 @@ struct WorkoutDone: Identifiable, Codable {
     let workout: Workout
     let timestamp: Date
     let comment: String
-}
-
-struct User: Identifiable, Codable {
-    let id = UUID()
-    
-    let user_id: String
-    let name: String
-    let friends: [UUID]
-    let feeds: [UUID]
 }

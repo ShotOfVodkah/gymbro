@@ -12,14 +12,14 @@ import FirebaseFirestore
 struct EditProfile: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var vm = AccountModel()
-    @State var email = Auth.auth().currentUser?.email ?? ""
+    @State var email = ""
     @State var username = ""
     @State var bio = ""
     @State var gender = ""
     @State var age = ""
     @State var weight = ""
     @State var height = ""
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -30,10 +30,15 @@ struct EditProfile: View {
                     Image(systemName: "person.circle.fill")
                         .font(.system(size: 100))
                         .foregroundColor(Color("PurpleColor"))
-                    
                     VStack {
                         InfoField(title: Text("Username"), isNumber: false, text: $username)
-                        InfoField(title: Text("Email"), isNumber: false, text: $email)
+                        HStack {
+                            InfoField(title: Text("Email"), isNumber: false, text: .constant(email))
+                                .disabled(true)
+                            Spacer()
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(Color("PurpleColor"))
+                        }
                         InfoField(title: Text("Bio"), isNumber: false, text: $bio)
                         InfoField(title: Text("Age"), isNumber: true, text: $age)
                         GenderPickerField(title: Text("Gender"), selectedGender: $gender)
@@ -46,9 +51,19 @@ struct EditProfile: View {
                     Spacer()
                 }
             }
+            .onChange(of: vm.chatUser) { _ in
+                guard let user = vm.chatUser else { return }
+                email = user.email
+                username = user.username
+                bio = user.bio
+                gender = user.gender
+                age = user.age
+                weight = user.weight
+                height = user.height
+            }
         }
     }
-    
+
     private var customTitleBar: some View {
         HStack () {
             Button {
@@ -57,61 +72,28 @@ struct EditProfile: View {
                 Text("Cancel")
                     .font(.system(size: 20))
                     .foregroundColor(Color("TitleColor"))
-                    .padding(.trailing, 20)
+                    .frame(width: 100, alignment: .leading)
             }
+            Spacer()
             Text("Edit Profile")
-                .font(.system(size: 30))
+                .font(.system(size: 28))
                 .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
                 .foregroundColor(Color("TitleColor"))
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 5)
+            Spacer()
             Button {
-                // save changes
+                vm.updateUserData(username: username, bio: bio, gender: gender, age: age, weight: weight, height: height)
+                dismiss()
             } label: {
                 Text("Save")
                     .font(.system(size: 20))
                     .foregroundColor(Color("TitleColor"))
-                    .padding(.leading, 30)
+                    .frame(width: 100, alignment: .trailing)
             }
         }
-    }
-}
-
-class AccountModel: ObservableObject {
-    
-    @Published var errorMessage = ""
-    @Published var chatUser: ChatUser?
-    @Published var isUserCurrentlyLoggedOut: Bool = false
-    
-    init() {
-        DispatchQueue.main.async {
-            self.isUserCurrentlyLoggedOut = Auth.auth().currentUser?.uid == nil
-        }
-        fetchCurrentUser()
-    }
-    
-    func fetchCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            self.errorMessage = "Could not find firebase uid"
-            return
-        }
-        Firestore.firestore().collection("usersusers").document(uid).getDocument { snapshot, error in
-            if let error = error {
-                self.errorMessage = "Error fetching user: \(error.localizedDescription)"
-                print("Faild to fetch user: \(error.localizedDescription)")
-                return
-            }
-            guard let data = snapshot?.data() else {
-                self.errorMessage = "No user data"
-                return
-            }
-            
-            self.chatUser = .init(data: data)
-        }
-    }
-    
-    func handleSignOut() {
-        isUserCurrentlyLoggedOut.toggle()
-        try? Auth.auth().signOut()
+        .padding(.horizontal, 16)
+        .padding(.top, 20)
     }
 }
 

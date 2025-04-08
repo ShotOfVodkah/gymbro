@@ -213,3 +213,57 @@ class FeedListModel: ObservableObject {
         }
     }
 }
+
+
+class AccountModel: ObservableObject {
+    
+    @Published var errorMessage = ""
+    @Published var chatUser: ChatUser?
+    @Published var isUserCurrentlyLoggedOut: Bool = false
+    
+    init() {
+        DispatchQueue.main.async {
+            self.isUserCurrentlyLoggedOut = Auth.auth().currentUser?.uid == nil
+        }
+        fetchCurrentUser()
+    }
+    
+    func fetchCurrentUser() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            self.errorMessage = "Could not find firebase uid"
+            return
+        }
+        Firestore.firestore().collection("usersusers").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                self.errorMessage = "Error fetching user: \(error.localizedDescription)"
+                print("Faild to fetch user: \(error.localizedDescription)")
+                return
+            }
+            guard let data = snapshot?.data() else {
+                self.errorMessage = "No user data"
+                return
+            }
+            self.chatUser = .init(data: data)
+        }
+    }
+    
+    func updateUserData(username: String, bio: String, gender: String, age: String, weight: String, height: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let email = Auth.auth().currentUser?.email else { return }
+        let document = Firestore.firestore().collection("usersusers").document(uid)
+        let userData = ["uid": uid, "email": email, "username": username, "bio": bio, "gender": gender, "age": age, "weight": weight, "height": height] as [String : Any]
+        document.setData(userData) { error in
+            if let error = error {
+                self.errorMessage = "Faield to update user data: \(error.localizedDescription)"
+                print(self.errorMessage)
+                return
+            }
+            print("Successfully updated user data")
+        }
+    }
+    
+    func handleSignOut() {
+        isUserCurrentlyLoggedOut.toggle()
+        try? Auth.auth().signOut()
+    }
+}
