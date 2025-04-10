@@ -31,6 +31,8 @@ struct Message: Identifiable {
     let fromId, toId, text: String
     let received: Bool
     let timestamp: Date
+    let isWorkout: Bool
+    let workoutId: String
 }
 
 struct ExistingChats: Identifiable {

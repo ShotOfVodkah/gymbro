@@ -49,7 +49,9 @@ class ChatLogViewModel: ObservableObject {
                                           toId: data["toId"] as? String ?? "",
                                           text: data["text"] as? String ?? "",
                                           received: data["received"] as? Bool ?? false,
-                                          timestamp: (data["timestamp"] as? Timestamp)?.dateValue() ?? Date())
+                                          timestamp: (data["timestamp"] as? Timestamp)?.dateValue() ?? Date(),
+                                          isWorkout: data["isWorkout"] as? Bool ?? false,
+                                          workoutId: data["workoutId"] as? String ?? "")
                     self.messages.append(message)
                     self.count += 1
                 }
@@ -63,7 +65,8 @@ class ChatLogViewModel: ObservableObject {
         guard let fromId = Auth.auth().currentUser?.uid else { return }
         guard let toId = chatUser?.uid else { return }
         let document = Firestore.firestore().collection("messages").document(fromId).collection(toId).document()
-        let messageData = ["fromId": fromId, "toId": toId, "text": self.message, "timestamp": Date(), "received": false] as [String : Any]
+        let messageData = ["fromId": fromId, "toId": toId, "text": self.message, "timestamp": Date(), "received": false,
+                           "isWorkout": false, "workoutId": ""] as [String : Any]
         
         document.setData(messageData) { error in
             if let error = error {
@@ -76,7 +79,8 @@ class ChatLogViewModel: ObservableObject {
             self.message = ""
         }
         let recipientDocument = Firestore.firestore().collection("messages").document(toId).collection(fromId).document()
-        let recipientmessageData = ["fromId": fromId, "toId": toId, "text": self.message, "timestamp": Date(), "received": true] as [String : Any]
+        let recipientmessageData = ["fromId": fromId, "toId": toId, "text": self.message, "timestamp": Date(), "received": true,
+                                    "isWorkout": false, "workoutId": ""] as [String : Any]
         recipientDocument.setData(recipientmessageData) { error in
             if let error = error {
                 self.errorMessage = "Failed to save message cause \(error.localizedDescription)"
@@ -92,8 +96,8 @@ class ChatLogViewModel: ObservableObject {
         guard let toId = self.chatUser?.uid else { return }
         let document = Firestore.firestore().collection("existing_chats").document(uid).collection("messages").document(toId)
         let data = ["timestamp": Date(), "text": self.message, "fromId": uid, "toId": toId,
-                    "email": self.chatUser?.email ?? "", "username": self.chatUser?.username ?? ""
-        ] as [String : Any]
+                    "email": self.chatUser?.email ?? "", "username": self.chatUser?.username ?? "",
+                    "isWorkout": false, "workoutId": ""] as [String : Any]
         document.setData(data) { error in
             if let error = error {
                 self.errorMessage = "Failed to save chat document: \(error.localizedDescription)"
@@ -114,8 +118,8 @@ class ChatLogViewModel: ObservableObject {
                 currentUsername = email
             }
             let recipientData = ["timestamp": Date(), "text": message, "fromId": uid, "toId": toId,
-                                 "email": email, "username": currentUsername
-            ] as [String : Any]
+                                 "email": email, "username": currentUsername,
+                                 "isWorkout": false, "workoutId": ""] as [String : Any]
             recipientDocument.setData(recipientData) { error in
                 if let error = error {
                     self.errorMessage = "Failed to save chat document: \(error.localizedDescription)"

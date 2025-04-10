@@ -33,12 +33,11 @@ struct WorkoutHistory: View {
                                         .foregroundColor(Color(.label))
                                     VStack(alignment: .leading) {
                                         Text(doneWorkout.workout.name)
-                                            .font(.system(size: 15, weight: .bold))
+                                            .font(.system(size: 17, weight: .bold))
                                             .foregroundColor(Color("PurpleColor"))
                                         Text(doneWorkout.comment.isEmpty ? "-" : doneWorkout.comment)
                                             .font(.system(size: 15))
                                             .foregroundColor(Color(.label))
-                                            .lineLimit(2)
                                             .multilineTextAlignment(.leading)
                                         Text(doneWorkout.timestamp.formatted(.dateTime))
                                             .font(.system(size: 15))

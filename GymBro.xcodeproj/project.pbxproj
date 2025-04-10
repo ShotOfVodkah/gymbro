@@ -27,7 +27,6 @@
 		73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4AEDA2D5391F10088A814 /* MainView.swift */; };
 		73E4AEDD2D54FF4F0088A814 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 73E4AEDC2D54FF4F0088A814 /* FirebaseAuth */; };
 		73E4AEE12D551B850088A814 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 73E4AEE02D551B850088A814 /* FirebaseStorage */; };
-		73FB69F62DA7C56D0020CB3F /* WorkoutBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FB69F52DA7C56D0020CB3F /* WorkoutBubble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +70,6 @@
 		7339220D2D9C8BA900C4E496 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		73DA14282D3FD36700960BD8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		73E4AEDA2D5391F10088A814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		73FB69F52DA7C56D0020CB3F /* WorkoutBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBubble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -176,7 +174,6 @@
 				5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */,
 				733921E92D9C78A000C4E496 /* TitleRow.swift */,
 				7339220D2D9C8BA900C4E496 /* MessageBubble.swift */,
-				73FB69F52DA7C56D0020CB3F /* WorkoutBubble.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -307,7 +304,6 @@
 			files = (
 				733921EA2D9C78A000C4E496 /* TitleRow.swift in Sources */,
 				5D8214DE2D623DAD00FB84BB /* ExercisePlayWidget.swift in Sources */,
-				73FB69F62DA7C56D0020CB3F /* WorkoutBubble.swift in Sources */,
 				7339220E2D9C8BA900C4E496 /* MessageBubble.swift in Sources */,
 				5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */,
 				73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */,
