@@ -100,6 +100,8 @@ func saveWorkoutDone(workout: Workout, comment: String) {
             print("\(docRef.documentID)")
         }
     }
+    
+    sendWorkoutToAllFriends(woId: workoutDone.id)
 }
 
 class WorkoutHistoryModel: ObservableObject {
@@ -129,6 +131,71 @@ class WorkoutHistoryModel: ObservableObject {
                     self.errorMessage = "Error decoding document \(document.documentID): \(error.localizedDescription)"
                     print(self.errorMessage)
                 }
+            }
+        }
+    }
+}
+
+
+func sendWorkoutToAllFriends(woId: String) { // поменять когда появятся друзья
+    guard let fromId = Auth.auth().currentUser?.uid else { return }
+    
+    Firestore.firestore().collection("usersusers").getDocuments { documentsSnapshot, error in
+        if let error = error {
+            print("Failed to fetch users: \(error.localizedDescription)")
+            return
+        }
+        documentsSnapshot?.documents.forEach { snapshot in
+            let data = snapshot.data()
+            let user = ChatUser(data: data)
+            if user.uid != fromId {
+                
+                let messageData = ["fromId": fromId, "toId": user.uid, "text": "New workout added", "timestamp": Date(), "received": false, "isWorkout": true, "workoutId": woId] as [String : Any]
+                Firestore.firestore().collection("messages").document(fromId).collection(user.uid).document().setData(messageData) { error in
+                    if let error = error {
+                        print("Failed to save workout message cause \(error.localizedDescription)")
+                        return
+                    }
+                    print("Successfully sent workout message")
+                    
+                    let data = ["timestamp": Date(), "text": "New workout added", "fromId": fromId, "toId": user.uid, "email": user.email, "username": user.username, "isWorkout": true, "workoutId": woId] as [String : Any]
+                    Firestore.firestore().collection("existing_chats").document(fromId).collection("messages").document(user.uid).setData(data) { error in
+                        if let error = error {
+                            print("Failed to save chat document: \(error.localizedDescription)")
+                            return
+                        }
+                        print("Successfully saved chat document")
+                    }
+                    
+                    Firestore.firestore().collection("usersusers").document(fromId).getDocument { documentSnapshot, error in
+                        if let error = error {
+                            print("Failed to fetch user: \(error.localizedDescription)")
+                            return
+                        }
+                        guard let document = documentSnapshot, document.exists, let data = document.data() else {
+                            print("User document does not exist")
+                            return
+                        }
+                        let currentUser = ChatUser(data: data)
+                        let recipientData = ["timestamp": Date(), "text": "New workout added", "fromId": fromId, "toId": user.uid, "email": currentUser.email, "username": currentUser.username, "isWorkout": true, "workoutId": woId] as [String : Any]
+                        Firestore.firestore().collection("existing_chats").document(user.uid).collection("messages").document(fromId).setData(recipientData) { error in
+                            if let error = error {
+                                print("Failed to save chat document: \(error.localizedDescription)")
+                                return
+                            }
+                            print("Successfully saved recipient chat document")
+                        }
+                    }
+                }
+                
+                let recipientmessageData = ["fromId": fromId, "toId": user.uid, "text": "New workout added", "timestamp": Date(), "received": true, "isWorkout": true, "workoutId": woId] as [String : Any]
+                Firestore.firestore().collection("messages").document(user.uid).collection(fromId).document().setData(recipientmessageData) { error in
+                    if let error = error {
+                        print("Failed to save workout message cause \(error.localizedDescription)")
+                        return
+                    }
+                }
+                print("Successfully received workout message")
             }
         }
     }

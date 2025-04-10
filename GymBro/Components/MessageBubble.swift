@@ -22,7 +22,7 @@ struct MessageBubble: View {
             } label: {
                 VStack {
                     Text("\(username) just finished working out!")
-                        .font(.system(size: 20))
+                        .font(.system(size: 15))
                         .foregroundColor(Color("PurpleColor"))
                     HStack(spacing: 15) {
                         Image(systemName: currentWorkout?.workout.icon ?? "")
@@ -31,14 +31,13 @@ struct MessageBubble: View {
                             .foregroundColor(.white)
                         VStack(alignment: .leading) {
                             Text(currentWorkout?.workout.name ?? "")
-                                .font(.system(size: 23, weight: .bold))
+                                .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(.white)
                             Text((currentWorkout?.comment).flatMap { $0.isEmpty ? "No comment" : $0 } ?? "")
-                                .font(.system(size: 17))
                                 .multilineTextAlignment(.leading)
                             Text("")
                             Text(currentWorkout?.timestamp.formatted(.dateTime) ?? "")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(.system(size: 15, weight: .semibold))
                         }
                     }
                     .frame(maxWidth: 300, alignment: .leading)
@@ -47,8 +46,7 @@ struct MessageBubble: View {
                     .cornerRadius(30)
                     .foregroundColor(.white)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.horizontal, 10)
             }
             .onAppear { getWorkoutforChat(); getUsername() }
@@ -122,6 +120,6 @@ struct MessageBubble: View {
                                    text: "Hakuna Matata",
                                    received: false,
                                    timestamp: Date(),
-                                   isWorkout: false,
+                                   isWorkout: true,
                                    workoutId: "uwk0BPZE3nbLhaoyqzuX"))
 }
