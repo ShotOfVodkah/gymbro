@@ -38,14 +38,16 @@ struct Account: View {
         }
     }
     
+    @State private var showWorkoutHistory = false
+    @StateObject var wo = WorkoutHistoryModel()
     private var customCountBar: some View {
         HStack {
             Button {
-                
+                showWorkoutHistory = true
             } label: {
                 VStack {
                     VStack {
-                        Text("44")
+                        Text("\(wo.doneWorkouts.count)")
                             .foregroundColor(Color(.label))
                         Text("Workouts")
                             .foregroundColor(Color(.systemGray))
@@ -53,6 +55,7 @@ struct Account: View {
                     .padding(.horizontal, 6)
                 }
             }
+            .sheet(isPresented: $showWorkoutHistory) { WorkoutHistory() }
             Divider()
                     .frame(width: 2, height: 30)
                     .background(Color.gray)

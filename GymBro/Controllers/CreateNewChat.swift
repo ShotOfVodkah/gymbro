@@ -59,23 +59,23 @@ struct CreateNewChat: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("New Chat")
-                            .font(.system(size: 30))
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color("TitleColor"))
-                    }
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Text("Cancel")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("New Chat")
+                        .font(.system(size: 30))
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("TitleColor"))
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
                             .font(.system(size: 20))
                             .foregroundColor(Color("TitleColor"))
-                        }
                     }
                 }
+            }
         }
     }
 }

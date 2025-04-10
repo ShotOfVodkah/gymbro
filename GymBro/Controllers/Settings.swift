@@ -27,6 +27,7 @@ struct Settings: View {
                     primaryButton: .destructive(Text("Log out"), action: {
                         print("handle log out")
                         vm.handleSignOut()
+                        showMainView = false
                     }),
                     secondaryButton: .cancel()
                 )
@@ -38,10 +39,8 @@ struct Settings: View {
                     self.showMainView = true
                 })
             }
-            .navigationDestination(isPresented: $showMainView) {
+            .fullScreenCover(isPresented: $showMainView) {
                 MainView()
-                    .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(true)
             }
         }
     }
