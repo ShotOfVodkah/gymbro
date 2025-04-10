@@ -40,16 +40,6 @@
         }
       }
     },
-    "44" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "44"
-          }
-        }
-      }
-    },
     "Account" : {
       "localizations" : {
         "en" : {
@@ -570,9 +560,6 @@
           }
         }
       }
-    },
-    "Work Out History" : {
-
     },
     "Workout History" : {
       "localizations" : {

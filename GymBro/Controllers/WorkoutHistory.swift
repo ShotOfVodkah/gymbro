@@ -10,6 +10,8 @@ import SwiftUI
 struct WorkoutHistory: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var vm = WorkoutHistoryModel()
+    @State private var showWorkoutInfo: Bool = false
+    @State private var selectedWorkout: Workout?
     
     var body: some View {
         NavigationStack {
@@ -21,6 +23,8 @@ struct WorkoutHistory: View {
                     ForEach(vm.doneWorkouts) { doneWorkout in
                         VStack {
                             Button {
+                                selectedWorkout = doneWorkout.workout
+                                showWorkoutInfo = true
                             } label: {
                                 HStack(spacing: 15) {
                                     Image(systemName: doneWorkout.workout.icon)
@@ -69,6 +73,11 @@ struct WorkoutHistory: View {
                                 .font(.system(size: 20))
                                 .foregroundColor(Color("TitleColor"))
                         }
+                    }
+                }
+                .navigationDestination(isPresented: $showWorkoutInfo) {
+                    if let workout = selectedWorkout {
+                        WorkoutInfo(workout: workout)
                     }
                 }
             }

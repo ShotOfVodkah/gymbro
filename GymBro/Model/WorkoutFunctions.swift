@@ -114,7 +114,7 @@ class WorkoutHistoryModel: ObservableObject {
     private func fetchDoneWOs() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         self.doneWorkouts.removeAll()
-        Firestore.firestore().collection("workout_done").document(uid).collection("workouts_for_id").order(by: "timestamp").getDocuments { documentSnapshot, error in
+        Firestore.firestore().collection("workout_done").document(uid).collection("workouts_for_id").order(by: "timestamp", descending: true) .getDocuments { documentSnapshot, error in
             if let error = error {
                 self.errorMessage = "Failed to fetch done workouts: \(error.localizedDescription)"
                 print(self.errorMessage)
