@@ -15,10 +15,12 @@ struct MessageBubble: View {
     @State var currentWorkout: WorkoutDone?
     @State var username = ""
     
+    @State private var showWorkoutInfo = false
+    
     var body: some View {
         if message.isWorkout {
-            Button {
-               // go to workout info
+            NavigationLink {
+                WorkoutInfo(workout: currentWorkout?.workout ?? Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0), Exercise(name: "other exercise", muscle_group: "Buttocks", is_selected: true, weight: 20, sets: 0, reps: 0)]), isInteractive: 2)
             } label: {
                 VStack {
                     Text("\(username) just finished working out!")

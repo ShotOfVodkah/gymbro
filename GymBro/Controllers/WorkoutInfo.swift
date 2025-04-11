@@ -7,11 +7,15 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAuth
 
 struct WorkoutInfo: View {
     @State private var opacity: Double = 0
     @Environment(\.dismiss) private var dismiss
     @State var workout: Workout
+    var isInteractive: Int = 1
+    
+    let uid = Auth.auth().currentUser?.uid
     
     let mGroups: [String] = ["Chest", "Back", "Buttocks", "Lower legs", "Arms", "Upper legs", "Shoulders"]
     var percentages: [Double] {
@@ -105,6 +109,8 @@ struct WorkoutInfo: View {
                             .foregroundColor(.white)
                     }
                     .padding(.trailing, 30)
+                    .opacity(isInteractive == 1 ? 1.0 : 0.0) // Управление прозрачностью
+                    .disabled(!(isInteractive == 1))
                 }
                 .padding(.top, 65)
                 
@@ -162,20 +168,40 @@ struct WorkoutInfo: View {
                     .padding(.horizontal, 30)
                     .frame(width: 300, height: 530)
                     
-                    NavigationLink(destination: WorkoutPlayer(workout: $workout)) {
-                        Image(systemName: "play.fill")
-                            .foregroundColor(.white)
-                            .scaleEffect(2.2)
-                            .frame(width: 80, height: 80)
-                            .background(Circle().fill(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            ))
+                    if isInteractive == 1 {
+                        NavigationLink(destination: WorkoutPlayer(workout: $workout)) {
+                            Image(systemName: "play.fill")
+                                .foregroundColor(.white)
+                                .scaleEffect(2.2)
+                                .frame(width: 80, height: 80)
+                                .background(Circle().fill(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                ))
+                        }
+                        .offset(y: 250)
+                    } else if isInteractive == 2 && uid != workout.user_id {
+                        Button {
+                            createWorkout(name: workout.name,  exercises: workout.exercises, icon: workout.icon)
+                            dismiss()
+                        } label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(.white)
+                                .scaleEffect(3.2)
+                                .frame(width: 80, height: 80)
+                                .background(Circle().fill(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                ))
+                        }
+                        .offset(y: 250)
                     }
-                    .offset(y: 250)
                 }
             }
         }

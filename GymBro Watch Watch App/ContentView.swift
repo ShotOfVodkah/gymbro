@@ -25,6 +25,7 @@ struct ContentView: View {
                     .offset(x: -10)
                 ScrollView {
                     VStack(spacing: 1) {
+                        //ForEach(dataManager.workouts) { workout in
                         ForEach(workouts) { workout in
                             Button {
                                 selectedWorkout = workout
@@ -68,4 +69,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView(workouts: [Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0)]), Workout(id: "2" ,icon: "figure.run.treadmill", name: "Work!", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0)]), Workout(id: "3" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0), Exercise(name: "other exercise", muscle_group: "Buttocks", is_selected: true, weight: 20, sets: 0, reps: 0)])])
+    //ContentView()
 }
