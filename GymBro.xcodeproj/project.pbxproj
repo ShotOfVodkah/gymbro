@@ -10,6 +10,7 @@
 		5D37C99D2DA56D1F0044CF0D /* GymBro Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5D37C97D2DA56D190044CF0D /* GymBro Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D37C9E72DA5747F0044CF0D /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */; };
 		5D37C9F02DA582040044CF0D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D37C9EF2DA582040044CF0D /* FirebaseFirestore */; };
+		5D37CC7C2DA97C7D0044CF0D /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */; };
 		5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */; };
 		5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909FA2CEB7DF000A24F89 /* LoginView.swift */; };
 		5D4909FD2CEB7DF600A24F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		5D37C97D2DA56D190044CF0D /* GymBro Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GymBro Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		5D4909F52CEB7DF000A24F89 /* GymBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
 		5D4909FA2CEB7DF000A24F89 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */,
 				733921E92D9C78A000C4E496 /* TitleRow.swift */,
 				7339220D2D9C8BA900C4E496 /* MessageBubble.swift */,
+				5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */,
 				5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */,
 				5D37C9E72DA5747F0044CF0D /* WatchSessionManager.swift in Sources */,
+				5D37CC7C2DA97C7D0044CF0D /* Calendar.swift in Sources */,
 				5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */,
 				5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */,
 			);

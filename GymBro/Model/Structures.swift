@@ -81,3 +81,9 @@ struct WorkoutDone: Identifiable, Codable {
     let timestamp: Date
     let comment: String
 }
+
+struct CalendarDate: Identifiable {
+    let id = UUID()
+    var day: Int
+    var date: Date
+}
