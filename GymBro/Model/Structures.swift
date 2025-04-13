@@ -74,7 +74,7 @@ struct Exercise: Identifiable, Codable, Equatable, Hashable {
     var reps: Int
 }
 
-struct WorkoutDone: Identifiable, Codable {
+struct WorkoutDone: Identifiable, Codable, Equatable {
     let id: String
     
     let workout: Workout
@@ -86,4 +86,10 @@ struct CalendarDate: Identifiable {
     let id = UUID()
     var day: Int
     var date: Date
+    
+    var workouts: [WorkoutDone] = []
+    
+    func isSameDay(as other: Date) -> Bool {
+        Calendar.current.isDate(self.date, inSameDayAs: other)
+    }
 }
