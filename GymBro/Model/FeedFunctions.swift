@@ -135,14 +135,15 @@ class ChatLogViewModel: ObservableObject {
 
 class CreateNewChatViewModel: ObservableObject {
     @Published var users = [ChatUser]()
-    @Published var errorMessage = ""
-    
+    @Published var friends: Set<String> = []
+
     init() {
         fetchAllUsers()
     }
 
     private func fetchAllUsers() {
-        Firestore.firestore().collection("usersusers").getDocuments { documentsSnapshot, error in
+        guard let currentUser = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("usersusers").order(by: "username").getDocuments { documentsSnapshot, error in
             if let error = error {
                 print("Failed to fetch users: \(error.localizedDescription)")
                 return
@@ -150,8 +151,45 @@ class CreateNewChatViewModel: ObservableObject {
             documentsSnapshot?.documents.forEach { snapshot in
                 let data = snapshot.data()
                 let user = ChatUser(data: data)
-                if user.uid != Auth.auth().currentUser?.uid {
+                if user.uid != currentUser {
                     self.users.append(.init(data: data))
+                }
+            }
+        }
+        
+        Firestore.firestore().collection("friends").document(currentUser).collection("friendsList").getDocuments { documentsSnapshot, error in
+            if let error = error {
+                print("Failed to fetch friends: \(error.localizedDescription)")
+                return
+            }
+            documentsSnapshot?.documents.forEach { snapshot in
+                if let uid = snapshot.data()["friend_uid"] as? String {
+                    self.friends.insert(uid)
+                }
+            }
+        }
+    }
+    
+    func addFriends(selectedUsers: Set<String>) {
+        guard let currentUser = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore().collection("friends").document(currentUser).collection("friendsList")
+        
+        for user in selectedUsers {
+            db.whereField("friend_uid", isEqualTo: user).getDocuments { snapshot, error in
+                if let error = error {
+                    print("Failed to add a friend: \(error.localizedDescription)")
+                    return
+                }
+                if let documents = snapshot?.documents, documents.isEmpty {
+                    db.document().setData(["friend_uid": user]) { error in
+                            if let error = error {
+                                print("Failed to add a friend: \(error.localizedDescription)")
+                            } else {
+                                print("Friend successfully added: \(user)")
+                            }
+                        }
+                } else {
+                    print("Friend already exists: \(user)")
                 }
             }
         }

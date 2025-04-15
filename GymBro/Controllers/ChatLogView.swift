@@ -68,6 +68,8 @@ struct ChatLogView: View {
                     print("empty")
                 } else {
                     vm.handleSend()
+                    guard let uid = self.chatUser?.uid else { return }
+                    CreateNewChatViewModel().addFriends(selectedUsers: [uid])
                 }
             } label: {
                 Image(systemName: "arrow.up.circle.fill")

@@ -80,6 +80,26 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доб"
+          }
+        }
+      }
+    },
+    "Add Friends" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить друзей"
+          }
+        }
+      }
+    },
     "Adjust your weights" : {
       "localizations" : {
         "ru" : {
@@ -96,6 +116,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Возраст"
+          }
+        }
+      }
+    },
+    "Already a friend!" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уже в друзьях!"
           }
         }
       }
@@ -180,6 +210,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Грудь"
+          }
+        }
+      }
+    },
+    "Choose someone to follow" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите друзей"
           }
         }
       }
@@ -688,6 +728,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вы закончили тренировку, добавьте сообщение для своих друзей!"
+          }
+        }
+      }
+    },
+    "Your friend!" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твой друг!"
           }
         }
       }

@@ -12,6 +12,7 @@ struct FeedList: View {
     @Binding var bar: Bool
     @StateObject var vm = FeedListModel()
     @State var shouldNavigateToChatLogView: Bool = false
+    @State var shouldNavigateToAddFriendsView: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -48,8 +49,21 @@ struct FeedList: View {
                 }
             }
             Spacer()
-            Image(systemName: "slider.horizontal.3")
-                .font(.system(size: 30))
+            Button {
+                shouldNavigateToAddFriendsView.toggle()
+            } label: {
+                HStack {
+                    Text("Add Friends")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(Color("TitleColor"))
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color("TitleColor"))
+                }
+            }
+            .fullScreenCover(isPresented: $shouldNavigateToAddFriendsView) {
+                AddFriends()
+            }
         }
         .padding()
     }

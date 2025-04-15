@@ -28,7 +28,7 @@ struct TitleRow: View {
                     .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            Image(systemName: "slider.horizontal.3")
+            Image(systemName: "calendar.circle.fill")
                 .font(.system(size: 40))
                 .padding(10)
                 .foregroundColor(.white)
