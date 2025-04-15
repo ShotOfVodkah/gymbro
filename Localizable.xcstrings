@@ -44,16 +44,6 @@
         }
       }
     },
-    "0" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0"
-          }
-        }
-      }
-    },
     "0 days" : {
       "localizations" : {
         "ru" : {
@@ -533,6 +523,16 @@
         }
       }
     },
+    "Search for your friends" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск друзей"
+          }
+        }
+      }
+    },
     "Sets" : {
       "localizations" : {
         "ru" : {
@@ -738,6 +738,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Твой друг!"
+          }
+        }
+      }
+    },
+    "Your Friends" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твои друзья"
           }
         }
       }

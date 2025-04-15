@@ -41,7 +41,7 @@ struct EditProfile: View {
                         }
                         InfoField(title: Text("Bio"), isNumber: false, text: $bio)
                         InfoField(title: Text("Age"), isNumber: true, text: $age)
-                        GenderPickerField(title: Text("Gender"), selectedGender: $gender)
+                        GenderPickerField(title: Text("Gender"), selectedGender: $gender, shouldShowArrow: true)
                         HStack {
                             InfoField(title: Text("Weight (kg)"), isNumber: true, text: $weight)
                             InfoField(title: Text("Height (cm)"), isNumber: true, text: $height)

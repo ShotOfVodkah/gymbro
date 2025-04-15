@@ -102,6 +102,7 @@ struct InfoField: View {
 struct GenderPickerField: View {
     var title = Text("")
     @Binding var selectedGender: String
+    var shouldShowArrow: Bool
     let genders = ["Male", "Female", "Other"]
     @State private var isExpanded = false
     
@@ -111,8 +112,10 @@ struct GenderPickerField: View {
                 Text(selectedGender)
                     .foregroundColor(.primary)
                 Spacer()
-                Image(systemName: "chevron.down")
-                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                if shouldShowArrow {
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                }
             }
             .padding()
             .frame(height: 55)

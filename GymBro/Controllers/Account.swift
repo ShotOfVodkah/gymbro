@@ -39,7 +39,10 @@ struct Account: View {
     }
     
     @State private var showWorkoutHistory = false
+    @State private var showFriends = false
     @StateObject var wo = WorkoutHistoryModel()
+    @StateObject var fr = CreateNewChatViewModel()
+    
     private var customCountBar: some View {
         HStack {
             Button {
@@ -60,10 +63,10 @@ struct Account: View {
                     .frame(width: 2, height: 30)
                     .background(Color.gray)
             Button {
-                
+                showFriends = true
             } label: {
                 VStack {
-                    Text("0")
+                    Text("\(fr.friends.count)")
                         .foregroundColor(Color(.label))
                     Text("Friends")
                         .foregroundColor(Color(.systemGray))
@@ -71,6 +74,7 @@ struct Account: View {
                 .foregroundColor(Color(.label))
                 .padding(.horizontal, 6)
             }
+            .sheet(isPresented: $showFriends) { Friends() }
             Divider()
                     .frame(width: 2, height: 30)
                     .background(Color.gray)

@@ -27,7 +27,7 @@ struct MessageBubble: View {
                         .font(.system(size: 15))
                         .foregroundColor(Color("PurpleColor"))
                     HStack(spacing: 15) {
-                        Image(systemName: currentWorkout?.workout.icon ?? "")
+                        Image(systemName: currentWorkout?.workout.icon ?? "hourglass.bottomhalf.filled")
                             .font(.system(size: 40))
                             .padding(5)
                             .foregroundColor(.white)
