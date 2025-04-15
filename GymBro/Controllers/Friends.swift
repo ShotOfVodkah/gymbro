@@ -21,7 +21,7 @@ struct Friends: View {
         NavigationStack {
             ZStack {
                 Color("Background").ignoresSafeArea()
-                ScrollView {
+                List {
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(Color.gray.opacity(0.7))
@@ -36,6 +36,9 @@ struct Friends: View {
                     )
                     .padding(.horizontal, 15)
                     .padding(.bottom, 15)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
                     ForEach(filteredUsers) { user in
                         if vm.friends.contains(user.uid) {
                             VStack {
@@ -56,15 +59,28 @@ struct Friends: View {
                                         user.height.isEmpty ? nil : InfoField(title: Text("Height (cm)"), isNumber: true, text: .constant(user.height))
                                     }
                                 }
+                                .padding(.top, 10)
+                                .padding(.bottom, 3)
                                 .disabled(true)
-                                Spacer()
+                                Divider()
+                                    .padding(.horizontal, -17)
                             }
                             .padding(.horizontal)
-                            Divider()
-                                .padding(.vertical, 5)
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparator(.hidden)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    print("delete")
+                                } label: {
+                                    Label("Remove Friend", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }
+                .listRowSeparator(.hidden)
+                .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 .toolbar {
