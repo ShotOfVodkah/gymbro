@@ -182,12 +182,12 @@ class CreateNewChatViewModel: ObservableObject {
                 }
                 if let documents = snapshot?.documents, documents.isEmpty {
                     db.document().setData(["friend_uid": user]) { error in
-                            if let error = error {
-                                print("Failed to add a friend: \(error.localizedDescription)")
-                            } else {
-                                print("Friend successfully added: \(user)")
-                            }
+                        if let error = error {
+                            print("Failed to add a friend: \(error.localizedDescription)")
+                        } else {
+                            print("Friend successfully added: \(user)")
                         }
+                    }
                 } else {
                     print("Friend already exists: \(user)")
                 }

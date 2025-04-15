@@ -138,7 +138,20 @@ class WorkoutHistoryModel: ObservableObject {
 
 
 func sendWorkoutToAllFriends(woId: String) { // поменять когда появятся друзья
+    var friends: Set<String> = []
     guard let fromId = Auth.auth().currentUser?.uid else { return }
+    
+    Firestore.firestore().collection("friends").document(fromId).collection("friendsList").getDocuments { documentsSnapshot, error in
+        if let error = error {
+            print("Failed to fetch friends: \(error.localizedDescription)")
+            return
+        }
+        documentsSnapshot?.documents.forEach { snapshot in
+            if let uid = snapshot.data()["friend_uid"] as? String {
+                friends.insert(uid)
+            }
+        }
+    }
     
     Firestore.firestore().collection("usersusers").getDocuments { documentsSnapshot, error in
         if let error = error {
@@ -148,7 +161,7 @@ func sendWorkoutToAllFriends(woId: String) { // поменять когда по
         documentsSnapshot?.documents.forEach { snapshot in
             let data = snapshot.data()
             let user = ChatUser(data: data)
-            if user.uid != fromId {
+            if user.uid != fromId && friends.contains(user.uid) {
                 
                 let messageData = ["fromId": fromId, "toId": user.uid, "text": "New workout added", "timestamp": Date(), "received": false, "isWorkout": true, "workoutId": woId] as [String : Any]
                 Firestore.firestore().collection("messages").document(fromId).collection(user.uid).document().setData(messageData) { error in
