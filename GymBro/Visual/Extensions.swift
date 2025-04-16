@@ -73,6 +73,32 @@ struct settingsButtonView<Destination: View>: View {
     }
 }
 
+struct SettingsButtonActionView: View {
+    var image: String = ""
+    var name: Text = Text("")
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                HStack(spacing: 15) {
+                    Image(systemName: image)
+                        .font(.system(size: 30))
+                        .foregroundColor(Color("TitleColor"))
+                    name
+                    Spacer(minLength: 15)
+                }
+                .padding()
+                .foregroundColor(Color(.label))
+                Divider()
+                    .padding(.top, -5)
+            }
+            .padding(.vertical, -5)
+            .padding(.horizontal, 10)
+        }
+    }
+}
+
 struct InfoField: View {
     var title = Text("")
     var isNumber: Bool
