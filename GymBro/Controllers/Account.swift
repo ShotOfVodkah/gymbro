@@ -79,7 +79,7 @@ struct Account: View {
                     .frame(width: 2, height: 30)
                     .background(Color.gray)
             Button {
-                
+                // streak count
             } label: {
                 VStack {
                     Text("0 days")

@@ -62,6 +62,7 @@ struct EditProfile: View {
                 height = user.height
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 
     private var customTitleBar: some View {
