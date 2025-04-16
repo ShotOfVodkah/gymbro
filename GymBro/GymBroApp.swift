@@ -33,6 +33,7 @@ struct GymBroApp: App {
                 MainView()
                     .environmentObject(themeManager)
                     .preferredColorScheme(themeManager.selectedTheme)
+                    .environmentObject(LanguageManager())
             }
         }
     }

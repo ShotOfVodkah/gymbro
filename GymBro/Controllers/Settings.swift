@@ -13,6 +13,7 @@ struct Settings: View {
     @StateObject var vm = AccountModel()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var themeManager: AppThemeManager
+    @EnvironmentObject var languageManager: LanguageManager
     @State private var showAboutAlert = false
     
     var body: some View {
@@ -21,17 +22,18 @@ struct Settings: View {
                 Color("Background").ignoresSafeArea()
                 BackgroundAnimation()
                 VStack {
-                    HStack {
-                        dismissButton
+                    ZStack {
+                        HStack {
+                            dismissButton
+                            Spacer()
+                        }
                         Text("Settings")
                             .font(.system(size: 30))
                             .fontWeight(.semibold)
                             .foregroundColor(Color("TitleColor"))
-                            .padding(.leading, 50)
-                        Spacer()
                     }
                     themeForApp
-                    // language
+                    languageSelector
                     settingsButtonView(image: "person.text.rectangle.fill", name: Text("Profile"), destination: EditProfile())
                     // reminders ???????
                     SettingsButtonActionView(image: "person.crop.circle.badge.questionmark.fill",  name: Text("About"),
@@ -39,14 +41,15 @@ struct Settings: View {
                     SettingsButtonActionView(image: "person.crop.circle.fill.badge.minus",  name: Text("Log out"),
                                              action: { shouldShowLogOutOptions.toggle() })
                     SettingsButtonActionView(image: "person.crop.circle.fill.badge.xmark",  name: Text("Delete account"),
-                                             action: { print("should delete account") })
+                                             action: { // delete action
+                    })
                     Spacer()
                 }
             }
             .alert(isPresented: $showAboutAlert) {
                 Alert(
                     title: Text("About GymBro"),
-                    message: Text("This app helps you manage your workouts and share success with your friends. \n\n Created by Gritsaenko Alexandra and Polyakov Stepan — the legendary duo you didn’t know you needed. Probably stronger than your will to skip leg day! \n\n Coming soon to a gym near you."),
+                    message: Text("This app helps you manage your workouts and share success with your friends. \n\nCreated by Gritsaenko Alexandra and Polyakov Stepan — the legendary duo you didn’t know you needed. Probably stronger than your will to skip leg day! \n\nComing soon to a gym near you."),
                     dismissButton: .default(Text("OK"))
                 )
             }
@@ -80,7 +83,8 @@ struct Settings: View {
                 Image(systemName: "chevron.left")
                     .foregroundColor(Color(.label))
                     .font(.system(size: 30))
-                Text("Back")
+                    .padding(.trailing, -10)
+                Text("Cancel")
                     .foregroundColor(Color(.label))
                     .font(.system(size: 20))
             }
@@ -127,6 +131,40 @@ struct Settings: View {
         }
         .padding(.horizontal, 10)
     }
+    
+    private var languageSelector: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "globe")
+                    .font(.system(size: 30))
+                    .foregroundColor(Color("TitleColor"))
+                    .padding(.leading, 20)
+                Text("Choose language")
+            }
+            HStack(spacing: 12) {
+                Spacer()
+                ForEach(["en", "ru"], id: \.self) { lang in
+                    Button {
+                        languageManager.selectedLanguage = lang
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            exit(0)
+                        }
+                    } label: {
+                        Text(lang.uppercased())
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 18)
+                            .background(languageManager.selectedLanguage == lang ? Color("PurpleColor") : Color("TabBar"))
+                            .foregroundColor(languageManager.selectedLanguage == lang ? .white : .gray)
+                            .clipShape(Capsule())
+                            .overlay(Capsule().stroke(Color("PurpleColor"), lineWidth: 2))
+                    }
+                }
+                Spacer()
+            }
+            Divider()
+        }
+        .padding(.horizontal, 10)
+    }
 }
 
 class AppThemeManager: ObservableObject {
@@ -151,8 +189,22 @@ class AppThemeManager: ObservableObject {
     }
 }
 
+class LanguageManager: ObservableObject {
+    @AppStorage("selectedLanguage") var selectedLanguage: String = Locale.current.languageCode ?? "en" {
+        didSet { setLanguage(selectedLanguage) }
+    }
+    
+    init() {
+        setLanguage(selectedLanguage)
+    }
 
+    private func setLanguage(_ lang: String) {
+        UserDefaults.standard.set([lang], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+    }
+}
 
 #Preview {
     Settings().environmentObject(AppThemeManager())
+              .environmentObject(LanguageManager())
 }

@@ -54,6 +54,26 @@
         }
       }
     },
+    "About" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении"
+          }
+        }
+      }
+    },
+    "About GymBro" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О GymBro"
+          }
+        }
+      }
+    },
     "Account" : {
       "localizations" : {
         "en" : {
@@ -204,6 +224,16 @@
         }
       }
     },
+    "Choose language" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите язык"
+          }
+        }
+      }
+    },
     "Choose someone to follow" : {
       "localizations" : {
         "ru" : {
@@ -250,6 +280,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Создать аккаунт"
+          }
+        }
+      }
+    },
+    "Delete account" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить аккаунт"
           }
         }
       }
@@ -432,6 +472,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Новый чат"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
           }
         }
       }
@@ -644,6 +694,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Команда"
+          }
+        }
+      }
+    },
+    "This app helps you manage your workouts and share success with your friends. \n\nCreated by Gritsaenko Alexandra and Polyakov Stepan — the legendary duo you didn’t know you needed. Probably stronger than your will to skip leg day! \n\nComing soon to a gym near you." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это приложение помогает отслеживать тренировки и делиться успехом с друзьями. \n\nСоздано Грицаенко Александрой и Поляковым Степаном — легендарный дуэт, о котором вы даже не подозревали. Скорее всего сильнее, чем ваше желание пропустить день ног! \n\nСкоро в вашем зале."
           }
         }
       }
