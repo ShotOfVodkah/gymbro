@@ -194,6 +194,31 @@ class CreateNewChatViewModel: ObservableObject {
             }
         }
     }
+    
+    func removeFriend(uid: String) {
+        guard let currentUser = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore().collection("friends").document(currentUser).collection("friendsList")
+        
+        db.whereField("friend_uid", isEqualTo: uid).getDocuments { snapshot, error in
+            if let error = error {
+                print("Failed to find friend for deletion: \(error.localizedDescription)")
+                return
+            }
+            guard let documents = snapshot?.documents else { return }
+            for document in documents {
+                document.reference.delete { error in
+                    if let error = error {
+                        print("Failed to delete friend: \(error.localizedDescription)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.friends.remove(uid)
+                        }
+                        print("Friend successfully deleted: \(uid)")
+                    }
+                }
+            }
+        }
+    }
 }
 
 

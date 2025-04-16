@@ -71,7 +71,7 @@ struct Friends: View {
                             .listRowSeparator(.hidden)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
-                                    print("delete")
+                                    vm.removeFriend(uid: user.uid)
                                 } label: {
                                     Label("Remove Friend", systemImage: "trash")
                                 }
@@ -79,7 +79,6 @@ struct Friends: View {
                         }
                     }
                 }
-                .listRowSeparator(.hidden)
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)

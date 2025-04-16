@@ -482,6 +482,16 @@
         }
       }
     },
+    "Remove Friend" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить друга"
+          }
+        }
+      }
+    },
     "Reps" : {
       "localizations" : {
         "ru" : {
