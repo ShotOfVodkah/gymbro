@@ -12,6 +12,7 @@ struct Settings: View {
     @State private var showMainView = false
     @StateObject var vm = AccountModel()
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var themeManager: AppThemeManager
     
     var body: some View {
         NavigationStack {
@@ -28,7 +29,7 @@ struct Settings: View {
                             .padding(.leading, 50)
                         Spacer()
                     }
-                    // theme
+                    themeForApp
                     // language
                     settingsButtonView(image: "person.text.rectangle.fill", name: Text("Profile"), destination: EditProfile())
                     // wo reminders?
@@ -56,6 +57,46 @@ struct Settings: View {
             }
             .padding(.leading, 10)
         }
+    }
+    
+    func themeLabel(for theme: ColorScheme?) -> String {
+        switch theme {
+        case .light: return "Light"
+        case .dark: return "Dark"
+        default: return "System"
+        }
+    }
+    
+    private var themeForApp: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "moonphase.waning.crescent")
+                    .font(.system(size: 30))
+                    .foregroundColor(Color("TitleColor"))
+                    .padding(.leading, 20)
+                Text("Choose theme for GymBro")
+            }
+            HStack(spacing: 12) {
+                Spacer()
+                ForEach([nil, ColorScheme.light, ColorScheme.dark], id: \.self) { theme in
+                    Button {
+                        themeManager.selectedTheme = theme
+                    } label: {
+                        Text(themeLabel(for: theme))
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 18)
+                            .background(themeManager.selectedTheme == theme ? Color("PurpleColor") : Color("TabBar"))
+                            .foregroundColor(themeManager.selectedTheme == theme ? .white : .gray)
+                            .clipShape(Capsule())
+                            .overlay(Capsule()
+                                .stroke(Color("PurpleColor"), lineWidth: 2))
+                    }
+                }
+                Spacer()
+            }
+            Divider()
+        }
+        .padding(.horizontal, 10)
     }
     
     private var logoutButton: some View {
@@ -90,6 +131,30 @@ struct Settings: View {
     }
 }
 
+class AppThemeManager: ObservableObject {
+    @AppStorage("selectedTheme") private var storedTheme: String = "system"
+    
+    @Published var selectedTheme: ColorScheme? {
+        didSet {
+            switch selectedTheme {
+            case .light: storedTheme = "light"
+            case .dark: storedTheme = "dark"
+            default: storedTheme = "system"
+            }
+        }
+    }
+    
+    init() {
+        switch storedTheme {
+        case "light": selectedTheme = .light
+        case "dark": selectedTheme = .dark
+        default: selectedTheme = nil
+        }
+    }
+}
+
+
+
 #Preview {
-    Settings()
+    Settings().environmentObject(AppThemeManager())
 }

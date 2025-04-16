@@ -21,6 +21,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct GymBroApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var vm = AccountModel()
+    @StateObject var themeManager = AppThemeManager()
     
     var body: some Scene {
         WindowGroup {
@@ -30,6 +31,8 @@ struct GymBroApp: App {
                 }) // привет. АГрицаенко
             } else {
                 MainView()
+                    .environmentObject(themeManager)
+                    .preferredColorScheme(themeManager.selectedTheme)
             }
         }
     }

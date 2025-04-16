@@ -224,6 +224,16 @@
         }
       }
     },
+    "Choose theme for GymBro" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите тему для приложения"
+          }
+        }
+      }
+    },
     "Choose users for your chat" : {
       "localizations" : {
         "ru" : {
@@ -468,6 +478,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Соло"
+          }
+        }
+      }
+    },
+    "Profile" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Профиль"
           }
         }
       }
