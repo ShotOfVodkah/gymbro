@@ -61,47 +61,56 @@ func deleteWorkout(id: String) {
 
 func saveWorkoutDone(workout: Workout, comment: String) {
     let db = Firestore.firestore()
-    guard let uid = Auth.auth().currentUser?.uid else { return }
-    let docRef = db.collection("workout_done").document(uid).collection("workouts_for_id").document()
-    
-    let workoutDone = WorkoutDone(
-        id: docRef.documentID,
-        workout: workout,
-        timestamp: Date(),
-        comment: comment
-    )
-    
-    let workoutDoneData: [String: Any] = [
-        "id": workoutDone.id,
-        "workout": [
-            "id": workout.id,
-            "name": workout.name,
-            "user_id": uid,
-            "icon": workout.icon,
-            "exercises": workout.exercises.map { exercise in
-                return [
-                    "name": exercise.name,
-                    "muscle_group": exercise.muscle_group,
-                    "is_selected": exercise.is_selected,
-                    "weight": exercise.weight,
-                    "sets": exercise.sets,
-                    "reps": exercise.reps
-                ]
-            }
-        ],
-        "timestamp": Timestamp(date: workoutDone.timestamp),
-        "comment": workoutDone.comment
-    ]
-    
-    docRef.setData(workoutDoneData) { error in
-        if let error = error {
-            print("Ошибка: \(error.localizedDescription)")
-        } else {
-            print("\(docRef.documentID)")
-        }
+    guard let uid = Auth.auth().currentUser?.uid else {
+        return
     }
     
-    sendWorkoutToAllFriends(woId: workoutDone.id)
+    let workoutRef = db.collection("workouts").document(uid).collection("workouts_for_id").document(workout.id)
+    
+    let exerciseData = workout.exercises.map { exercise in
+        return [
+            "name": exercise.name,
+            "muscle_group": exercise.muscle_group,
+            "is_selected": exercise.is_selected,
+            "weight": exercise.weight,
+            "sets": exercise.sets,
+            "reps": exercise.reps
+        ]
+    }
+    print(exerciseData)
+    workoutRef.updateData(["exercises": exerciseData]) { error in
+        if let error = error {
+            return
+        }
+        let docRef = db.collection("workout_done").document(uid).collection("workouts_for_id").document()
+        
+        let workoutDone = WorkoutDone(
+            id: docRef.documentID,
+            workout: workout,
+            timestamp: Date(),
+            comment: comment
+        )
+        
+        let workoutDoneData: [String: Any] = [
+            "id": workoutDone.id,
+            "workout": [
+                "id": workout.id,
+                "name": workout.name,
+                "user_id": uid,
+                "icon": workout.icon,
+                "exercises": exerciseData
+            ],
+            "timestamp": Timestamp(date: workoutDone.timestamp),
+            "comment": workoutDone.comment
+        ]
+        
+        docRef.setData(workoutDoneData) { error in
+            if let error = error {
+            } else {
+                sendWorkoutToAllFriends(woId: workoutDone.id)
+            }
+        }
+    }
 }
 
 class WorkoutHistoryModel: ObservableObject {

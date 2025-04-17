@@ -20,7 +20,8 @@ struct MessageBubble: View {
     var body: some View {
         if message.isWorkout {
             NavigationLink {
-                WorkoutInfo(workout: currentWorkout?.workout ?? Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0), Exercise(name: "other exercise", muscle_group: "Buttocks", is_selected: true, weight: 20, sets: 0, reps: 0)]), isInteractive: 2)
+                WorkoutInfo(viewModel: WorkoutInfoViewModel(workout: currentWorkout?.workout ?? Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0), Exercise(name: "other exercise", muscle_group: "Buttocks", is_selected: true, weight: 20, sets: 0, reps: 0)]), isInteractive: 2))
+
             } label: {
                 VStack {
                     Text("\(username) just finished working out!")

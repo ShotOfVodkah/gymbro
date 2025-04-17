@@ -20,38 +20,9 @@ struct WorkoutCard: View {
                 VStack(spacing: 10) {
                     ForEach(selectedDate) { workout in
                         NavigationLink {
-                            WorkoutInfo(workout: workout.workout, isInteractive: 2)
+                            WorkoutInfo(viewModel: WorkoutInfoViewModel(workout: workout.workout, isInteractive: 2))
                         } label: {
-                            HStack {
-                                Image(systemName: workout.workout.icon)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(.white)
-                                    .padding(.leading,20)
-                                Text(workout.workout.name)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                                    .bold()
-                                Spacer()
-                                if let userName = userMap[workout.workout.user_id] {
-                                        Text(userName)
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 18))
-                                            .padding(.trailing, 20)
-                                    }
-                                
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .shadow(radius: 4)
-                            .padding(.horizontal, 8)
+                            WorkoutRow(workout: workout, userMap: userMap)
                         }
                     }
                 }
@@ -66,3 +37,45 @@ struct WorkoutCard: View {
         }
     }
 }
+
+
+struct WorkoutRow: View {
+    let workout: WorkoutDone
+    let userMap: [String: String]
+    
+    var body: some View {
+        HStack {
+            Image(systemName: workout.workout.icon)
+                .font(.system(size: 30))
+                .foregroundColor(.white)
+                .padding(.leading, 20)
+            
+            Text(workout.workout.name)
+                .foregroundColor(.white)
+                .font(.system(size: 20))
+                .bold()
+            
+            Spacer()
+            
+            if let userName = userMap[workout.workout.user_id] {
+                Text(userName)
+                    .foregroundColor(.white)
+                    .font(.system(size: 18))
+                    .padding(.trailing, 20)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 60)
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [Color("PurpleColor"), Color.purple]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(radius: 4)
+        .padding(.horizontal, 8)
+    }
+}
+

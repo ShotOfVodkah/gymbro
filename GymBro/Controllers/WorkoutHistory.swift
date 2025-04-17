@@ -76,7 +76,7 @@ struct WorkoutHistory: View {
                 }
                 .navigationDestination(isPresented: $showWorkoutInfo) {
                     if let workout = selectedWorkout {
-                        WorkoutInfo(workout: workout, isInteractive: 3)
+                        WorkoutInfo(viewModel: WorkoutInfoViewModel(workout: workout, isInteractive: 3))
                     }
                 }
             }
