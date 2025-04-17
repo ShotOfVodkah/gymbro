@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 import Firebase
 import FirebaseAuth
+import WidgetKit
 
 func createWorkout(name: String, exercises: [Exercise], icon: String) {
     let db = Firestore.firestore()
@@ -108,6 +109,9 @@ func saveWorkoutDone(workout: Workout, comment: String) {
             if let error = error {
             } else {
                 sendWorkoutToAllFriends(woId: workoutDone.id)
+                Task {
+                    await saveWorkoutDatesToSharedDefaults()
+                }
             }
         }
     }
@@ -215,5 +219,65 @@ func sendWorkoutToAllFriends(woId: String) { // поменять когда по
                 print("Successfully received workout message")
             }
         }
+    }
+}
+
+func saveWorkoutDatesToSharedDefaults() async {
+    guard let uid = Auth.auth().currentUser?.uid else {
+        print("Пользователя нет")
+        return
+    }
+    
+    let calendar = Calendar.current
+    let now = Date()
+
+    guard let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: now)),
+          let range = calendar.range(of: .day, in: .month, for: now),
+          let endOfMonth = calendar.date(byAdding: .day, value: range.count, to: startOfMonth) else {
+        return
+    }
+    
+    let startTimestamp = Timestamp(date: startOfMonth)
+    let endTimestamp = Timestamp(date: endOfMonth)
+
+    do {
+        let snapshot = try await Firestore.firestore()
+            .collection("workout_done")
+            .document(uid)
+            .collection("workouts_for_id")
+            .whereField("timestamp", isGreaterThanOrEqualTo: startTimestamp)
+            .whereField("timestamp", isLessThanOrEqualTo: endTimestamp)
+            .getDocuments()
+        
+        let workouts: [WorkoutDone] = try snapshot.documents.compactMap {
+            try $0.data(as: WorkoutDone.self)
+        }
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        let uniqueDates: Set<String> = Set(workouts.map {
+            formatter.string(from: $0.timestamp)
+        })
+        
+        let sortedWorkouts = workouts.sorted { $0.timestamp > $1.timestamp }
+        let lastTwo = sortedWorkouts.prefix(2).map {
+            (title: $0.workout.name, date: formatter.string(from: $0.timestamp))
+        }
+
+        if let sharedDefaults = UserDefaults(suiteName: "group.com.widget.gymbro") {
+            sharedDefaults.set(Array(uniqueDates), forKey: "workout_dates")
+            
+            let titles = lastTwo.map { $0.title }
+            let dates = lastTwo.map { $0.date }
+            sharedDefaults.set(titles, forKey: "last_workout_titles")
+            sharedDefaults.set(dates, forKey: "last_workout_dates")
+            
+            WidgetCenter.shared.reloadAllTimelines()
+            print("данные отправлены")
+        }
+
+    } catch {
+        print("\(error)")
     }
 }

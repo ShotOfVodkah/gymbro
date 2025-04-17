@@ -86,6 +86,10 @@ struct TrainingsList: View {
                 withAnimation(.spring()) {
                     offset = 0
                 }
+                
+                Task {
+                    await saveWorkoutDatesToSharedDefaults()
+                }
             }
         }
     }
