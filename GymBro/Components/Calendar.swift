@@ -19,7 +19,6 @@ struct CalendarView: View {
     @StateObject private var viewModel = CalendarViewModel()
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 15) {
                 HStack {
                     Button {
@@ -105,15 +104,12 @@ struct CalendarView: View {
                     }
                 }
                 .frame(width: 350, height: 300)
-                
-                if !viewModel.selectedDate.isEmpty {
-                    WorkoutCard(selectedDate: $viewModel.selectedDate, userMap: userMap)
-                }
+                WorkoutCard(selectedDate: $viewModel.selectedDate, userMap: userMap)
+             
             }
             .task {
                 await viewModel.fetchDates(for: currentDate, userMap: userMap)
             }
-        }
     }
 
     func formattedDate(_ date: Date) -> String {

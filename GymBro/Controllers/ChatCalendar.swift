@@ -1,13 +1,14 @@
 //
-//  Statistics.swift
+//  ChatCalendar.swift
 //  GymBro
 //
-//  Created by Александра Грицаенко on 08/04/2025.
+//  Created by Stepan Polyakov on 17.04.2025.
 //
 
 import SwiftUI
 
-struct Statistics: View {
+struct ChatCalendar: View {
+    
     @Environment(\.dismiss) private var dismiss
     var userMap: [String: String]
     
@@ -28,22 +29,18 @@ struct Statistics: View {
                         }
                         .padding(.leading, 30)
                         Spacer()
-                        Text("Statistics")
+                        Text("Chat activity")
                             .font(.system(size: 25))
                             .fontWeight(.semibold)
                             .foregroundColor(Color("TitleColor"))
                             .padding(.trailing, 60)
                         Spacer()
                     }
-                    .padding(.bottom, 20)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    ScrollView{
-                        CalendarView(userMap: userMap)
-                            .padding(.top,10)
-                    }
-                    .frame(width: 390)
-                    .background(Color("TabBar").opacity(0.6))
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    
+                    Spacer()
+                    CalendarView(userMap: userMap)
+                    Spacer()
                 }
             }
         }
@@ -52,5 +49,5 @@ struct Statistics: View {
 }
 
 #Preview {
-    Statistics(userMap: ["mHrAJHl1jtReIegIyJC8JbIxj7f1":"Alexandra"])
+    ChatCalendar(userMap: ["mHrAJHl1jtReIegIyJC8JbIxj7f1":"Alexandra", "nwsy9PklqCb56PrRMnDWuw0195f1":"Stepan"])
 }

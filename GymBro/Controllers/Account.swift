@@ -28,7 +28,7 @@ struct Account: View {
                 buttonEditProfile
                     .padding(.bottom, 20)
                 VStack(spacing: 5) {
-                    settingsButtonView(image: "checkmark.circle.fill", name: Text("Statistics"), destination: Statistics())
+                    settingsButtonView(image: "checkmark.circle.fill", name: Text("Statistics"), destination: Statistics(userMap: [vm.chatUser?.uid ?? "" : ""]))
                     settingsButtonView(image: "figure.dance.circle.fill", name: Text("Workout History"), destination: WorkoutHistory())
                     settingsButtonView(image: "person.crop.circle.fill.badge.plus", name: Text("Friends"), destination: Friends())
                     settingsButtonView(image: "gear.circle.fill", name: Text("Settings"), destination: Settings())

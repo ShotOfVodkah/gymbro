@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct TitleRow: View {
     let chatUser: ChatUser?
+    @StateObject var vm = AccountModel()
     
     var body: some View {
         HStack(spacing: 15) {
@@ -28,10 +30,15 @@ struct TitleRow: View {
                     .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            Image(systemName: "calendar.circle.fill")
-                .font(.system(size: 40))
-                .padding(10)
-                .foregroundColor(.white)
+            NavigationLink {
+                ChatCalendar(userMap: [chatUser?.uid ?? "": chatUser?.username ?? "",
+                                       vm.chatUser?.uid ?? "" : vm.chatUser?.username ?? ""])
+            } label: {
+                Image(systemName: "calendar.circle.fill")
+                    .font(.system(size: 40))
+                    .padding(10)
+                    .foregroundColor(.white)
+            }
         }
     }
 }

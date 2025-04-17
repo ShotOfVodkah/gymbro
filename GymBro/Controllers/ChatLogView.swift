@@ -18,43 +18,45 @@ struct ChatLogView: View {
     @ObservedObject var vm: ChatLogViewModel
     
     var body: some View {
-        VStack {
-            VStack() {
-                HStack {
-                    dismissButton
-                    TitleRow(chatUser: self.chatUser)
-                }
-                .padding(.bottom, 10)
-                ScrollView {
-                    ScrollViewReader { proxy in
-                        VStack{
-                            ForEach(vm.messages) { message in
-                                MessageBubble(message: message)
+        NavigationStack {
+            VStack {
+                VStack() {
+                    HStack {
+                        dismissButton
+                        TitleRow(chatUser: self.chatUser)
+                    }
+                    .padding(.bottom, 10)
+                    ScrollView {
+                        ScrollViewReader { proxy in
+                            VStack{
+                                ForEach(vm.messages) { message in
+                                    MessageBubble(message: message)
+                                }
+                                HStack { Spacer() }
+                                    .id("empty")
                             }
-                            HStack { Spacer() }
-                                .id("empty")
-                        }
-                        .onReceive(vm.$count) { _ in
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                proxy.scrollTo("empty", anchor: .bottom)
+                            .onReceive(vm.$count) { _ in
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    proxy.scrollTo("empty", anchor: .bottom)
+                                }
                             }
-                        }
-                        .onAppear {
-                            DispatchQueue.main.async {
-                                proxy.scrollTo("empty", anchor: .bottom)
+                            .onAppear {
+                                DispatchQueue.main.async {
+                                    proxy.scrollTo("empty", anchor: .bottom)
+                                }
                             }
                         }
                     }
+                    .padding(.top, 20)
+                    .background(Color("Chat"))
+                    .cornerRadius(30, corners: [.topLeft, .topRight])
                 }
-                .padding(.top, 20)
-                .background(Color("Chat"))
-                .cornerRadius(30, corners: [.topLeft, .topRight])
+                .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
+                .navigationBarHidden(true)
+                .padding(.bottom, -8)
+                chatBottomBar
+                    .background(Color("Chat"))
             }
-            .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
-            .navigationBarHidden(true)
-            .padding(.bottom, -8)
-            chatBottomBar
-                .background(Color("Chat"))
         }
     }
     
