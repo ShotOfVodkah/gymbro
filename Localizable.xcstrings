@@ -213,6 +213,9 @@
         }
       }
     },
+    "Chat activity" : {
+
+    },
     "Chest" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -410,9 +413,6 @@
           }
         }
       }
-    },
-    "Hello, World!" : {
-
     },
     "Log in" : {
       "localizations" : {

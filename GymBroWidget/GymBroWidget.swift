@@ -44,6 +44,14 @@ struct SimpleEntry: TimelineEntry {
     let lastWorkouts: [(title: String, date: String)]
 }
 
+struct Workout {
+    let title: String
+    let date: String
+    var id: String {
+        return "\(title)-\(date)"
+    }
+}
+
 struct GymBroWidgetEntryView: View {
     var entry: Provider.Entry
 
@@ -55,7 +63,12 @@ struct GymBroWidgetEntryView: View {
                 Text("Last workouts:")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(Color("TitleColor"))
-                ForEach(entry.lastWorkouts.prefix(2), id: \.date) { workout in
+                
+                let workouts = entry.lastWorkouts.map { workout in
+                    Workout(title: workout.title, date: workout.date)
+                }
+                
+                ForEach(workouts, id: \.id) { workout in
                     VStack(spacing: 1){
                         Text("\(workout.date)")
                             .font(.system(size: 10))
