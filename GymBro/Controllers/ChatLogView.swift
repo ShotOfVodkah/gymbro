@@ -29,8 +29,8 @@ struct ChatLogView: View {
                     ScrollView {
                         ScrollViewReader { proxy in
                             VStack{
-                                ForEach(vm.messages) { message in
-                                    MessageBubble(message: message)
+                                ForEach(Array(vm.messages.enumerated()), id: \.element.id) { index, _ in
+                                    MessageBubble(message: $vm.messages[index])
                                 }
                                 HStack { Spacer() }
                                     .id("empty")

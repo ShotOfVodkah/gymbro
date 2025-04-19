@@ -33,6 +33,7 @@ struct Message: Identifiable {
     let timestamp: Date
     let isWorkout: Bool
     let workoutId: String
+    var reactions: [String]
 }
 
 struct ExistingChats: Identifiable {

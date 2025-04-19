@@ -81,6 +81,7 @@ func saveWorkoutDone(workout: Workout, comment: String) {
     print(exerciseData)
     workoutRef.updateData(["exercises": exerciseData]) { error in
         if let error = error {
+            print(error)
             return
         }
         let docRef = db.collection("workout_done").document(uid).collection("workouts_for_id").document()
@@ -107,6 +108,7 @@ func saveWorkoutDone(workout: Workout, comment: String) {
         
         docRef.setData(workoutDoneData) { error in
             if let error = error {
+                print(error)
             } else {
                 sendWorkoutToAllFriends(woId: workoutDone.id)
                 Task {
@@ -158,10 +160,11 @@ func sendWorkoutToAllFriends(woId: String) { // поменять когда по
             print("Failed to fetch friends: \(error.localizedDescription)")
             return
         }
+        let documentId = UUID().uuidString
         documentsSnapshot?.documents.forEach { snapshot in
             if let uid = snapshot.data()["friend_uid"] as? String {
-                let messageData = ["fromId": fromId, "toId": uid, "text": "New workout added", "timestamp": Date(), "received": false, "isWorkout": true, "workoutId": woId] as [String : Any]
-                Firestore.firestore().collection("messages").document(fromId).collection(uid).document().setData(messageData) { error in
+                let messageData = ["fromId": fromId, "toId": uid, "text": "New workout added", "timestamp": Date(), "received": false, "isWorkout": true, "workoutId": woId, "reactions": []] as [String : Any]
+                Firestore.firestore().collection("messages").document(fromId).collection(uid).document(documentId).setData(messageData) { error in
                     if let error = error {
                         print("Failed to save workout message cause \(error.localizedDescription)")
                         return
@@ -209,8 +212,8 @@ func sendWorkoutToAllFriends(woId: String) { // поменять когда по
                     }
                 }
                 
-                let recipientmessageData = ["fromId": fromId, "toId": uid, "text": "New workout added", "timestamp": Date(), "received": true, "isWorkout": true, "workoutId": woId] as [String : Any]
-                Firestore.firestore().collection("messages").document(uid).collection(fromId).document().setData(recipientmessageData) { error in
+                let recipientmessageData = ["fromId": fromId, "toId": uid, "text": "New workout added", "timestamp": Date(), "received": true, "isWorkout": true, "workoutId": woId, "reactions": []] as [String : Any]
+                Firestore.firestore().collection("messages").document(uid).collection(fromId).document(documentId).setData(recipientmessageData) { error in
                     if let error = error {
                         print("Failed to save workout message cause \(error.localizedDescription)")
                         return

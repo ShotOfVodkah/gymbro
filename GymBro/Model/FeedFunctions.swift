@@ -51,7 +51,8 @@ class ChatLogViewModel: ObservableObject {
                                           received: data["received"] as? Bool ?? false,
                                           timestamp: (data["timestamp"] as? Timestamp)?.dateValue() ?? Date(),
                                           isWorkout: data["isWorkout"] as? Bool ?? false,
-                                          workoutId: data["workoutId"] as? String ?? "")
+                                          workoutId: data["workoutId"] as? String ?? "",
+                                          reactions: data["reactions"] as? [String] ?? [""])
                     self.messages.append(message)
                     self.count += 1
                 }
@@ -64,9 +65,10 @@ class ChatLogViewModel: ObservableObject {
         print(message)
         guard let fromId = Auth.auth().currentUser?.uid else { return }
         guard let toId = chatUser?.uid else { return }
-        let document = Firestore.firestore().collection("messages").document(fromId).collection(toId).document()
+        let documentId = UUID().uuidString
+        let document = Firestore.firestore().collection("messages").document(fromId).collection(toId).document(documentId)
         let messageData = ["fromId": fromId, "toId": toId, "text": self.message, "timestamp": Date(), "received": false,
-                           "isWorkout": false, "workoutId": ""] as [String : Any]
+                           "isWorkout": false, "workoutId": "", "reactions": []] as [String : Any]
         
         document.setData(messageData) { error in
             if let error = error {
@@ -78,9 +80,9 @@ class ChatLogViewModel: ObservableObject {
             self.persistRecentMessage()
             self.message = ""
         }
-        let recipientDocument = Firestore.firestore().collection("messages").document(toId).collection(fromId).document()
+        let recipientDocument = Firestore.firestore().collection("messages").document(toId).collection(fromId).document(documentId)
         let recipientmessageData = ["fromId": fromId, "toId": toId, "text": self.message, "timestamp": Date(), "received": true,
-                                    "isWorkout": false, "workoutId": ""] as [String : Any]
+                                    "isWorkout": false, "workoutId": "", "reactions": []] as [String : Any]
         recipientDocument.setData(recipientmessageData) { error in
             if let error = error {
                 self.errorMessage = "Failed to save message cause \(error.localizedDescription)"

@@ -24,6 +24,22 @@
         }
       }
     },
+    "%@×%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@×%2$lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@×%2$lld"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "ru" : {
@@ -214,7 +230,14 @@
       }
     },
     "Chat activity" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активность чата"
+          }
+        }
+      }
     },
     "Chest" : {
       "extractionState" : "manual",
