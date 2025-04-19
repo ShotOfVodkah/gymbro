@@ -126,12 +126,21 @@ struct MessageBubble: View {
             }
             
             HStack {
-                Text(message.text)
-                    .padding()
-                    .background(message.received ? Color.gray : Color("PurpleColor"))
-                    .cornerRadius(30)
-                    .foregroundColor(.white)
+                VStack(alignment: .leading) {
+                    Text(message.text)
+                        .padding(.top)
+                        .padding(.horizontal)
+                        .foregroundColor(.white)
+                    if !message.reactions.isEmpty {
+                        reactionSummary
+                            .padding(.bottom)
+                            .padding(.horizontal)
+                    }
+                }
+                
+                .background(message.received ? Color.gray : Color("PurpleColor"))
             }
+            .cornerRadius(30)
             .frame(maxWidth: 300, alignment: message.received ? .leading : .trailing)
             .onTapGesture {
                 showTime.toggle()
@@ -142,13 +151,6 @@ struct MessageBubble: View {
                     .foregroundColor(Color.gray)
                     .font(.caption)
                     .padding(message.received ? .leading : .trailing, 10)
-            }
-            
-            if !message.reactions.isEmpty {
-                reactionSummary
-                    .frame(maxWidth: .infinity, alignment: message.received ? .leading : .trailing)
-                    .padding(.horizontal, 12)
-                    .padding(.top, 4)
             }
         }
         .frame(maxWidth: .infinity, alignment: message.received ? .leading : .trailing)
@@ -161,8 +163,14 @@ struct MessageBubble: View {
         
         return HStack(spacing: 8) {
             ForEach(counts.sorted(by: { $0.key < $1.key }), id: \.key) { emoji, count in
-                Text("\(emoji)×\(count)")
-                    .font(.system(size: 16))
+                HStack {
+                    Text("\(emoji)\(count)")
+                        .font(.system(size: 16))
+                        .foregroundColor(.white)
+                }
+                .padding(10)
+                .background(Color("BackgroundB"))
+                .cornerRadius(30)
             }
         }
     }
@@ -264,9 +272,9 @@ struct MessageBubble: View {
         text: "Hakuna Matata",
         received: true,
         timestamp: Date(),
-        isWorkout: true,
+        isWorkout: false,
         workoutId: "uwk0BPZE3nbLhaoyqzuX",
-        reactions: ["💜", "💪", "💪"]
+        reactions: ["💜", "💪", "💪", "👍", "💪", "🔥"]
     )
 
     return MessageBubble(message: $message)

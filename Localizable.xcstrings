@@ -24,18 +24,18 @@
         }
       }
     },
-    "%@×%lld" : {
+    "%@%lld" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@×%2$lld"
+            "value" : "%1$@%2$lld"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@×%2$lld"
+            "value" : "%1$@%2$lld"
           }
         }
       }
