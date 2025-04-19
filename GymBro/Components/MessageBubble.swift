@@ -16,14 +16,25 @@ struct MessageBubble: View {
     @State var username = ""
     
     @State private var showWorkoutInfo = false
+    @State private var showWorkoutSheet = false
+    @State private var showReactions = false
     
     var body: some View {
-        if message.isWorkout {
-            NavigationLink {
-                WorkoutInfo(viewModel: WorkoutInfoViewModel(workout: currentWorkout?.workout ?? Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0), Exercise(name: "other exercise", muscle_group: "Buttocks", is_selected: true, weight: 20, sets: 0, reps: 0)]), isInteractive: 2))
-
-            } label: {
+        ZStack {
+            if showReactions {
+                Color.black.opacity(0.0001)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            showReactions = false
+                        }
+                    }
+            }
+            if message.isWorkout {
                 VStack {
+                    if showReactions {
+                        reactionView()
+                    }
                     Text("\(username) just finished working out!")
                         .font(.system(size: 15))
                         .foregroundColor(Color("PurpleColor"))
@@ -51,30 +62,72 @@ struct MessageBubble: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.horizontal, 10)
-            }
-            .onAppear { getWorkoutforChat(); getUsername() }
-        } else {
-            VStack(alignment: message.received ? .leading : .trailing) {
-                HStack {
-                    Text(message.text)
-                        .padding()
-                        .background(message.received ? Color.gray : Color("PurpleColor"))
-                        .cornerRadius(30)
-                        .foregroundColor(.white)
+                .onTapGesture {
+                    if !showReactions {
+                        showWorkoutSheet = true
+                    }
                 }
-                .frame(maxWidth: 300, alignment: message.received ? .leading: .trailing)
-                .onTapGesture {showTime.toggle()}
-                if showTime {
-                    Text("\(message.timestamp.formatted(.dateTime))")
-                        .foregroundColor(Color.gray)
-                        .font(.caption)
-                        .padding(message.received ? .leading: .trailing, 10)
+                .onLongPressGesture {
+                    withAnimation {
+                        showReactions.toggle()
+                    }
+                }
+                .fullScreenCover(isPresented: $showWorkoutSheet) {
+                    WorkoutInfo(viewModel: WorkoutInfoViewModel(workout: currentWorkout?.workout ?? Workout(id: "1" ,icon: "figure.run.treadmill", name: "my workout", user_id: "1", exercises: [Exercise(name: "other exercise", muscle_group: "Arms", is_selected: true, weight: 20, sets: 0, reps: 0), Exercise(name: "other exercise", muscle_group: "Buttocks", is_selected: true, weight: 20, sets: 0, reps: 0)]), isInteractive: 2))
+                }
+                .onAppear { getWorkoutforChat(); getUsername() }
+            } else {
+                VStack(alignment: message.received ? .leading : .trailing) {
+                    if showReactions {
+                        reactionView()
+                    }
+                    HStack {
+                        Text(message.text)
+                            .padding()
+                            .background(message.received ? Color.gray : Color("PurpleColor"))
+                            .cornerRadius(30)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: 300, alignment: message.received ? .leading: .trailing)
+                    .onTapGesture {showTime.toggle()}
+                    if showTime {
+                        Text("\(message.timestamp.formatted(.dateTime))")
+                            .foregroundColor(Color.gray)
+                            .font(.caption)
+                            .padding(message.received ? .leading: .trailing, 10)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: message.received ? .leading: .trailing)
+                .padding(message.received ? .leading: .trailing)
+                .padding(.horizontal, 10)
+                .onLongPressGesture {
+                    withAnimation {
+                        showReactions.toggle()
+                    }
                 }
             }
-            .frame(maxWidth: .infinity, alignment: message.received ? .leading: .trailing)
-            .padding(message.received ? .leading: .trailing)
-            .padding(.horizontal, 10)
         }
+    }
+    
+    private func reactionView() -> some View {  // добавить реакций когда все будет робить
+        ScrollView(.horizontal) {
+            HStack(spacing: 10) {
+                ForEach(["💜", "👍", "💪", "🔥", "💅🏻", "✨"], id: \.self) { emoji in
+                    Text(emoji)
+                        .font(.system(size: 25))
+                        .padding(6)
+                        .onTapGesture {
+                            print("Reaction \(emoji) tapped")
+                            showReactions = false
+                            // save emoji
+                        }
+                }
+            }
+        }
+        .padding(10)
+        .background(Color.gray)
+        .cornerRadius(30)
+        .padding(message.received ? . trailing : .leading, message.isWorkout ? 0 : 50)
     }
     
     private func getUsername() {
