@@ -60,12 +60,12 @@
         }
       }
     },
-    "0 days" : {
+    "0" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "0 дней"
+            "value" : "0"
           }
         }
       }
@@ -500,10 +500,24 @@
       }
     },
     "Notification Permission Granted" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления разрешены"
+          }
+        }
+      }
     },
     "Notifications" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления"
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -602,7 +616,14 @@
       }
     },
     "Request Notification Permission" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запрос на уведомления"
+          }
+        }
+      }
     },
     "Sat" : {
       "extractionState" : "manual",

@@ -104,8 +104,8 @@ struct ChatLogView: View {
 #Preview {
     NavigationView {
         ChatLogView(chatUser: .init(data: [
-            "uid": "nwsy9PklqCb56PrRMnDWuw0195f1",
-            "email": "name2@gmail.com",
+            "uid": "1234",
+            "email": "name@gmail.com",
             "username": "girl"
         ]))
     }

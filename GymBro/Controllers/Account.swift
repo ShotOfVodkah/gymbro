@@ -82,8 +82,14 @@ struct Account: View {
                 // streak count
             } label: {
                 VStack {
-                    Text("0 days")
-                        .foregroundColor(Color(.label))
+                    HStack {
+                        Image("PurpleFire")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                        Text("0")
+                            .foregroundColor(Color(.label))
+                    }
+                    .padding(.bottom, -10)
                     Text("Streak")
                         .foregroundColor(Color(.systemGray))
                 }

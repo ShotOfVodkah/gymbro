@@ -130,6 +130,7 @@ struct MessageBubble: View {
                     Text(message.text)
                         .padding(.top)
                         .padding(.horizontal)
+                        .padding(.bottom, message.reactions.isEmpty ? 15 : 0)
                         .foregroundColor(.white)
                     if !message.reactions.isEmpty {
                         reactionSummary
@@ -274,7 +275,7 @@ struct MessageBubble: View {
         timestamp: Date(),
         isWorkout: false,
         workoutId: "uwk0BPZE3nbLhaoyqzuX",
-        reactions: ["💜", "💪", "💪", "👍", "💪", "🔥"]
+        reactions: [""]
     )
 
     return MessageBubble(message: $message)
