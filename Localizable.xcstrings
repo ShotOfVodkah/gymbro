@@ -499,6 +499,12 @@
         }
       }
     },
+    "Notification Permission Granted" : {
+
+    },
+    "Notifications" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ru" : {
@@ -594,6 +600,9 @@
           }
         }
       }
+    },
+    "Request Notification Permission" : {
+
     },
     "Sat" : {
       "extractionState" : "manual",

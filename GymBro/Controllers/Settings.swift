@@ -15,6 +15,7 @@ struct Settings: View {
     @EnvironmentObject var themeManager: AppThemeManager
     @EnvironmentObject var languageManager: LanguageManager
     @State private var showAboutAlert = false
+    @StateObject private var notificationManager = NotificationsManager()
     
     var body: some View {
         NavigationStack {
@@ -34,8 +35,8 @@ struct Settings: View {
                     }
                     themeForApp
                     languageSelector
+                    requestNotificationButton
                     settingsButtonView(image: "person.text.rectangle.fill", name: Text("Profile"), destination: EditProfile())
-                    // reminders ???????
                     SettingsButtonActionView(image: "person.crop.circle.badge.questionmark.fill",  name: Text("About"),
                                              action: { showAboutAlert.toggle() })
                     SettingsButtonActionView(image: "person.crop.circle.fill.badge.minus",  name: Text("Log out"),
@@ -73,6 +74,42 @@ struct Settings: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+    }
+    
+    private var requestNotificationButton: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "bell.badge")
+                    .font(.system(size: 30))
+                    .foregroundColor(Color("TitleColor"))
+                    .padding(.leading, 20)
+                Text("Notifications")
+            }
+            HStack {
+                Spacer()
+                Button(action: {
+                    Task {
+                        await notificationManager.request()
+                    }
+                }) {
+                    Text(notificationManager.hasPermission ? "Notification Permission Granted" : "Request Notification Permission")
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 18)
+                        .background(notificationManager.hasPermission ? Color("TabBar") : Color("PurpleColor"))
+                        .foregroundColor(notificationManager.hasPermission ? .gray : .white)
+                        .clipShape(Capsule())
+                        .overlay(Capsule()
+                            .stroke(Color("PurpleColor"), lineWidth: 2))
+                }
+                .disabled(notificationManager.hasPermission)
+                .task {
+                    await notificationManager.getAuthStatus()
+                }
+                Spacer()
+            }
+            Divider()
+        }
+        .padding(.horizontal, 10)
     }
     
     private var dismissButton: some View {
