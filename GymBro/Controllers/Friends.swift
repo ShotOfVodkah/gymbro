@@ -58,6 +58,15 @@ struct Friends: View {
                                         user.weight.isEmpty ? nil : InfoField(title: Text("Weight (kg)"), isNumber: true, text: .constant(user.weight))
                                         user.height.isEmpty ? nil : InfoField(title: Text("Height (cm)"), isNumber: true, text: .constant(user.height))
                                     }
+                                    if let streak = vm.friendsStreaks[user.uid] {
+                                        HStack {
+                                            InfoField(title: Text("Streak"), isNumber: true, text: .constant(String(streak)))
+                                            Image("PurpleFire")
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                        }
+                                        .padding(.top, (!user.weight.isEmpty || !user.height.isEmpty) ? 0 : 8)
+                                    }
                                 }
                                 .padding(.top, 10)
                                 .padding(.bottom, 3)

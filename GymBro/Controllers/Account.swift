@@ -83,6 +83,7 @@ struct Account: View {
                     Image("PurpleFire")
                         .resizable()
                         .frame(width: 30, height: 30)
+                        .padding(.trailing, -10)
                     let streak = vm.streak?.currentStreak ?? 0
                     Text("\(streak)")
                         .foregroundColor(Color(.label))

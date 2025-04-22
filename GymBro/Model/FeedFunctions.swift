@@ -138,6 +138,7 @@ class ChatLogViewModel: ObservableObject {
 class CreateNewChatViewModel: ObservableObject {
     @Published var users = [ChatUser]()
     @Published var friends: Set<String> = []
+    @Published var friendsStreaks: [String: Int] = [:]
 
     init() {
         fetchAllUsers()
@@ -167,6 +168,10 @@ class CreateNewChatViewModel: ObservableObject {
             documentsSnapshot?.documents.forEach { snapshot in
                 if let uid = snapshot.data()["friend_uid"] as? String {
                     self.friends.insert(uid)
+                    Firestore.firestore().collection("streak").document(uid).getDocument { streakSnapshot, error in
+                        let data = streakSnapshot?.data()
+                        self.friendsStreaks[uid] =  data?["currentStreak"] as? Int ?? 0
+                    }
                 }
             }
         }
