@@ -19,6 +19,7 @@ struct EditProfile: View {
     @State var age = ""
     @State var weight = ""
     @State var height = ""
+    @State var numberOfWorkoutsAweek = ""
 
     var body: some View {
         NavigationStack {
@@ -46,6 +47,14 @@ struct EditProfile: View {
                             InfoField(title: Text("Weight (kg)"), isNumber: true, text: $weight)
                             InfoField(title: Text("Height (cm)"), isNumber: true, text: $height)
                         }
+                        HStack {
+                            InfoField(title: Text("Your weekly workout goal to keep streak"), isNumber: true, text: $numberOfWorkoutsAweek)
+                            Spacer()
+                            Image("PurpleFire")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        
                     }
                     .padding()
                     Spacer()
@@ -60,6 +69,10 @@ struct EditProfile: View {
                 age = user.age
                 weight = user.weight
                 height = user.height
+            }
+            .onChange(of: vm.streak) { _ in
+                guard let streak = vm.streak else { return }
+                numberOfWorkoutsAweek = String(streak.numberOfWorkoutsAWeek)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -85,6 +98,7 @@ struct EditProfile: View {
             Spacer()
             Button {
                 vm.updateUserData(username: username, bio: bio, gender: gender, age: age, weight: weight, height: height)
+                 vm.updateStreakGoal(numberOfWorkoutsAweek: numberOfWorkoutsAweek)
                 dismiss()
             } label: {
                 Text("Save")

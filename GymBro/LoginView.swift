@@ -179,17 +179,24 @@ struct LoginView: View {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let userData = ["uid": uid, "email": self.email, "username": self.email.replacingOccurrences(of: "@gmail.com", with: ""), "bio": self.bio, "gender": self.gender, "age": self.age, "weight": self.weight, "height": self.height]
 //        "profileImageURL": imageProfileURL.absoluteString
-        Firestore.firestore().collection("usersusers")
-            .document(uid).setData(userData) {
-                error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    self.loginStatusMessage = "Error storing user data: \(error.localizedDescription)"
-                    return
-                }
-                print("User data stored successfully")
-                self.didCompleteLogin()
+        Firestore.firestore().collection("usersusers").document(uid).setData(userData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                self.loginStatusMessage = "Error storing user data: \(error.localizedDescription)"
+                return
             }
+            print("User data stored successfully")
+            self.didCompleteLogin()
+        }
+        let streakData = ["currentStreak": 0, "numberOfWorkoutsAWeek": 1, "lastCheckData": Date(), "lastCheckWeek": getCurrentWeek()] as [String : Any]
+        Firestore.firestore().collection("streak").document(uid).setData(streakData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                self.loginStatusMessage = "Error storing streak data: \(error.localizedDescription)"
+                return
+            }
+            print("Streak data stored successfully")
+        }
     }
 }
 

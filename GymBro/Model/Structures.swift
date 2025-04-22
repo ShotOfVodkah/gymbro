@@ -56,24 +56,22 @@ struct ExistingChats: Identifiable {
     }
 }
 
-//struct Streak: Identifiable {
-//    var id: String { uid }
-//    let uid: String
-//    
-//    var currentStreak, numberOfWorkoutsAWeek: Int
-//    var lastCheck: Date
-//    var lastWorkoutUsedId: String
-//    var lastWorkoutUsedDate: Date
-//    
-//    init(data: [String: Any]) {
-//        self.uid = data["uid"] as? String ?? ""
-//        self.currentStreak = data["currentStreak"] as? Int ?? 0
-//        self.numberOfWorkoutsAWeek = data["numberOfWorkoutsAWeek"] as? Int ?? 0
-////        self.lastCheck = (data["lastCheck"] as? Timestamp)?.dateValue() ?? Date()
-//        self.lastWorkoutUsedId = data["lastWorkoutUsedId"] as? String ?? ""
-////        self.lastWorkoutUsedDate = (data["lastWorkoutUsedDate"] as? Timestamp)?.dateValue() ?? Date()
-//    }
-//}
+struct Streak: Identifiable, Equatable {
+    var id: String { uid }
+    let uid: String
+    
+    var currentStreak, numberOfWorkoutsAWeek: Int
+    var lastCheckData: Date
+    var lastCheckWeek: String
+    
+    init(data: [String: Any]) {
+        self.uid = data["uid"] as? String ?? ""
+        self.currentStreak = data["currentStreak"] as? Int ?? 0
+        self.numberOfWorkoutsAWeek = data["numberOfWorkoutsAWeek"] as? Int ?? 0
+        self.lastCheckData = (data["lastCheckData"] as? Timestamp)?.dateValue() ?? Date()
+        self.lastCheckWeek = data["lastCheckWeek"] as? String ?? ""
+    }
+}
 
 struct Workout: Identifiable, Codable, Equatable {
     let id: String

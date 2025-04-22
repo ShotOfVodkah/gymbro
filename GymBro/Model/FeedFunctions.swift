@@ -288,6 +288,7 @@ class AccountModel: ObservableObject {
     
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
+    @Published var streak: Streak?
     @Published var isUserCurrentlyLoggedOut: Bool = false
     
     init() {
@@ -314,6 +315,19 @@ class AccountModel: ObservableObject {
             }
             self.chatUser = .init(data: data)
         }
+        Firestore.firestore().collection("streak").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                self.errorMessage = "Error fetching streak for a user: \(error.localizedDescription)"
+                print(self.errorMessage)
+                return
+            }
+            guard let data = snapshot?.data() else {
+                self.errorMessage = "No streak data"
+                print(self.errorMessage)
+                return
+            }
+            self.streak = .init(data: data)
+        }
     }
     
     func updateUserData(username: String, bio: String, gender: String, age: String, weight: String, height: String) {
@@ -328,6 +342,19 @@ class AccountModel: ObservableObject {
                 return
             }
             print("Successfully updated user data")
+        }
+    }
+    
+    func updateStreakGoal(numberOfWorkoutsAweek: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let streakData = ["currentStreak": 0, "numberOfWorkoutsAWeek": Int(numberOfWorkoutsAweek) ?? 1, "lastCheckData": Date(), "lastCheckWeek": getCurrentWeek()] as [String : Any]
+        Firestore.firestore().collection("streak").document(uid).setData(streakData) { error in
+            if let error = error {
+                self.errorMessage = "Faield to update streak data: \(error.localizedDescription)"
+                print(self.errorMessage)
+                return
+            }
+            print("Successfully updated streak goal data")
         }
     }
     
