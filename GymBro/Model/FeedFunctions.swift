@@ -343,6 +343,9 @@ class AccountModel: ObservableObject {
                 return
             }
             print("Successfully updated user data")
+            DispatchQueue.main.async {
+                self.chatUser = .init(data: userData)
+            }
         }
     }
     

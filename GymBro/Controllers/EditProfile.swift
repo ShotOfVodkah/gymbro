@@ -11,7 +11,8 @@ import FirebaseFirestore
 
 struct EditProfile: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var vm = AccountModel()
+//    @StateObject var vm = AccountModel()
+    @ObservedObject var vm: AccountModel
     @State var email = ""
     @State var username = ""
     @State var bio = ""
@@ -58,6 +59,20 @@ struct EditProfile: View {
                     }
                     .padding()
                     Spacer()
+                }
+            }
+            .onAppear {
+                if let user = vm.chatUser {
+                    email = user.email
+                    username = user.username
+                    bio = user.bio
+                    gender = user.gender
+                    age = user.age
+                    weight = user.weight
+                    height = user.height
+                }
+                if let streak = vm.streak {
+                    numberOfWorkoutsAweek = String(streak.numberOfWorkoutsAWeek)
                 }
             }
             .onChange(of: vm.chatUser) { _ in
@@ -115,5 +130,5 @@ struct EditProfile: View {
 }
 
 #Preview {
-    EditProfile()
+    EditProfile(vm: AccountModel())
 }

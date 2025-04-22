@@ -36,7 +36,7 @@ struct Settings: View {
                     themeForApp
                     languageSelector
                     requestNotificationButton
-                    settingsButtonView(image: "person.text.rectangle.fill", name: Text("Profile"), destination: EditProfile())
+                    settingsButtonView(image: "person.text.rectangle.fill", name: Text("Profile"), destination: EditProfile(vm: vm))
                     SettingsButtonActionView(image: "person.crop.circle.badge.questionmark.fill",  name: Text("About"),
                                              action: { showAboutAlert.toggle() })
                     SettingsButtonActionView(image: "person.crop.circle.fill.badge.minus",  name: Text("Log out"),

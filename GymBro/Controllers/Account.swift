@@ -116,7 +116,7 @@ struct Account: View {
             .padding(.horizontal, 40)
         }
         .sheet(isPresented: $shouldShowEditProfileScreen) {
-            EditProfile()
+            EditProfile(vm: vm)
         }
     }
 }
