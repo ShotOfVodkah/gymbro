@@ -98,7 +98,9 @@ struct EditProfile: View {
             Spacer()
             Button {
                 vm.updateUserData(username: username, bio: bio, gender: gender, age: age, weight: weight, height: height)
-                 vm.updateStreakGoal(numberOfWorkoutsAweek: numberOfWorkoutsAweek)
+                if vm.streak?.numberOfWorkoutsAWeek != Int(numberOfWorkoutsAweek) {
+                    vm.updateStreakGoal(numberOfWorkoutsAweek: numberOfWorkoutsAweek)
+                }
                 dismiss()
             } label: {
                 Text("Save")

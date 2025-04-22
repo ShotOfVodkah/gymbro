@@ -296,6 +296,7 @@ class AccountModel: ObservableObject {
             self.isUserCurrentlyLoggedOut = Auth.auth().currentUser?.uid == nil
         }
         fetchCurrentUser()
+        updateUserStreak()
     }
     
     func fetchCurrentUser() {
@@ -347,7 +348,7 @@ class AccountModel: ObservableObject {
     
     func updateStreakGoal(numberOfWorkoutsAweek: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let streakData = ["currentStreak": 0, "numberOfWorkoutsAWeek": Int(numberOfWorkoutsAweek) ?? 1, "lastCheckData": Date(), "lastCheckWeek": getCurrentWeek()] as [String : Any]
+        let streakData = ["currentStreak": streak?.currentStreak ?? 0, "numberOfWorkoutsAWeek": Int(numberOfWorkoutsAweek) ?? 1, "lastCheckData": streak?.lastCheckData ?? Date(), "lastCheckWeek": streak?.lastCheckWeek ?? getCurrentWeek()] as [String : Any]
         Firestore.firestore().collection("streak").document(uid).setData(streakData) { error in
             if let error = error {
                 self.errorMessage = "Faield to update streak data: \(error.localizedDescription)"
@@ -355,6 +356,60 @@ class AccountModel: ObservableObject {
                 return
             }
             print("Successfully updated streak goal data")
+        }
+    }
+    
+    func updateUserStreak() {
+        var streak: Streak?
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        Firestore.firestore().collection("streak").document(uid).getDocument { snapshot, error in
+            guard let data = snapshot?.data() else {
+                print("No streak data")
+                return
+            }
+            streak = Streak(data: data)
+            let currentWeek = getCurrentWeek()
+            
+            guard streak?.lastCheckWeek != currentWeek else {
+                print("Streak already checked this week")
+                return
+            }
+            
+            let previousWeek = streak?.lastCheckWeek ?? "No data"
+            print(previousWeek)
+            
+            Firestore.firestore().collection("workout_done").document(uid).collection("workouts_for_id").whereField("week", isEqualTo: previousWeek).getDocuments { documentSnapshot, error in
+                if let error = error {
+                    print("Failed to fetch done workouts: \(error.localizedDescription)")
+                    return
+                }
+                
+                var filteredWorkouts: [WorkoutDone] = []
+                documentSnapshot?.documents.forEach { document in
+                    do {
+                        let workoutDone = try document.data(as: WorkoutDone.self)
+                        filteredWorkouts.append(workoutDone)
+                    } catch {
+                        print("Error decoding document \(document.documentID): \(error.localizedDescription)")
+                    }
+                }
+                
+                let didMeetGoal = filteredWorkouts.count >= streak?.numberOfWorkoutsAWeek ?? 1
+                let newStreak = didMeetGoal ? (streak?.currentStreak ?? 0) + 1 : 0
+                let newStreakData = ["currentStreak": newStreak, "numberOfWorkoutsAWeek": streak?.numberOfWorkoutsAWeek ?? 1, "lastCheckData": Date(), "lastCheckWeek": currentWeek]
+                
+                Firestore.firestore().collection("streak").document(uid).updateData(newStreakData) { error in
+                    if let error = error {
+                        print("Failed to update streak: \(error.localizedDescription)")
+                    } else {
+                        print("Streak updated: \(newStreak)")
+                        DispatchQueue.main.async {
+                            self.streak = .init(data: newStreakData)
+                        }
+                    }
+                }
+            }
         }
     }
     

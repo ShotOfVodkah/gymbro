@@ -67,7 +67,7 @@ struct Streak: Identifiable, Equatable {
     init(data: [String: Any]) {
         self.uid = data["uid"] as? String ?? ""
         self.currentStreak = data["currentStreak"] as? Int ?? 0
-        self.numberOfWorkoutsAWeek = data["numberOfWorkoutsAWeek"] as? Int ?? 0
+        self.numberOfWorkoutsAWeek = data["numberOfWorkoutsAWeek"] as? Int ?? 1
         self.lastCheckData = (data["lastCheckData"] as? Timestamp)?.dateValue() ?? Date()
         self.lastCheckWeek = data["lastCheckWeek"] as? String ?? ""
     }
@@ -98,6 +98,7 @@ struct WorkoutDone: Identifiable, Codable, Equatable {
     let workout: Workout
     let timestamp: Date
     let comment: String
+    let week: String
 }
 
 struct CalendarDate: Identifiable {

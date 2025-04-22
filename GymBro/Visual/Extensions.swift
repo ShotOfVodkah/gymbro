@@ -37,6 +37,17 @@ extension Date {
     }
 }
 
+func getISOWeek(for date: Date) -> String {
+    let calendar = Calendar(identifier: .iso8601)
+    let year = calendar.component(.yearForWeekOfYear, from: date)
+    let week = calendar.component(.weekOfYear, from: date)
+    return "\(year)-W\(String(format: "%02d", week))"
+}
+
+func getCurrentWeek() -> String {
+    return getISOWeek(for: Date())
+}
+
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners

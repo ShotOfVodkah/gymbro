@@ -32,4 +32,5 @@ struct WorkoutDone: Identifiable, Codable {
     let workout: Workout
     let timestamp: Date
     let comment: String
+    let week: String
 }

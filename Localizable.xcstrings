@@ -60,16 +60,6 @@
         }
       }
     },
-    "0" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0"
-          }
-        }
-      }
-    },
     "About" : {
       "localizations" : {
         "ru" : {
@@ -891,6 +881,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Твои друзья"
+          }
+        }
+      }
+    },
+    "Your weekly workout goal to keep streak" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Количество тренировок в неделю для стрика"
           }
         }
       }

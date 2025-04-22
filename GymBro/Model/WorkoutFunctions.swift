@@ -90,7 +90,8 @@ func saveWorkoutDone(workout: Workout, comment: String) {
             id: docRef.documentID,
             workout: workout,
             timestamp: Date(),
-            comment: comment
+            comment: comment,
+            week: getCurrentWeek()
         )
         
         let workoutDoneData: [String: Any] = [
@@ -103,7 +104,8 @@ func saveWorkoutDone(workout: Workout, comment: String) {
                 "exercises": exerciseData
             ],
             "timestamp": Timestamp(date: workoutDone.timestamp),
-            "comment": workoutDone.comment
+            "comment": workoutDone.comment,
+            "week": workoutDone.week
         ]
         
         docRef.setData(workoutDoneData) { error in

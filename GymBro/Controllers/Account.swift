@@ -60,8 +60,8 @@ struct Account: View {
             }
             .sheet(isPresented: $showWorkoutHistory) { WorkoutHistory() }
             Divider()
-                    .frame(width: 2, height: 30)
-                    .background(Color.gray)
+                .frame(width: 2, height: 30)
+                .background(Color.gray)
             Button {
                 showFriends = true
             } label: {
@@ -76,26 +76,24 @@ struct Account: View {
             }
             .sheet(isPresented: $showFriends) { Friends() }
             Divider()
-                    .frame(width: 2, height: 30)
-                    .background(Color.gray)
-            Button {
-                // streak count
-            } label: {
-                VStack {
-                    HStack {
-                        Image("PurpleFire")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                        Text("0")
-                            .foregroundColor(Color(.label))
-                    }
-                    .padding(.bottom, -10)
-                    Text("Streak")
-                        .foregroundColor(Color(.systemGray))
+                .frame(width: 2, height: 30)
+                .background(Color.gray)
+            VStack {
+                HStack {
+                    Image("PurpleFire")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                    let streak = vm.streak?.currentStreak ?? 0
+                    Text("\(streak)")
+                        .foregroundColor(Color(.label))
                 }
-                .foregroundColor(Color(.label))
-                .padding(.horizontal, 16)
+                .padding(.bottom, -10)
+                Text("Streak")
+                    .foregroundColor(Color(.systemGray))
             }
+            .foregroundColor(Color(.label))
+            .padding(.horizontal, 16)
+            
         }
     }
     
