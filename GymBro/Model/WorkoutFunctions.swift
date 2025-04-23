@@ -61,6 +61,7 @@ func deleteWorkout(id: String) {
 }
 
 func saveWorkoutDone(workout: Workout, comment: String) {
+    UIApplication.shared.applicationIconBadgeNumber -= 1
     let db = Firestore.firestore()
     guard let uid = Auth.auth().currentUser?.uid else {
         return

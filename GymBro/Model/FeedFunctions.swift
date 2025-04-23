@@ -380,6 +380,25 @@ class AccountModel: ObservableObject {
             let currentWeek = getCurrentWeek()
             
             guard streak?.lastCheckWeek != currentWeek else {
+                Firestore.firestore().collection("workout_done").document(uid).collection("workouts_for_id").whereField("week", isEqualTo: currentWeek).getDocuments { documentSnapshot, error in
+                    if let error = error {
+                        print("Failed to fetch done workouts: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    var filteredWorkouts: [WorkoutDone] = []
+                    documentSnapshot?.documents.forEach { document in
+                        do {
+                            let workoutDone = try document.data(as: WorkoutDone.self)
+                            filteredWorkouts.append(workoutDone)
+                        } catch {
+                            print("Error decoding document \(document.documentID): \(error.localizedDescription)")
+                        }
+                    }
+                    let remainingWorkouts = (streak?.numberOfWorkoutsAWeek ?? 1) - filteredWorkouts.count
+                    UIApplication.shared.applicationIconBadgeNumber = max(remainingWorkouts, 0)
+                    print("Streak badge updated")
+                }
                 print("Streak already checked this week")
                 return
             }
