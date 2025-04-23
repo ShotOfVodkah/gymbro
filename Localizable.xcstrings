@@ -724,6 +724,16 @@
         }
       }
     },
+    "Streak is in danger! Remains %lld workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стрик в опасности! Осталось %lld тренировок"
+          }
+        }
+      }
+    },
     "Sun" : {
       "extractionState" : "manual",
       "localizations" : {

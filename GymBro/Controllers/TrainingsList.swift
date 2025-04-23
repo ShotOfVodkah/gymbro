@@ -70,7 +70,7 @@ struct TrainingsList: View {
             ZStack {
                 mainContent
                     .blur(radius: viewModel.isActive ? 5 : 0)
-
+                
                 if viewModel.isActive {
                     WorkoutBuilder(isActive: $viewModel.isActive, bar: $bar)
                 }
@@ -97,9 +97,39 @@ struct TrainingsList: View {
     private var mainContent: some View {
         VStack {
             header
+            if UIApplication.shared.applicationIconBadgeNumber > 0 {
+                streakBanner
+            }
             searchField
             workoutList
         }
+    }
+    
+    private var streakBanner: some View {
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: Date())
+        let isWeekend = weekday == 1 || weekday == 7
+
+        let gradientColors: [Color] = isWeekend ? [.red, .orange] : [Color("PurpleColor"), .purple]
+
+        return HStack {
+            Spacer()
+            Image(systemName: "flame.fill")
+                .foregroundColor(.white)
+            Text("Streak is in danger! Remains \(UIApplication.shared.applicationIconBadgeNumber) workouts")
+                .foregroundColor(.white)
+                .font(.subheadline)
+            Spacer()
+        }
+        .padding(5)
+        .background(
+            LinearGradient(colors: gradientColors, startPoint: .leading, endPoint: .trailing)
+        )
+        .cornerRadius(12)
+        .shadow(radius: 5)
+        .padding(.top, -10)
+        .padding(.bottom, 6)
+        .padding(.horizontal)
     }
 
     private var header: some View {
