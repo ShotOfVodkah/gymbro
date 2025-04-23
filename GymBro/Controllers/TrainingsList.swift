@@ -86,7 +86,7 @@ struct TrainingsList: View {
                 withAnimation(.spring()) {
                     offset = 0
                 }
-                
+                scheduleDailyWorkoutReminder()
                 Task {
                     await saveWorkoutDatesToSharedDefaults()
                 }
