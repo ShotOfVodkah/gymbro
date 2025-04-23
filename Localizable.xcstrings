@@ -519,6 +519,16 @@
         }
       }
     },
+    "One more rep, one more tap...\nLet’s crush those goals like it’s leg day." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ещё одно повторение, ещё один тап…\nРазнесём эти цели, как будто это день ног."
+          }
+        }
+      }
+    },
     "online" : {
       "localizations" : {
         "ru" : {
@@ -758,6 +768,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Чт"
+          }
+        }
+      }
+    },
+    "Train like a beast, track like a nerd." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренируйся как зверь, отслеживай как ботан."
           }
         }
       }

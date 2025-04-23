@@ -35,18 +35,31 @@ struct GymBroApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var vm = AccountModel()
     @StateObject var themeManager = AppThemeManager()
+    @State private var showLoad = true
     
     var body: some Scene {
         WindowGroup {
-            if self.vm.isUserCurrentlyLoggedOut == true {
-                LoginView(didCompleteLogin: {
-                    self.vm.isUserCurrentlyLoggedOut = false
-                }) // привет. АГрицаенко
-            } else {
-                MainView()
-                    .environmentObject(themeManager)
-                    .preferredColorScheme(themeManager.selectedTheme)
-                    .environmentObject(LanguageManager())
+            ZStack {
+                if showLoad {
+                    LoadingView()
+                        .transition(.opacity)
+                } else if self.vm.isUserCurrentlyLoggedOut == true {
+                    LoginView(didCompleteLogin: {
+                        self.vm.isUserCurrentlyLoggedOut = false
+                    }) // привет. АГрицаенко
+                } else {
+                    MainView()
+                        .environmentObject(themeManager)
+                        .preferredColorScheme(themeManager.selectedTheme)
+                        .environmentObject(LanguageManager())
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    withAnimation {
+                        showLoad = false
+                    }
+                }
             }
         }
     }
