@@ -26,8 +26,6 @@
 		5D8214DE2D623DAD00FB84BB /* ExercisePlayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */; };
 		5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D872A542D46E46400368978 /* MuscleGroupWidget.swift */; };
 		5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD680FF2D42A6B2008740B4 /* BottomBar.swift */; };
-		733921EA2D9C78A000C4E496 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733921E92D9C78A000C4E496 /* TitleRow.swift */; };
-		7339220E2D9C8BA900C4E496 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7339220D2D9C8BA900C4E496 /* MessageBubble.swift */; };
 		73673A192DB8EAF00055D61C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73673A182DB8EAF00055D61C /* Launch Screen.storyboard */; };
 		73673A1B2DB8F4870055D61C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73673A1A2DB8F4870055D61C /* LoadingView.swift */; };
 		73DA14292D3FD36700960BD8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 73DA14282D3FD36700960BD8 /* Localizable.xcstrings */; };
@@ -98,8 +96,6 @@
 		5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlayWidget.swift; sourceTree = "<group>"; };
 		5D872A542D46E46400368978 /* MuscleGroupWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupWidget.swift; sourceTree = "<group>"; };
 		5DD680FF2D42A6B2008740B4 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
-		733921E92D9C78A000C4E496 /* TitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
-		7339220D2D9C8BA900C4E496 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		73673A182DB8EAF00055D61C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		73673A1A2DB8F4870055D61C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		73DA14282D3FD36700960BD8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -129,6 +125,7 @@
 		5D5B3AB42DB137BA0059F92B /* GymBroWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5D5B3AC22DB137BD0059F92B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GymBroWidget; sourceTree = "<group>"; };
 		5DB1334E2D4D968D00C37DF0 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 		73673A1D2DBA9A710055D61C /* Personal Achievements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Personal Achievements"; sourceTree = "<group>"; };
+		73673A232DBA9D8D0055D61C /* Chat Log */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Chat Log"; sourceTree = "<group>"; };
 		73DA142A2D3FD65B00960BD8 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -206,6 +203,7 @@
 				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
 				73673A1A2DB8F4870055D61C /* LoadingView.swift */,
 				5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */,
+				73673A232DBA9D8D0055D61C /* Chat Log */,
 				73673A1D2DBA9A710055D61C /* Personal Achievements */,
 				5DB1334E2D4D968D00C37DF0 /* Model */,
 				5D58A44C2D4248D60004E6C5 /* Components */,
@@ -234,8 +232,6 @@
 				5D1C89472DAC20850021E0E5 /* WorkoutCard.swift */,
 				5D872A542D46E46400368978 /* MuscleGroupWidget.swift */,
 				5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */,
-				733921E92D9C78A000C4E496 /* TitleRow.swift */,
-				7339220D2D9C8BA900C4E496 /* MessageBubble.swift */,
 				5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */,
 			);
 			path = Components;
@@ -287,6 +283,7 @@
 				5D58A4482D42488D0004E6C5 /* Visual */,
 				5DB1334E2D4D968D00C37DF0 /* Model */,
 				73673A1D2DBA9A710055D61C /* Personal Achievements */,
+				73673A232DBA9D8D0055D61C /* Chat Log */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,
 			);
 			name = GymBro;
@@ -402,10 +399,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				733921EA2D9C78A000C4E496 /* TitleRow.swift in Sources */,
 				5D8214DE2D623DAD00FB84BB /* ExercisePlayWidget.swift in Sources */,
 				5D1C89492DAC208B0021E0E5 /* WorkoutCard.swift in Sources */,
-				7339220E2D9C8BA900C4E496 /* MessageBubble.swift in Sources */,
 				5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */,
 				73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */,
 				5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */,
