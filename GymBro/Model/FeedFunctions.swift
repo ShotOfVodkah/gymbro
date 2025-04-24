@@ -188,7 +188,7 @@ class CreateNewChatViewModel: ObservableObject {
                     return
                 }
                 if let documents = snapshot?.documents, documents.isEmpty {
-                    db.document().setData(["friend_uid": user]) { error in
+                    db.document(user).setData(["friend_uid": user]) { error in
                         if let error = error {
                             print("Failed to add a friend: \(error.localizedDescription)")
                         } else {
@@ -443,5 +443,124 @@ class AccountModel: ObservableObject {
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
         try? Auth.auth().signOut()
+    }
+    
+    func handleDeleteAccount() {
+        isUserCurrentlyLoggedOut.toggle()
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        let collections = ["usersusers/", "streak/", "workouts/", "workout_done/", "friends/", "existing_chats/"]
+        let subcollections = ["workout_done/\(uid)/workouts_for_id", "workouts/\(uid)/workouts_for_id"]
+        
+        let dispatchGroup = DispatchGroup()
+
+        for path in subcollections {
+            dispatchGroup.enter()
+            db.collection(path).getDocuments { snapshot, error in
+                guard let docs = snapshot?.documents, error == nil else {
+                    dispatchGroup.leave()
+                    return
+                }
+                let innerGroup = DispatchGroup()
+                for doc in docs {
+                    innerGroup.enter()
+                    db.collection(path).document(doc.documentID).delete { error in
+                        if let error = error {
+                            print("Failed to delete document \(doc.documentID): \(error.localizedDescription)")
+                        }
+                        innerGroup.leave()
+                    }
+                }
+                innerGroup.notify(queue: .main) {
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        
+        dispatchGroup.enter()
+        db.collection("existing_chats/\(uid)/messages").getDocuments { snapshot, error in
+            guard let docs = snapshot?.documents, error == nil else {
+                dispatchGroup.leave()
+                return
+            }
+            
+            let innerGroup = DispatchGroup()
+            for doc in docs {
+                let friendId = doc.documentID
+                innerGroup.enter()
+                db.collection("existing_chats/\(uid)/messages").document(friendId).delete { error in
+                    if let error = error {
+                        print("Failed to delete chat document from \(uid): \(error.localizedDescription)")
+                    }
+                    innerGroup.leave()
+                }
+                
+                innerGroup.enter()
+                db.collection("existing_chats/\(friendId)/messages").document(uid).delete { error in
+                    if let error = error {
+                        print("Failed to delete mirrored chat from \(friendId): \(error.localizedDescription)")
+                    }
+                    innerGroup.leave()
+                }
+            }
+            
+            innerGroup.notify(queue: .main) {
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.enter()
+        db.collection("friends/\(uid)/friendsList").getDocuments { snapshot, error in
+            guard let docs = snapshot?.documents, error == nil else {
+                dispatchGroup.leave()
+                return
+            }
+            
+            let innerGroup = DispatchGroup()
+            for doc in docs {
+                let friendId = doc.documentID
+                innerGroup.enter()
+                db.collection("friends/\(uid)/friendsList").document(friendId).delete { error in
+                    if let error = error {
+                        print("Failed to delete chat document from \(uid): \(error.localizedDescription)")
+                    }
+                    innerGroup.leave()
+                }
+                
+                innerGroup.enter()
+                db.collection("friends/\(friendId)/friendsList").document(uid).delete { error in
+                    if let error = error {
+                        print("Failed to delete mirrored chat from \(friendId): \(error.localizedDescription)")
+                    }
+                    innerGroup.leave()
+                }
+            }
+            
+            innerGroup.notify(queue: .main) {
+                dispatchGroup.leave()
+            }
+        }
+        
+        for path in collections {
+            dispatchGroup.enter()
+            db.document("\(path)\(uid)").delete { error in
+                if let error = error {
+                    print("Failed to delete document \(path)\(uid): \(error.localizedDescription)")
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            Auth.auth().currentUser?.delete { error in
+                if let error = error {
+                    print("Error deleting user: \(error.localizedDescription)")
+                } else {
+                    print("Account successfully deleted.")
+                }
+            }
+        }
     }
 }

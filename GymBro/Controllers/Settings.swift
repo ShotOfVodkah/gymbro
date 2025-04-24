@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Settings: View {
     @State var shouldShowLogOutOptions: Bool = false
+    @State var shouldShowDeleteOptions: Bool = false
     @State private var showMainView = false
     @StateObject var vm = AccountModel()
     @Environment(\.dismiss) var dismiss
@@ -42,8 +43,7 @@ struct Settings: View {
                     SettingsButtonActionView(image: "person.crop.circle.fill.badge.minus",  name: Text("Log out"),
                                              action: { shouldShowLogOutOptions.toggle() })
                     SettingsButtonActionView(image: "person.crop.circle.fill.badge.xmark",  name: Text("Delete account"),
-                                             action: { // delete action
-                    })
+                                             action: { shouldShowDeleteOptions.toggle() })
                     Spacer()
                 }
             }
@@ -58,6 +58,14 @@ struct Settings: View {
                 Button("Log out", role: .destructive) {
                     print("handle log out")
                     vm.handleSignOut()
+                    showMainView = false
+                }
+                Button("Cancel", role: .cancel) {}
+            }
+            .confirmationDialog(Text("Are you sure you want to delete your account?"), isPresented: $shouldShowDeleteOptions, titleVisibility: .visible) {
+                Button("Delete account", role: .destructive) {
+                    print("handle delete")
+                    vm.handleDeleteAccount()
                     showMainView = false
                 }
                 Button("Cancel", role: .cancel) {}
@@ -118,11 +126,11 @@ struct Settings: View {
         }) {
             HStack {
                 Image(systemName: "chevron.left")
-                    .foregroundColor(Color(.label))
+                    .foregroundColor(Color("TitleColor"))
                     .font(.system(size: 30))
                     .padding(.trailing, -10)
                 Text("Cancel")
-                    .foregroundColor(Color(.label))
+                    .foregroundColor(Color("TitleColor"))
                     .font(.system(size: 20))
             }
             .padding(.leading, 10)
