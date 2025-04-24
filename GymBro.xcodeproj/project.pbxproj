@@ -7,29 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D1C89492DAC208B0021E0E5 /* WorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C89472DAC20850021E0E5 /* WorkoutCard.swift */; };
 		5D37C99D2DA56D1F0044CF0D /* GymBro Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5D37C97D2DA56D190044CF0D /* GymBro Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D37C9E72DA5747F0044CF0D /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */; };
 		5D37C9F02DA582040044CF0D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D37C9EF2DA582040044CF0D /* FirebaseFirestore */; };
-		5D37CC7C2DA97C7D0044CF0D /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */; };
 		5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */; };
-		5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4909FA2CEB7DF000A24F89 /* LoginView.swift */; };
 		5D4909FD2CEB7DF600A24F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */; };
 		5D490A002CEB7DF600A24F89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */; };
-		5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D58A4652D4256AE0004E6C5 /* WorkoutWidget.swift */; };
 		5D5B3AB12DB137BA0059F92B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5B3AB02DB137BA0059F92B /* WidgetKit.framework */; };
 		5D5B3AB32DB137BA0059F92B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5B3AB22DB137BA0059F92B /* SwiftUI.framework */; };
 		5D5B3ABE2DB137BD0059F92B /* GymBroWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5D5B3AAF2DB137B90059F92B /* GymBroWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D7A66632D41C91A00FC3EE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D7A66622D41C91A00FC3EE1 /* GoogleService-Info.plist */; };
 		5D7A66662D41C9C100FC3EE1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7A66652D41C9C100FC3EE1 /* FirebaseFirestore */; };
 		5D7A66682D41C9C100FC3EE1 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7A66672D41C9C100FC3EE1 /* FirebaseFirestoreCombine-Community */; };
-		5D8214DE2D623DAD00FB84BB /* ExercisePlayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */; };
-		5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D872A542D46E46400368978 /* MuscleGroupWidget.swift */; };
-		5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD680FF2D42A6B2008740B4 /* BottomBar.swift */; };
-		73673A192DB8EAF00055D61C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73673A182DB8EAF00055D61C /* Launch Screen.storyboard */; };
-		73673A1B2DB8F4870055D61C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73673A1A2DB8F4870055D61C /* LoadingView.swift */; };
+		736739D72DB8E9FC0055D61C /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736739D02DB8E9FC0055D61C /* Structures.swift */; };
 		73DA14292D3FD36700960BD8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 73DA14282D3FD36700960BD8 /* Localizable.xcstrings */; };
-		73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4AEDA2D5391F10088A814 /* MainView.swift */; };
 		73E4AEDD2D54FF4F0088A814 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 73E4AEDC2D54FF4F0088A814 /* FirebaseAuth */; };
 		73E4AEE12D551B850088A814 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 73E4AEE02D551B850088A814 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
@@ -77,39 +68,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5D1C89472DAC20850021E0E5 /* WorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCard.swift; sourceTree = "<group>"; };
 		5D37C97D2DA56D190044CF0D /* GymBro Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GymBro Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
-		5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		5D4909F52CEB7DF000A24F89 /* GymBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
-		5D4909FA2CEB7DF000A24F89 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5D58A4652D4256AE0004E6C5 /* WorkoutWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutWidget.swift; sourceTree = "<group>"; };
 		5D5B3AAF2DB137B90059F92B /* GymBroWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GymBroWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5B3AB02DB137BA0059F92B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5D5B3AB22DB137BA0059F92B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5D5B3AC42DB137CC0059F92B /* GymBroRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GymBroRelease.entitlements; sourceTree = "<group>"; };
 		5D5B3AC52DB137E70059F92B /* GymBroWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GymBroWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		5D7A66622D41C91A00FC3EE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlayWidget.swift; sourceTree = "<group>"; };
-		5D872A542D46E46400368978 /* MuscleGroupWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupWidget.swift; sourceTree = "<group>"; };
-		5DD680FF2D42A6B2008740B4 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
-		73673A182DB8EAF00055D61C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		73673A1A2DB8F4870055D61C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		736739D02DB8E9FC0055D61C /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		73DA14282D3FD36700960BD8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		73E4AEDA2D5391F10088A814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		5D37CA582DA5A3720044CF0D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Animations.swift,
-			);
-			target = 5D37C97C2DA56D190044CF0D /* GymBro Watch Watch App */;
-		};
 		5D5B3AC22DB137BD0059F92B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -117,16 +92,26 @@
 			);
 			target = 5D5B3AAE2DB137B90059F92B /* GymBroWidgetExtension */;
 		};
+		73673A432DBAA8280055D61C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Animations.swift,
+			);
+			target = 5D37C97C2DA56D190044CF0D /* GymBro Watch Watch App */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D37C97E2DA56D190044CF0D /* GymBro Watch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "GymBro Watch Watch App"; sourceTree = "<group>"; };
-		5D58A4482D42488D0004E6C5 /* Visual */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5D37CA582DA5A3720044CF0D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Visual; sourceTree = "<group>"; };
 		5D5B3AB42DB137BA0059F92B /* GymBroWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5D5B3AC22DB137BD0059F92B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GymBroWidget; sourceTree = "<group>"; };
-		5DB1334E2D4D968D00C37DF0 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 		73673A1D2DBA9A710055D61C /* Personal Achievements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Personal Achievements"; sourceTree = "<group>"; };
-		73673A232DBA9D8D0055D61C /* Chat Log */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Chat Log"; sourceTree = "<group>"; };
-		73DA142A2D3FD65B00960BD8 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
+		73673A292DBAA0C40055D61C /* Feeds */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Feeds; sourceTree = "<group>"; };
+		73673A2C2DBAA1640055D61C /* Account */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Account; sourceTree = "<group>"; };
+		73673A2D2DBAA2E70055D61C /* Group Achievements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Group Achievements"; sourceTree = "<group>"; };
+		73673A382DBAA4A40055D61C /* Calendar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Calendar; sourceTree = "<group>"; };
+		73673A3D2DBAA56C0055D61C /* Load and Login */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Load and Login"; sourceTree = "<group>"; };
+		73673A422DBAA8110055D61C /* Main */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (73673A432DBAA8280055D61C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Main; sourceTree = "<group>"; };
+		73DA142A2D3FD65B00960BD8 /* Workouts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Workouts; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +158,6 @@
 		5D4909EC2CEB7DF000A24F89 = {
 			isa = PBXGroup;
 			children = (
-				73673A182DB8EAF00055D61C /* Launch Screen.storyboard */,
 				5D5B3AC52DB137E70059F92B /* GymBroWidgetExtensionRelease.entitlements */,
 				73DA14282D3FD36700960BD8 /* Localizable.xcstrings */,
 				5D4909F72CEB7DF000A24F89 /* GymBro */,
@@ -199,16 +183,16 @@
 			children = (
 				5D5B3AC42DB137CC0059F92B /* GymBroRelease.entitlements */,
 				5D4909F82CEB7DF000A24F89 /* GymBroApp.swift */,
-				73E4AEDA2D5391F10088A814 /* MainView.swift */,
-				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
-				73673A1A2DB8F4870055D61C /* LoadingView.swift */,
 				5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */,
-				73673A232DBA9D8D0055D61C /* Chat Log */,
+				736739D02DB8E9FC0055D61C /* Structures.swift */,
+				73673A3D2DBAA56C0055D61C /* Load and Login */,
+				73673A422DBAA8110055D61C /* Main */,
+				73673A2D2DBAA2E70055D61C /* Group Achievements */,
+				73673A382DBAA4A40055D61C /* Calendar */,
+				73673A2C2DBAA1640055D61C /* Account */,
+				73673A292DBAA0C40055D61C /* Feeds */,
 				73673A1D2DBA9A710055D61C /* Personal Achievements */,
-				5DB1334E2D4D968D00C37DF0 /* Model */,
-				5D58A44C2D4248D60004E6C5 /* Components */,
-				5D58A4482D42488D0004E6C5 /* Visual */,
-				73DA142A2D3FD65B00960BD8 /* Controllers */,
+				73DA142A2D3FD65B00960BD8 /* Workouts */,
 				5D4909FC2CEB7DF600A24F89 /* Assets.xcassets */,
 				5D7A66622D41C91A00FC3EE1 /* GoogleService-Info.plist */,
 				5D4909FE2CEB7DF600A24F89 /* Preview Content */,
@@ -222,19 +206,6 @@
 				5D4909FF2CEB7DF600A24F89 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		5D58A44C2D4248D60004E6C5 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				5DD680FF2D42A6B2008740B4 /* BottomBar.swift */,
-				5D58A4652D4256AE0004E6C5 /* WorkoutWidget.swift */,
-				5D1C89472DAC20850021E0E5 /* WorkoutCard.swift */,
-				5D872A542D46E46400368978 /* MuscleGroupWidget.swift */,
-				5D8214DD2D623DAD00FB84BB /* ExercisePlayWidget.swift */,
-				5D37CC7B2DA97C7D0044CF0D /* Calendar.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,11 +251,14 @@
 				5D5B3ABD2DB137BD0059F92B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				5D58A4482D42488D0004E6C5 /* Visual */,
-				5DB1334E2D4D968D00C37DF0 /* Model */,
 				73673A1D2DBA9A710055D61C /* Personal Achievements */,
-				73673A232DBA9D8D0055D61C /* Chat Log */,
-				73DA142A2D3FD65B00960BD8 /* Controllers */,
+				73673A292DBAA0C40055D61C /* Feeds */,
+				73673A2C2DBAA1640055D61C /* Account */,
+				73673A2D2DBAA2E70055D61C /* Group Achievements */,
+				73673A382DBAA4A40055D61C /* Calendar */,
+				73673A3D2DBAA56C0055D61C /* Load and Login */,
+				73673A422DBAA8110055D61C /* Main */,
+				73DA142A2D3FD65B00960BD8 /* Workouts */,
 			);
 			name = GymBro;
 			productName = GymBro;
@@ -373,7 +347,6 @@
 				5D490A002CEB7DF600A24F89 /* Preview Assets.xcassets in Resources */,
 				5D7A66632D41C91A00FC3EE1 /* GoogleService-Info.plist in Resources */,
 				5D4909FD2CEB7DF600A24F89 /* Assets.xcassets in Resources */,
-				73673A192DB8EAF00055D61C /* Launch Screen.storyboard in Resources */,
 				73DA14292D3FD36700960BD8 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,17 +372,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D8214DE2D623DAD00FB84BB /* ExercisePlayWidget.swift in Sources */,
-				5D1C89492DAC208B0021E0E5 /* WorkoutCard.swift in Sources */,
-				5D4909FB2CEB7DF000A24F89 /* LoginView.swift in Sources */,
-				73E4AEDB2D5391F10088A814 /* MainView.swift in Sources */,
 				5D4909F92CEB7DF000A24F89 /* GymBroApp.swift in Sources */,
-				5D872A552D46E46400368978 /* MuscleGroupWidget.swift in Sources */,
-				73673A1B2DB8F4870055D61C /* LoadingView.swift in Sources */,
+				736739D72DB8E9FC0055D61C /* Structures.swift in Sources */,
 				5D37C9E72DA5747F0044CF0D /* WatchSessionManager.swift in Sources */,
-				5D37CC7C2DA97C7D0044CF0D /* Calendar.swift in Sources */,
-				5D58A4662D4256AE0004E6C5 /* WorkoutWidget.swift in Sources */,
-				5DD681002D42A6B9008740B4 /* BottomBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

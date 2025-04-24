@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct CreateNewChat: View {
     let didSelectNewUser: (ChatUser) -> ()
     @Environment(\.dismiss) var dismiss
