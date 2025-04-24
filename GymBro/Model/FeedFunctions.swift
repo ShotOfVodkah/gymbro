@@ -321,6 +321,7 @@ class AccountModel: ObservableObject {
             }
             self.chatUser = .init(data: data)
         }
+        
         Firestore.firestore().collection("streak").document(uid).getDocument { snapshot, error in
             if let error = error {
                 self.errorMessage = "Error fetching streak for a user: \(error.localizedDescription)"

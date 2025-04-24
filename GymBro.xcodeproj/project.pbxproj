@@ -128,6 +128,7 @@
 		5D58A4482D42488D0004E6C5 /* Visual */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5D37CA582DA5A3720044CF0D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Visual; sourceTree = "<group>"; };
 		5D5B3AB42DB137BA0059F92B /* GymBroWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5D5B3AC22DB137BD0059F92B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GymBroWidget; sourceTree = "<group>"; };
 		5DB1334E2D4D968D00C37DF0 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
+		73673A1D2DBA9A710055D61C /* Personal Achievements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Personal Achievements"; sourceTree = "<group>"; };
 		73DA142A2D3FD65B00960BD8 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -205,6 +206,7 @@
 				5D4909FA2CEB7DF000A24F89 /* LoginView.swift */,
 				73673A1A2DB8F4870055D61C /* LoadingView.swift */,
 				5D37C9E62DA5747E0044CF0D /* WatchSessionManager.swift */,
+				73673A1D2DBA9A710055D61C /* Personal Achievements */,
 				5DB1334E2D4D968D00C37DF0 /* Model */,
 				5D58A44C2D4248D60004E6C5 /* Components */,
 				5D58A4482D42488D0004E6C5 /* Visual */,
@@ -284,6 +286,7 @@
 			fileSystemSynchronizedGroups = (
 				5D58A4482D42488D0004E6C5 /* Visual */,
 				5DB1334E2D4D968D00C37DF0 /* Model */,
+				73673A1D2DBA9A710055D61C /* Personal Achievements */,
 				73DA142A2D3FD65B00960BD8 /* Controllers */,
 			);
 			name = GymBro;

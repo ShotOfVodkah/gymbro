@@ -50,6 +50,9 @@
         }
       }
     },
+    "%lld more weeks for a full year" : {
+
+    },
     "+ New Chat" : {
       "localizations" : {
         "ru" : {
@@ -905,6 +908,9 @@
         }
       }
     },
+    "Your achievements" : {
+
+    },
     "Your friend!" : {
       "localizations" : {
         "ru" : {
@@ -924,6 +930,9 @@
           }
         }
       }
+    },
+    "Your streak: %lld weeks" : {
+
     },
     "Your weekly workout goal to keep streak" : {
       "localizations" : {
