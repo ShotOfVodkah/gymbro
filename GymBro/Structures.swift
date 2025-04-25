@@ -81,6 +81,13 @@ struct UserRanking: Identifiable {
     var currentStreak: Int
 }
 
+struct Achievement {
+    var achievementName: String
+    var description: String
+    var iconName: String
+    var achievementCompleted: Bool
+}
+
 struct Workout: Identifiable, Codable, Equatable {
     let id: String
     let icon: String

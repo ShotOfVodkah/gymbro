@@ -11,15 +11,17 @@ import FirebaseFirestore
 
 
 class personalAchievementsModel: ObservableObject {
-    @Published var currentUserID: String = ""
-    @Published var usersRank: [UserRanking] = []
-    @Published var streak: Streak?
+    
+    @Published var currentUserID: String = Auth.auth().currentUser?.uid ?? ""
     
     init() {
         fetchStreakData()
         fetchUsersRanks()
+        fetchAchievements()
     }
 
+    @Published var streak: Streak?
+    
     func fetchStreakData() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -36,9 +38,9 @@ class personalAchievementsModel: ObservableObject {
         }
     }
     
+    @Published var usersRank: [UserRanking] = []
+    
     func fetchUsersRanks() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        self.currentUserID = uid
         
         Firestore.firestore().collection("usersusers").getDocuments { documentsSnapshot, error in
             if let error = error {
@@ -58,8 +60,8 @@ class personalAchievementsModel: ObservableObject {
                     
                     let count = snapshot?.count ?? 0
                     
-                    Firestore.firestore().collection("friends").document(uid).collection("friendsList").document(user.uid).getDocument() { friendDoc, error in
-                        let isFriend = friendDoc?.exists == true || user.uid == uid
+                    Firestore.firestore().collection("friends").document(self.currentUserID).collection("friendsList").document(user.uid).getDocument() { friendDoc, error in
+                        let isFriend = friendDoc?.exists == true || user.uid == self.currentUserID
                         
                         Firestore.firestore().collection("streak").document(user.uid).getDocument { streakSnapshot, error in
                             if let error = error {
@@ -111,6 +113,27 @@ class personalAchievementsModel: ObservableObject {
             return filtered.sorted { $0.currentStreak > $1.currentStreak }
         case .total:
             return filtered.sorted { $0.totalWorkouts > $1.totalWorkouts }
+        }
+    }
+    
+    @Published var achievements: [Achievement] = []
+
+    func fetchAchievements() {
+        
+        Firestore.firestore().collection("achievements").getDocuments { documentSnapshot, error in
+            if let error = error {
+                print("Failed to fetch achievements: \(error.localizedDescription)")
+                return
+            }
+            
+            documentSnapshot?.documents.forEach { document in
+                let data = document.data()
+                self.achievements.append(Achievement(achievementName: data["achievementName"] as? String ?? "",
+                                                     description: data["description"] as? String ?? "",
+                                                     iconName: data["iconName"] as? String ?? "",
+                                                     achievementCompleted: (data["usersCompleted"] as? [String])?.contains(self.currentUserID) ?? false))
+            }
+            print("All achievements fetched")
         }
     }
 }
