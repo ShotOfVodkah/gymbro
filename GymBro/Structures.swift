@@ -73,6 +73,14 @@ struct Streak: Identifiable, Equatable {
     }
 }
 
+struct UserRanking: Identifiable {
+    var id: String
+    var username: String
+    var isFriend: Bool
+    var totalWorkouts: Int
+    var currentStreak: Int
+}
+
 struct Workout: Identifiable, Codable, Equatable {
     let id: String
     let icon: String

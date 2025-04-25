@@ -20,35 +20,6 @@ let motivationalQuotes = [
     "🚴 \"Your only limit is you.\""
 ]
 
-let achievements = [
-    "Iron Beginner", "First 100 kg", "Bench Press Master", "Never Missed a Day",
-    "Record Holder", "Hard Worker", "Strength Growing", "Night Training",
-    "Solo Beast", "Tough Day", "Machine Not a Guy", "Trophy Collection",
-    "Fitness Enthusiast", "Consistency King", "Personal Best", "Endurance Pro",
-    "Powerhouse", "Late Night Hustle"
-]
-
-let achievementIcons: [String: String] = [
-    "Iron Beginner": "figure.walk.circle.fill",
-    "First 100 kg": "bolt.circle.fill",
-    "Bench Press Master": "sportscourt",
-    "Never Missed a Day": "calendar.circle.fill",
-    "Record Holder": "flame.fill",
-    "Hard Worker": "hammer.fill",
-    "Strength Growing": "star.circle.fill",
-    "Night Training": "moon.stars.fill",
-    "Solo Beast": "pawprint.fill",
-    "Tough Day": "cloud.sun.rain.fill",
-    "Machine Not a Guy": "car.circle.fill",
-    "Trophy Collection": "trophy.fill",
-    "Fitness Enthusiast": "figure.water.fitness.circle.fill",
-    "Consistency King": "crown.fill",
-    "Personal Best": "guitars.fill",
-    "Endurance Pro": "shield.fill",
-    "Powerhouse": "battery.100percent.bolt",
-    "Late Night Hustle": "moon.fill"
-]
-
 struct IndividualAchievements: View {
     @Binding var bar: Bool
     @StateObject var vm = personalAchievementsModel()
@@ -66,13 +37,16 @@ struct IndividualAchievements: View {
                             .padding(.leading, 20)
                         Spacer()
                     }
-
-                    ScrollView {
-                        if !currentQuote.isEmpty {
-                            motivationalQuote
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            if !currentQuote.isEmpty {
+                                motivationalQuote
+                            }
+                            streakProgressBar
+                            achivementsLayout
+                            ranksLayout
+                            Spacer().frame(height: 90)
                         }
-                        streakProgressBar
-                        achivementsLayout
                     }
                 }
                 .onAppear {
@@ -88,11 +62,12 @@ struct IndividualAchievements: View {
             Spacer()
             Text(currentQuote)
                 .font(.headline)
+                .foregroundColor(.white)
                 .multilineTextAlignment(.center)
             Spacer()
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
         .cornerRadius(16)
         .padding(.horizontal)
         .transition(.opacity)
@@ -120,7 +95,7 @@ struct IndividualAchievements: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.systemGray6).opacity(0.7))
         .cornerRadius(16)
         .padding(.horizontal)
     }
@@ -163,12 +138,112 @@ struct IndividualAchievements: View {
             .frame(height: 245)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
-        .background(Color(.systemGray6))
+        .background(Color(.systemGray6).opacity(0.7))
+        .cornerRadius(16)
+        .padding(.horizontal)
+        .transition(.opacity)
+    }
+    
+    private var ranksLayout: some View {
+        VStack {
+            Text("Rating Ranks")
+                .font(.headline)
+                .foregroundColor(Color("PurpleColor"))
+                .padding(.top, 10)
+            HStack(spacing: 12) {
+                ForEach(personalAchievementsModel.UserScope.allCases, id: \.self) { scope in
+                    Button {
+                        vm.selectedScope = scope
+                    } label: {
+                        Text(scope.rawValue)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 18)
+                            .background(vm.selectedScope == scope ? Color("PurpleColor") : Color("TabBar"))
+                            .foregroundColor(vm.selectedScope == scope ? .white : .gray)
+                            .clipShape(Capsule())
+                            .overlay(
+                                Capsule().stroke(Color("PurpleColor"), lineWidth: 2)
+                            )
+                    }
+                }
+                Spacer()
+                Picker("", selection: $vm.selectedFilter) {
+                    ForEach(personalAchievementsModel.FilterType.allCases, id: \.self) { filter in
+                        Text(filter.rawValue).tag(filter)
+                    }
+                }
+                .pickerStyle(DefaultPickerStyle())
+                .tint(Color("PurpleColor"))
+            }
+            .padding(.horizontal)
+
+            if let index = vm.sortedUsers.firstIndex(where: { $0.id == vm.currentUserID }) {
+                Text("Your rank: \(index + 1)")
+                    .font(.headline)
+                    .foregroundColor(.green)
+                    .padding(.top, 5)
+            }
+            
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(vm.sortedUsers.indices, id: \.self) { index in
+                        let user = vm.sortedUsers[index]
+                        HStack {
+                            Text("\(index + 1). \(user.username)")
+                                .fontWeight(.medium)
+                            
+                            Spacer()
+                            if vm.selectedFilter == .streak {
+                                Text("🔥 \(user.currentStreak)")
+                            } else {
+                                Text("🏋️ \(user.totalWorkouts)")
+                            }
+                        }
+                        .padding()
+                        .background(user.id == vm.currentUserID ? Color.green.opacity(0.2) : Color(.systemGray5))
+                        .cornerRadius(12)
+                    }
+                }
+                .padding(.bottom)
+                .padding(.horizontal)
+            }
+        }
+        .frame(height: 500)
+        .background(Color(.systemGray6).opacity(0.7))
         .cornerRadius(16)
         .padding(.horizontal)
         .transition(.opacity)
     }
 }
+
+let achievements = [
+    "Iron Beginner", "First 100 kg", "Bench Press Master", "Never Missed a Day",
+    "Record Holder", "Hard Worker", "Strength Growing", "Night Training",
+    "Solo Beast", "Tough Day", "Machine Not a Guy", "Trophy Collection",
+    "Fitness Enthusiast", "Consistency King", "Personal Best", "Endurance Pro",
+    "Powerhouse", "Late Night Hustle"
+]
+
+let achievementIcons: [String: String] = [
+    "Iron Beginner": "figure.walk.circle.fill",
+    "First 100 kg": "bolt.circle.fill",
+    "Bench Press Master": "sportscourt",
+    "Never Missed a Day": "calendar.circle.fill",
+    "Record Holder": "flame.fill",
+    "Hard Worker": "hammer.fill",
+    "Strength Growing": "star.circle.fill",
+    "Night Training": "moon.stars.fill",
+    "Solo Beast": "pawprint.fill",
+    "Tough Day": "cloud.sun.rain.fill",
+    "Machine Not a Guy": "car.circle.fill",
+    "Trophy Collection": "trophy.fill",
+    "Fitness Enthusiast": "figure.water.fitness.circle.fill",
+    "Consistency King": "crown.fill",
+    "Personal Best": "guitars.fill",
+    "Endurance Pro": "shield.fill",
+    "Powerhouse": "battery.100percent.bolt",
+    "Late Night Hustle": "moon.fill"
+]
 
 #Preview {
     IndividualAchievements(bar: .constant(true))
