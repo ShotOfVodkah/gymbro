@@ -191,7 +191,7 @@ struct WorkoutPlayer: View {
                             endPoint: .leading
                         )
                     )
-                    .frame(width: 420, height: 100)
+                    .frame(width: 350, height: 100)
                     .rotationEffect(.degrees(180))
 
                 Text("You've finished your workout, add a message to your friends before we notify them!")
@@ -245,7 +245,7 @@ struct WorkoutPlayer: View {
                     lineWidth: 7
                 )
         )
-        .padding(.horizontal, 100)
+        .padding(.horizontal, 200)
     }
 }
 

@@ -23,23 +23,38 @@ class TrainingsListViewModel: ObservableObject {
         Auth.auth().currentUser?.uid ?? "mHrAJHl1jtReIegIyJC8JbIxj7f1"
     }
 
+    private var workoutsListener: ListenerRegistration?
+    
     var filteredWorkouts: [Workout] {
         guard !search.isEmpty else { return workouts }
         return workouts.filter { $0.name.localizedCaseInsensitiveContains(search) }
     }
     
     init() {
-        fetchWorkouts()
+        setupWorkoutsListener()
+    }
+        
+    deinit {
+        workoutsListener?.remove()
     }
     
-    private func fetchWorkouts() {
+    private func setupWorkoutsListener() {
         let path = "workouts/\(userId)/workouts_for_id"
-        Firestore.firestore().collection(path)
-            .getDocuments { [weak self] snapshot, error in
-                if let documents = snapshot?.documents {
-                    self?.workouts = documents.compactMap { try? $0.data(as: Workout.self) }
-                    WatchSessionManager.shared.sendUserWorkouts(self?.workouts ?? [])
+        
+        workoutsListener = Firestore.firestore().collection(path)
+            .addSnapshotListener { [weak self] snapshot, error in
+                if let error = error {
+                    print("Error fetching workouts: \(error.localizedDescription)")
+                    return
                 }
+                
+                guard let documents = snapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+                
+                self?.workouts = documents.compactMap { try? $0.data(as: Workout.self) }
+                WatchSessionManager.shared.sendUserWorkouts(self?.workouts ?? [])
             }
     }
     
