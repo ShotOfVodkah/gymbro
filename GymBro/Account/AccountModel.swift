@@ -147,6 +147,9 @@ class AccountModel: ObservableObject {
                 let didMeetGoal = filteredWorkouts.count >= streak?.numberOfWorkoutsAWeek ?? 1
                 let newStreak = didMeetGoal ? (streak?.currentStreak ?? 0) + 1 : 0
                 let newStreakData = ["currentStreak": newStreak, "numberOfWorkoutsAWeek": streak?.numberOfWorkoutsAWeek ?? 1, "lastCheckData": Date(), "lastCheckWeek": currentWeek]
+                if filteredWorkouts.count == 7 {
+                    markAchievementAsCompleted(achievementID: "iFHP9xhgpNNCNFGNG8RL")
+                }
                 
                 Firestore.firestore().collection("streak").document(uid).updateData(newStreakData) { error in
                     if let error = error {

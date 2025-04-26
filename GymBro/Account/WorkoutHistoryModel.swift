@@ -37,6 +37,21 @@ class WorkoutHistoryModel: ObservableObject {
                     print(self.errorMessage)
                 }
             }
+            if self.doneWorkouts.count == 1 {
+                markAchievementAsCompleted(achievementID: "0vMMc8iknhSosB9wcmXM")
+            } else if self.doneWorkouts.count == 50 {
+                markAchievementAsCompleted(achievementID: "1MjxVnunChWgly7VKtkM")
+            } else if self.doneWorkouts.count == 100 {
+                markAchievementAsCompleted(achievementID: "4cENHmNLAs1Cr5A9jykt")
+            } else if self.doneWorkouts.count == 200 {
+                markAchievementAsCompleted(achievementID: "99BGNHMDfivliAgiFPq0")
+            } else if self.doneWorkouts.count == 300 {
+                markAchievementAsCompleted(achievementID: "BSkSsaqaAHcjZsD1d2kj")
+            } else if self.doneWorkouts.count == 400 {
+                markAchievementAsCompleted(achievementID: "C6jwV9VIDwewhTMeMmKQ")
+            } else if self.doneWorkouts.count == 500 {
+                markAchievementAsCompleted(achievementID: "FYgq3jCjunGFCPEWPtI2")
+            }
         }
     }
 }

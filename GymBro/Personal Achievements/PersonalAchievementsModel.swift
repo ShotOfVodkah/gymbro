@@ -137,3 +137,15 @@ class personalAchievementsModel: ObservableObject {
         }
     }
 }
+
+func markAchievementAsCompleted(achievementID: String) {
+    guard let uid = Auth.auth().currentUser?.uid else { return }
+    
+    Firestore.firestore().collection("achievements").document(achievementID).updateData(["usersCompleted": FieldValue.arrayUnion([uid])]) { error in
+        if let error = error {
+            print("Failed to mark achievement as completed: \(error.localizedDescription)")
+        } else {
+            print("Achievement marked as completed successfully.")
+        }
+    }
+}

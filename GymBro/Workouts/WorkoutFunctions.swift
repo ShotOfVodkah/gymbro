@@ -44,6 +44,7 @@ func createWorkout(name: String, exercises: [Exercise], icon: String) {
             print("Ошибка: \(error.localizedDescription)")
         } else {
             print("\(docRef.documentID)")
+            markAchievementAsCompleted(achievementID: "q3qlpBVNoUUv5ZlJZWDZ")
         }
     }
 }
@@ -117,13 +118,42 @@ func saveWorkoutDone(workout: Workout, comment: String) {
                 Task {
                     await saveWorkoutDatesToSharedDefaults()
                 }
+                let calendar = Calendar.current
+                let weekday = calendar.component(.weekday, from: workoutDone.timestamp)
+                let hour = calendar.component(.hour, from: workoutDone.timestamp)
+                let minute = calendar.component(.minute, from: workoutDone.timestamp)
+                
+                if weekday == 2 {
+                    markAchievementAsCompleted(achievementID: "GJgPGVZYoBRjycN4MB0M")
+                } else if weekday == 7 || weekday == 1 {
+                    markAchievementAsCompleted(achievementID: "WgsTaI84iZQWaYpqXcgv")
+                }
+                
+                if 7 > hour {
+                    markAchievementAsCompleted(achievementID: "Xr64eCEGlYl8cBDp3BkI")
+                } else if hour > 23 {
+                    markAchievementAsCompleted(achievementID: "iEmJKj9jMDliuuNz7Jo4")
+                }
+                
+                if hour == 0 && minute == 0 {
+                    markAchievementAsCompleted(achievementID: "jA68jY0RYY89lccZ4FnX")
+                }
+                
+                if workoutDone.comment == "" {
+                    markAchievementAsCompleted(achievementID: "oFncaJgd3IpLazkGkXPg")
+                }
+                
+                let muscleGroups = workout.exercises.map { $0.muscle_group }
+                if Set(muscleGroups).count >= 3 {
+                    markAchievementAsCompleted(achievementID: "p5ss9ogNfe8Fev08CEll")
+                }
             }
         }
     }
 }
 
 
-func sendWorkoutToAllFriends(woId: String) { // поменять когда появятся друзья
+func sendWorkoutToAllFriends(woId: String) {
     guard let fromId = Auth.auth().currentUser?.uid else { return }
     
     Firestore.firestore().collection("friends").document(fromId).collection("friendsList").getDocuments { documentsSnapshot, error in
@@ -131,7 +161,13 @@ func sendWorkoutToAllFriends(woId: String) { // поменять когда по
             print("Failed to fetch friends: \(error.localizedDescription)")
             return
         }
+        guard let documents = documentsSnapshot?.documents, !documents.isEmpty else {
+            print("No friends to send the workout to")
+            return
+        }
+
         let documentId = UUID().uuidString
+        markAchievementAsCompleted(achievementID: "psv1r8cSAQOOvn2ZNCcM")
         documentsSnapshot?.documents.forEach { snapshot in
             if let uid = snapshot.data()["friend_uid"] as? String {
                 let messageData = ["fromId": fromId, "toId": uid, "text": "New workout added", "timestamp": Date(), "received": false, "isWorkout": true, "workoutId": woId, "reactions": []] as [String : Any]

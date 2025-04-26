@@ -212,6 +212,9 @@ struct MessageBubble: View {
                     print("Ошибка обновления реакции: \(error.localizedDescription)")
                 } else {
                     print("Реакция обновлена!")
+                    if message.reactions.count >= 5 && message.isWorkout {
+                        markAchievementAsCompleted(achievementID: "uDjcOcHC6C7GH6oGvzyV")
+                    }
                 }
             }
         }
