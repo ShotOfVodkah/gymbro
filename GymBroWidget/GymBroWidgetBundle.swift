@@ -12,5 +12,6 @@ import SwiftUI
 struct GymBroWidgetBundle: WidgetBundle {
     var body: some Widget {
         GymBroWidget()
+        GymBroStreakWidget()
     }
 }

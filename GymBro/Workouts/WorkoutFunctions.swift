@@ -291,3 +291,56 @@ func saveWorkoutDatesToSharedDefaults() async {
         print("\(error)")
     }
 }
+
+func updateStreak() {
+    guard let uid = Auth.auth().currentUser?.uid else { return }
+    
+    let streakRef = Firestore.firestore().collection("streak").document(uid)
+    
+    streakRef.getDocument { snapshot, error in
+        guard let data = snapshot?.data() else {
+            print("No streak data found")
+            return
+        }
+        
+        let streak = Streak(data: data)
+        let currentWeek = getCurrentWeek()
+        
+        Firestore.firestore().collection("workout_done").document(uid).collection("workouts_for_id").whereField("week", isEqualTo: currentWeek).getDocuments { documentSnapshot, error in
+            if let error = error {
+                print("Failed to fetch workouts: \(error.localizedDescription)")
+                return
+            }
+            
+            var workoutsThisWeek: [WorkoutDone] = []
+            documentSnapshot?.documents.forEach { document in
+                do {
+                    let workoutDone = try document.data(as: WorkoutDone.self)
+                    workoutsThisWeek.append(workoutDone)
+                } catch {
+                    print("Error decoding workout: \(error.localizedDescription)")
+                }
+            }
+            
+            let workoutsCompleted = workoutsThisWeek.count
+            let targetWorkouts = streak.numberOfWorkoutsAWeek
+            let workoutsLeft = max(targetWorkouts - workoutsCompleted, 0)
+            
+            let calendar = Calendar(identifier: .iso8601)
+            let today = Date()
+            let weekday = calendar.component(.weekday, from: today)
+            let daysLeft = max(7 - (weekday - 1), 0)
+
+            let sharedDefaults = UserDefaults(suiteName: "group.com.widget.gymbro")
+            sharedDefaults?.set(streak.currentStreak, forKey: "streak_value")
+            sharedDefaults?.set(daysLeft, forKey: "days_left_in_week")
+            sharedDefaults?.set(workoutsLeft, forKey: "workouts_left_to_complete")
+            
+            sharedDefaults?.synchronize()
+            
+            WidgetCenter.shared.reloadAllTimelines()
+            print("Streak widget updated")
+        }
+    }
+}
+

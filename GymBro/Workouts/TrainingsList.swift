@@ -102,6 +102,7 @@ struct TrainingsList: View {
                     offset = 0
                 }
                 scheduleDailyWorkoutReminder()
+                updateStreak()
                 Task {
                     await saveWorkoutDatesToSharedDefaults()
                 }
