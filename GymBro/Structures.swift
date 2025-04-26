@@ -127,3 +127,13 @@ struct CalendarDate: Identifiable {
         Calendar.current.isDate(self.date, inSameDayAs: other)
     }
 }
+
+struct UserStats: Codable {
+    var totalWorkoutsDone: Int
+    var totalExercisesDone: Int
+    var totalWeightLifted: Int
+    var topMuscleGroups: [String]
+    var muscleGroupsCounter: [String: Int]
+    var workoutsPerWeek: [String: Int]
+    var bestWeek: String
+}

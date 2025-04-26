@@ -106,6 +106,83 @@
         }
       }
     },
+    "7 consecutive workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 тренировок за неделю"
+          }
+        }
+      }
+    },
+    "50 Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 тренировок"
+          }
+        }
+      }
+    },
+    "100 Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100 тренировок"
+          }
+        }
+      }
+    },
+    "200 Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "200 тренировок"
+          }
+        }
+      }
+    },
+    "300 Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "300 тренировок"
+          }
+        }
+      }
+    },
+    "400 Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "400 тренировок"
+          }
+        }
+      }
+    },
+    "500 Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "500 тренировок"
+          }
+        }
+      }
+    },
     "About" : {
       "localizations" : {
         "ru" : {
@@ -254,6 +331,17 @@
         }
       }
     },
+    "Busy week" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неделя на пределе"
+          }
+        }
+      }
+    },
     "Buttocks" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -346,12 +434,100 @@
         }
       }
     },
+    "Cinderella" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Золушка"
+          }
+        }
+      }
+    },
+    "Completed 50 workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал 50 тренировок"
+          }
+        }
+      }
+    },
+    "Completed 100 workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал 100 тренировок"
+          }
+        }
+      }
+    },
+    "Completed 200 workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал 200 тренировок"
+          }
+        }
+      }
+    },
+    "Completed 300 workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал 300 тренировок"
+          }
+        }
+      }
+    },
+    "Completed 400 workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал 400 тренировок"
+          }
+        }
+      }
+    },
+    "Completed 500 workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал 500 тренировок"
+          }
+        }
+      }
+    },
     "Create Account" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Создать аккаунт"
+          }
+        }
+      }
+    },
+    "Created your own workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сделал свою тренировку"
           }
         }
       }
@@ -372,6 +548,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет аккаунта? Создайте новый!"
+          }
+        }
+      }
+    },
+    "Early Riser" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проснись и пой"
           }
         }
       }
@@ -406,6 +593,17 @@
         }
       }
     },
+    "Exercises done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Упражнений сделано"
+          }
+        }
+      }
+    },
     "Feeds" : {
       "localizations" : {
         "en" : {
@@ -428,6 +626,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закончить"
+          }
+        }
+      }
+    },
+    "First recorded workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первая тренировка"
           }
         }
       }
@@ -479,6 +688,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Рост (см)"
+          }
+        }
+      }
+    },
+    "I know better" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мне виднее"
+          }
+        }
+      }
+    },
+    "Key" : {
+      "extractionState" : "manual"
+    },
+    "Lazy Weekend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ленивый викенд"
+          }
+        }
+      }
+    },
+    "Less words" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тише едешь…"
           }
         }
       }
@@ -541,6 +786,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Новый чат"
+          }
+        }
+      }
+    },
+    "Night Owl" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ночной дозор"
           }
         }
       }
@@ -631,6 +887,17 @@
         }
       }
     },
+    "PornStar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порнозвезда"
+          }
+        }
+      }
+    },
     "Profile" : {
       "localizations" : {
         "ru" : {
@@ -687,6 +954,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Запрос на уведомления"
+          }
+        }
+      }
+    },
+    "Rookie" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новичок"
           }
         }
       }
@@ -752,6 +1030,17 @@
         }
       }
     },
+    "Shared at least one workout with a friend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделился тренировкой с другом"
+          }
+        }
+      }
+    },
     "Shoulders" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -811,6 +1100,17 @@
         }
       }
     },
+    "Targeted 3 different muscle groups in one workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 группы мышц в одной тренировке"
+          }
+        }
+      }
+    },
     "Team" : {
       "localizations" : {
         "en" : {
@@ -844,6 +1144,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Чт"
+          }
+        }
+      }
+    },
+    "Top muscle groups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Топ групп мышц"
+          }
+        }
+      }
+    },
+    "Total weight lifted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поднятый вес"
+          }
+        }
+      }
+    },
+    "Tough Day" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "День тяжелый"
           }
         }
       }
@@ -931,6 +1264,39 @@
         }
       }
     },
+    "Whor… whole body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С головы до пят"
+          }
+        }
+      }
+    },
+    "Workout after 11 PM" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка после 11 вечера"
+          }
+        }
+      }
+    },
+    "Workout before 7 AM" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка до 7 утра"
+          }
+        }
+      }
+    },
     "Workout History" : {
       "localizations" : {
         "ru" : {
@@ -941,12 +1307,78 @@
         }
       }
     },
+    "Workout on a Monday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потренировался в понедельник"
+          }
+        }
+      }
+    },
+    "Workout on Saturday or Sunday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка в выходные"
+          }
+        }
+      }
+    },
+    "Workout started exactly at 00:00" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка начата в 12 ровно"
+          }
+        }
+      }
+    },
+    "Workout without comments or notes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка без комментария"
+          }
+        }
+      }
+    },
     "Workouts" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тренировки"
+          }
+        }
+      }
+    },
+    "Workouts completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировок сделано"
+          }
+        }
+      }
+    },
+    "Workouts per week" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки по неделям"
           }
         }
       }
@@ -1017,6 +1449,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тренировок в неделю для стрика"
+          }
+        }
+      }
+    },
+    "Your workout received 5+ reactions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твоя тренировка получила 5+ реакций"
           }
         }
       }

@@ -115,6 +115,7 @@ func saveWorkoutDone(workout: Workout, comment: String) {
                 print(error)
             } else {
                 sendWorkoutToAllFriends(woId: workoutDone.id)
+                updateUserStats(workoutDone: workoutDone, userId: uid)
                 Task {
                     await saveWorkoutDatesToSharedDefaults()
                 }

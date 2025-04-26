@@ -18,7 +18,7 @@ struct AchievementCard: View {
                 Image(systemName: achievement.iconName)
                     .font(.system(size: 30))
                     .foregroundColor(.white)
-                Text(achievement.achievementName)
+                Text(LocalizedStringKey(achievement.achievementName))
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -42,7 +42,7 @@ struct AchievementCard: View {
             .opacity(isFlipped ? 0.0 : 1.0)
 
             VStack {
-                Text(achievement.description)
+                Text(LocalizedStringKey(achievement.description))
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)

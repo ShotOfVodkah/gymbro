@@ -50,26 +50,26 @@ struct GymBroStreakWidgetEntryView: View {
             Text("Your streak")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
-                .offset(y: 10)
+                .offset(y: 3)
             ZStack{
                 Image(entry.daysLeft < 3 && entry.workoutsLeft != 0 ? "RedFire" : "PurpleFire")
-                    .frame(width: 90, height: 90)
-                    .scaleEffect(0.35)
+                    .frame(width: 80, height: 80)
+                    .scaleEffect(0.30)
                 Text("\(entry.streak)")
-                    .font(.system(size: 35, weight: .bold))
+                    .font(.system(size: 30, weight: .bold))
                     .foregroundColor(.white)
                     .offset(x: 3, y: 10)
             }
+            .offset(y: -5)
             Spacer()
-            Text("\(entry.daysLeft) days left")
-                .font(.system(size: 15, weight: .bold))
-                .foregroundColor(.white)
-                .offset(y: -4)
             
             Text("\(entry.workoutsLeft) workouts left")
                 .font(.system(size: 15, weight: .bold))
-                .foregroundColor(.white)
-                .offset(y: -8)
+                .foregroundColor(entry.daysLeft < 3 && entry.workoutsLeft != 0 ? .red : .purple)
+                .padding(5)
+                .background(.white)
+                .cornerRadius(15)
+                .offset(y: -5)
         }
         .containerBackground(for: .widget) {
             if entry.daysLeft < 3 && entry.workoutsLeft != 0 {
@@ -97,5 +97,5 @@ struct GymBroStreakWidget: Widget {
 #Preview(as: .systemSmall) {
     GymBroStreakWidget()
 } timeline: {
-    StreakEntry(date: .now, streak: 10, daysLeft: 6, workoutsLeft: 1)
+    StreakEntry(date: .now, streak: 10, daysLeft: 2, workoutsLeft: 1)
 }
