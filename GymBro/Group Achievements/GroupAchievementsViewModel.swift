@@ -40,7 +40,7 @@ class groupAchievementsViewModel: ObservableObject {
                 let team = Teams(data: change.document.data())
                 self.usersTeams.insert(team, at: 0)
                 for memberUid in team.members {
-                    if self.usernames[uid] == nil {
+                    if self.usernames[memberUid] == nil {
                         self.fetchUsernameIfNeeded(uid: memberUid)
                     }
                 }

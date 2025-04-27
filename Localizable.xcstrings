@@ -232,6 +232,9 @@
         }
       }
     },
+    "Add challenge" : {
+
+    },
     "Add Friends" : {
       "localizations" : {
         "ru" : {
@@ -312,6 +315,9 @@
           }
         }
       }
+    },
+    "Available Challenges" : {
+
     },
     "Back" : {
       "extractionState" : "manual",
@@ -717,6 +723,9 @@
           }
         }
       }
+    },
+    "Item" : {
+
     },
     "Key" : {
       "extractionState" : "manual"

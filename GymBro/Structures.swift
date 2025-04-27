@@ -104,6 +104,32 @@ struct Teams: Identifiable {
     }
 }
 
+struct Challenge: Identifiable {
+    let id: String
+    let start_date: Date
+    let end_date: Date
+    let muscle_group: String
+    let challenge_name: String
+    let goal_type: String
+    let exercise_id: String
+    let goal_amount: Int
+    let description: String
+    var teams_participating: [String]
+    
+    init(data: [String: Any]) {
+        self.id = data["id"] as? String ?? ""
+        self.start_date = (data["start_date"] as? Timestamp)?.dateValue() ?? Date()
+        self.end_date = (data["end_date"] as? Timestamp)?.dateValue() ?? Date()
+        self.muscle_group = data["muscle_group"] as? String ?? ""
+        self.challenge_name = data["challenge_name"] as? String ?? ""
+        self.exercise_id = data["exercise_id"] as? String ?? ""
+        self.goal_type = data["goal_type"] as? String ?? ""
+        self.goal_amount = data["goal_amount"] as? Int ?? 0
+        self.description = data["description"] as? String ?? ""
+        self.teams_participating = data["teams_participating"] as? [String] ?? []
+    }
+}
+
 struct Workout: Identifiable, Codable, Equatable {
     let id: String
     let icon: String

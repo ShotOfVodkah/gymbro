@@ -26,9 +26,6 @@ struct GroupAchievements: View {
                     newTeamButton
                     teamsView
                 }
-                .navigationDestination(isPresented: $shouldNavigateToTeamView) {
-//                    team screen
-                }
             }
         }
     }
@@ -56,16 +53,12 @@ struct GroupAchievements: View {
             CreateNewTeam()
         }
     }
-    
-    @State var shouldNavigateToTeamView: Bool = false
-    
+
     private var teamsView: some View {
         ScrollView {
-            ForEach(vm.usersTeams) { team in
+            ForEach(vm.usersTeams.sorted(by: { $0.created_at > $1.created_at })) { team in
                 VStack {
-                    Button {
-                        shouldNavigateToTeamView = true
-                    } label: {
+                    NavigationLink(destination: TeamView(team: team)) {
                         HStack(spacing: 15) {
                             Image(systemName: "figure.socialdance.circle.fill")
                                 .font(.system(size: 40))
