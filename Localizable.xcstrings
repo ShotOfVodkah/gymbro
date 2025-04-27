@@ -76,6 +76,9 @@
         }
       }
     },
+    "+ Create New Team" : {
+
+    },
     "+ New Chat" : {
       "localizations" : {
         "ru" : {
@@ -394,6 +397,9 @@
         }
       }
     },
+    "Choose members for your team" : {
+
+    },
     "Choose someone to follow" : {
       "localizations" : {
         "ru" : {
@@ -511,6 +517,9 @@
         }
       }
     },
+    "Create" : {
+
+    },
     "Create Account" : {
       "localizations" : {
         "ru" : {
@@ -520,6 +529,9 @@
           }
         }
       }
+    },
+    "Create new team" : {
+
     },
     "Created your own workout" : {
       "extractionState" : "manual",
@@ -582,6 +594,9 @@
           }
         }
       }
+    },
+    "enter team name" : {
+
     },
     "Enter your message here" : {
       "localizations" : {
@@ -759,6 +774,9 @@
         }
       }
     },
+    "Members: members" : {
+
+    },
     "Mon" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -827,6 +845,9 @@
         }
       }
     },
+    "Now" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ru" : {
@@ -866,6 +887,9 @@
           }
         }
       }
+    },
+    "Owner: owner" : {
+
     },
     "Password" : {
       "localizations" : {
@@ -1132,6 +1156,12 @@
           }
         }
       }
+    },
+    "Team created: date" : {
+
+    },
+    "Team name: name" : {
+
     },
     "This app helps you manage your workouts and share success with your friends. \n\nCreated by Gritsaenko Alexandra and Polyakov Stepan — the legendary duo you didn’t know you needed. Probably stronger than your will to skip leg day! \n\nComing soon to a gym near you." : {
       "localizations" : {
@@ -1448,6 +1478,9 @@
           }
         }
       }
+    },
+    "Your team name:" : {
+
     },
     "Your weekly workout goal to keep streak" : {
       "localizations" : {

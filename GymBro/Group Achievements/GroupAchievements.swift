@@ -23,14 +23,84 @@ struct GroupAchievements: View {
                             .padding(.leading, 20)
                         Spacer()
                     }
-                    ScrollView {
-                    }
+                    newTeamButton
+                    teamsView
+                }
+                .navigationDestination(isPresented: $shouldNavigateToTeamView) {
+//                    team screen
                 }
             }
         }
     }
     
+    @State var shouldShowNewTeamScreen: Bool = false
     
+    private var newTeamButton: some View {
+        Button {
+            shouldShowNewTeamScreen.toggle()
+        } label: {
+            HStack {
+                Spacer()
+                Text("+ Create New Team")
+                    .font(.system(size: 15, weight: .semibold))
+                Spacer()
+            }
+            .foregroundColor(.white)
+            .padding(.vertical)
+            .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
+            .cornerRadius(20)
+            .shadow(radius: 5)
+            .padding(.top, -10)
+            .padding(.horizontal)
+        }.sheet(isPresented: $shouldShowNewTeamScreen) {
+            CreateNewTeam()
+        }
+    }
+    
+    @State var shouldNavigateToTeamView: Bool = false
+    
+    private var teamsView: some View {
+        ScrollView {
+            ForEach(0..<100) { index in
+                VStack {
+                    Button {
+                        // to team
+                        shouldNavigateToTeamView = true
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "figure.socialdance.circle.fill")
+                                .font(.system(size: 40))
+                                .foregroundColor(Color(.label))
+                            VStack(alignment: .leading) {
+                                Text("Team name: name")
+                                    .font(.system(size: 15, weight: .bold))
+                                    .foregroundColor(Color(.label))
+                                Text("Owner: owner")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(Color(.darkGray))
+                                Text("Members: members")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(Color(.darkGray))
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.leading)
+                                Text("Team created: date")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(Color(.darkGray))
+                            }
+                            Spacer()
+                            Text("Now")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(Color(.darkGray))
+                        }
+                    }
+                    Divider()
+                        .padding(.vertical, 5)
+                }
+                .padding(.horizontal)
+            }
+            .padding(.bottom, 140)
+        }
+    }
 }
 
 #Preview {

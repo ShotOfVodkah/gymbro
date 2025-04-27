@@ -101,4 +101,22 @@ class CreateNewChatViewModel: ObservableObject {
             }
         }
     }
+    
+    func createNewTeam(teamName: String, selectedUsers: Set<String>) {
+        var selectedUsers = selectedUsers
+        guard let currentUser = Auth.auth().currentUser?.uid else { return }
+        selectedUsers.insert(currentUser)
+        
+        let data = ["team_name": teamName,
+                    "owner": currentUser,
+                    "members": Array(selectedUsers),
+                    "created_at": Date()] as [String : Any]
+        
+        Firestore.firestore().collection("teams").document().setData(data) { error in
+            if let error = error {
+                print("Failed to create new team: \(error.localizedDescription)")
+            }
+            print("New team successfully created.")
+        }
+    }
 }
