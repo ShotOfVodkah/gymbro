@@ -46,7 +46,7 @@ struct GroupAchievements: View {
                 Spacer()
             }
             .foregroundColor(.white)
-            .padding(.vertical)
+            .padding(.vertical, 10)
             .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
             .cornerRadius(20)
             .shadow(radius: 5)
@@ -64,7 +64,6 @@ struct GroupAchievements: View {
             ForEach(vm.usersTeams) { team in
                 VStack {
                     Button {
-                        // to team
                         shouldNavigateToTeamView = true
                     } label: {
                         HStack(spacing: 15) {
@@ -77,20 +76,20 @@ struct GroupAchievements: View {
                                     .foregroundColor(Color(.label))
                                 Text("Owner: owner")
                                     .font(.system(size: 15))
-                                    .foregroundColor(Color(.darkGray))
+                                    .foregroundColor(Color(.systemGray))
                                 Text("Members: members")
                                     .font(.system(size: 15))
-                                    .foregroundColor(Color(.darkGray))
+                                    .foregroundColor(Color(.systemGray))
                                     .lineLimit(2)
                                     .multilineTextAlignment(.leading)
                                 Text("Team created: date")
                                     .font(.system(size: 15))
-                                    .foregroundColor(Color(.darkGray))
+                                    .foregroundColor(Color(.systemGray))
                             }
                             Spacer()
                             Text("Now")
                                 .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(Color(.darkGray))
+                                .foregroundColor(Color(.systemGray))
                         }
                     }
                     Divider()

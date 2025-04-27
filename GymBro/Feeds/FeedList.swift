@@ -96,14 +96,14 @@ struct FeedList: View {
                                     .foregroundColor(Color(.label))
                                 Text(existingChat.text)
                                     .font(.system(size: 15))
-                                    .foregroundColor(Color(.darkGray))
+                                    .foregroundColor(Color(.systemGray))
                                     .lineLimit(2)
                                     .multilineTextAlignment(.leading)
                             }
                             Spacer()
                             Text(existingChat.timestamp.timeAgoDisplay())
                                 .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(Color(.darkGray))
+                                .foregroundColor(Color(.systemGray))
                         }
                     }
                     Divider()
