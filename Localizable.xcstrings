@@ -60,6 +60,9 @@
         }
       }
     },
+    "%lld teams already joined!" : {
+
+    },
     "%lld. %@" : {
       "localizations" : {
         "en" : {
@@ -264,6 +267,9 @@
           }
         }
       }
+    },
+    "Aiming for: %lld reps" : {
+
     },
     "Already a friend!" : {
       "localizations" : {
@@ -570,6 +576,16 @@
         }
       }
     },
+    "Duration: %@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Duration: %1$@ - %2$@"
+          }
+        }
+      }
+    },
     "Early Riser" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -724,9 +740,6 @@
         }
       }
     },
-    "Item" : {
-
-    },
     "Key" : {
       "extractionState" : "manual"
     },
@@ -827,6 +840,9 @@
           }
         }
       }
+    },
+    "No challenges available at the moment(((" : {
+
     },
     "No data available" : {
 
@@ -1135,6 +1151,9 @@
           }
         }
       }
+    },
+    "Target: %@" : {
+
     },
     "Targeted 3 different muscle groups in one workout" : {
       "extractionState" : "manual",

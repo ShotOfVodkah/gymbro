@@ -43,50 +43,86 @@ struct Challenges: View {
         }
     }
     
+    @State private var expandedChallengeId: String? = nil
+    
     private var challengesView: some View {
         ScrollView {
-            ForEach(vm.availableChallenges) { challenge in
-                Button {
-                    // add this chall to a team
-                } label: {
-                    
+            let availableChallenges = vm.availableChallenges.filter { !$0.teams_participating.contains(team_id) }
+            
+            if availableChallenges.isEmpty {
+                Text("No challenges available at the moment(((")
+                    .font(.headline)
+                    .foregroundColor(Color("TitleColor"))
+                    .padding()
+            } else {
+                ForEach(availableChallenges) { challenge in
+                    ZStack {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Image("\(challenge.muscle_group)")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                VStack(alignment: .center) {
+                                    Text(challenge.challenge_name)
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                    VStack(alignment: .leading) {
+                                        Text("Target: \(challenge.goal_type)")
+                                        Text("Aiming for: \(challenge.goal_amount) reps")
+                                        Text("Duration: \(challenge.start_date.formatted(.dateTime.year().month().day())) - \(challenge.end_date.formatted(.dateTime.year().month().day()))")
+                                        Text("\(challenge.teams_participating.count) teams already joined!")
+                                    }
+                                }
+                                Spacer()
+                            }
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(20)
+                            .zIndex(1)
+                            .onTapGesture {
+                                withAnimation {
+                                    if expandedChallengeId == challenge.id {
+                                        expandedChallengeId = nil
+                                    } else {
+                                        print("add")
+                                    }
+                                }
+                            }
+                            
+                            if expandedChallengeId == challenge.id {
+                                ZStack {
+                                    Text(challenge.description)
+                                        .font(.body)
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                        .padding()
+                                        .background(Color("PurpleColor"))
+                                        .clipShape(RoundedCorner(radius: 20, corners: [.bottomLeft, .bottomRight]))
+                                        .padding(.top, -8.5)
+                                        .padding(.horizontal, 20)
+                                        .animation(.easeInOut(duration: 0.3), value: expandedChallengeId)
+                                }
+                                .transition(.move(edge: .top).combined(with: .opacity))
+                            }
+                        }
+                        .padding(.horizontal)
+                        .onLongPressGesture {
+                            withAnimation {
+                                if expandedChallengeId != challenge.id {
+                                    expandedChallengeId = challenge.id
+                                } else {
+                                    expandedChallengeId = nil
+                                }
+                            }
+                        }
+                    }
                 }
             }
-//            ForEach(vm.usersTeams) { team in
-//                VStack {
-//                    NavigationLink(destination: TeamView(team: team)) {
-//                        HStack(spacing: 15) {
-//                            Image(systemName: "figure.socialdance.circle.fill")
-//                                .font(.system(size: 40))
-//                                .foregroundColor(Color(.label))
-//                            VStack(alignment: .leading) {
-//                                Text("Team name: \(team.team_name)")
-//                                    .font(.system(size: 15, weight: .bold))
-//                                    .foregroundColor(Color(.label))
-//                                Text("Owner: \(vm.usernames[team.owner] ?? "")")
-//                                    .font(.system(size: 15))
-//                                    .foregroundColor(Color(.systemGray))
-//                                Text("Members: \(team.members.compactMap { vm.usernames[$0] }.joined(separator: ", "))")
-//                                    .font(.system(size: 15))
-//                                    .foregroundColor(Color(.systemGray))
-//                                    .multilineTextAlignment(.leading)
-//                                Text("Team created: \(team.created_at.formatted(.dateTime.year().month().day()))")
-//                                    .font(.system(size: 15))
-//                                    .foregroundColor(Color(.systemGray))
-//                            }
-//                            Spacer()
-//                            Text(team.created_at.timeAgoDisplay())
-//                                .font(.system(size: 16, weight: .semibold))
-//                                .foregroundColor(Color(.systemGray))
-//                        }
-//                    }
-//                }
-//                .padding(.horizontal)
-//            }
         }
     }
 }
 
 #Preview {
-    Challenges(team_id: "Sf7roo3RSbDkuaiSqY9d")
+    Challenges(team_id: "B9zUkqddLyzp4gNUp4yE")
 }

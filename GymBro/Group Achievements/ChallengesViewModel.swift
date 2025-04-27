@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class ChallengesViewModel: ObservableObject {
     @Published var availableChallenges = [Challenge]()
+    @Published var isLoading = true
     
     init() {
         fetchChallenges()
@@ -21,11 +22,13 @@ class ChallengesViewModel: ObservableObject {
         Firestore.firestore().collection("challenges").whereField("start_date", isGreaterThan: Date()).getDocuments() { documentSnapshot, error in
             if let error = error {
                 print("Failed to fetch challenges: \(error.localizedDescription)")
+                self.isLoading = false
                 return
             }
             documentSnapshot?.documents.forEach { document in
                 self.availableChallenges.append(Challenge(data: document.data()))
             }
+            self.isLoading = false
             print("All chalenges fetched")
         }
     }
