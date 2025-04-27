@@ -801,6 +801,12 @@
         }
       }
     },
+    "No data available" : {
+
+    },
+    "No workout data" : {
+
+    },
     "Notification Permission Granted" : {
       "localizations" : {
         "ru" : {
