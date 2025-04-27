@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GroupAchievements: View {
     @Binding var bar: Bool
-//    @StateObject var vm = groupAchievementsViewModel()
+    @StateObject var vm = groupAchievementsViewModel()
     
     var body: some View {
         NavigationStack {
@@ -61,7 +61,7 @@ struct GroupAchievements: View {
     
     private var teamsView: some View {
         ScrollView {
-            ForEach(0..<100) { index in
+            ForEach(vm.usersTeams) { team in
                 VStack {
                     Button {
                         // to team
@@ -72,7 +72,7 @@ struct GroupAchievements: View {
                                 .font(.system(size: 40))
                                 .foregroundColor(Color(.label))
                             VStack(alignment: .leading) {
-                                Text("Team name: name")
+                                Text("Team name: \(team.team_name)")
                                     .font(.system(size: 15, weight: .bold))
                                     .foregroundColor(Color(.label))
                                 Text("Owner: owner")

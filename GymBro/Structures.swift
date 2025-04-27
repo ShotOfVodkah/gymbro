@@ -88,6 +88,22 @@ struct Achievement {
     var achievementCompleted: Bool
 }
 
+struct Teams: Identifiable {
+    let id: String
+    let team_name: String
+    let owner: String
+    let members: [String]
+    let created_at: Date
+    
+    init(data: [String: Any]) {
+        self.id = data["id"] as? String ?? ""
+        self.team_name = data["team_name"] as? String ?? ""
+        self.owner = data["owner"] as? String ?? ""
+        self.members = data["members"] as? [String] ?? []
+        self.created_at = (data["created_at"] as? Timestamp)?.dateValue() ?? Date()
+    }
+}
+
 struct Workout: Identifiable, Codable, Equatable {
     let id: String
     let icon: String

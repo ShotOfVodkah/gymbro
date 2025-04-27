@@ -74,9 +74,16 @@ func updateUserStats(workoutDone: WorkoutDone, userId: String) {
             stats.bestWeek = best.key
         }
         do {
-            try statsRef.setData(from: stats)
+            let data = try Firestore.Encoder().encode(stats)
+            statsRef.setData(data) { error in
+                if let error = error {
+                    print("Failed to update user stats: \(error.localizedDescription)")
+                } else {
+                    print("User stats successfully updated.")
+                }
+            }
         } catch {
-            print("Failed to update user stats: \(error.localizedDescription)")
+            print("Failed to encode user stats: \(error.localizedDescription)")
         }
     }
 }
