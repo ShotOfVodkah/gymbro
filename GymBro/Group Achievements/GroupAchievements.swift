@@ -74,20 +74,19 @@ struct GroupAchievements: View {
                                 Text("Team name: \(team.team_name)")
                                     .font(.system(size: 15, weight: .bold))
                                     .foregroundColor(Color(.label))
-                                Text("Owner: owner")
+                                Text("Owner: \(vm.usernames[team.owner] ?? "")")
                                     .font(.system(size: 15))
                                     .foregroundColor(Color(.systemGray))
-                                Text("Members: members")
+                                Text("Members: \(team.members.compactMap { vm.usernames[$0] }.joined(separator: ", "))")
                                     .font(.system(size: 15))
                                     .foregroundColor(Color(.systemGray))
-                                    .lineLimit(2)
                                     .multilineTextAlignment(.leading)
-                                Text("Team created: date")
+                                Text("Team created: \(team.created_at.formatted(.dateTime.year().month().day()))")
                                     .font(.system(size: 15))
                                     .foregroundColor(Color(.systemGray))
                             }
                             Spacer()
-                            Text("Now")
+                            Text(team.created_at.timeAgoDisplay())
                                 .font(.system(size: 16, weight: .semibold))
                                 .foregroundColor(Color(.systemGray))
                         }
@@ -97,7 +96,7 @@ struct GroupAchievements: View {
                 }
                 .padding(.horizontal)
             }
-            .padding(.bottom, 140)
+            Spacer().frame(height: 90)
         }
     }
 }

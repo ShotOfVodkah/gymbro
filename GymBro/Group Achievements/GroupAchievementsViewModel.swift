@@ -12,6 +12,7 @@ import FirebaseFirestore
 class groupAchievementsViewModel: ObservableObject {
     
     @Published var usersTeams = [Teams]()
+    @Published var usernames: [String: String] = [:]
     
     init() {
         fetchExistingTeams()
@@ -36,7 +37,27 @@ class groupAchievementsViewModel: ObservableObject {
                 }) {
                     self.usersTeams.remove(at: index)
                 }
-                self.usersTeams.insert(.init(data: change.document.data()), at: 0)
+                let team = Teams(data: change.document.data())
+                self.usersTeams.insert(team, at: 0)
+                for memberUid in team.members {
+                    if self.usernames[uid] == nil {
+                        self.fetchUsernameIfNeeded(uid: memberUid)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func fetchUsernameIfNeeded(uid: String) {
+        Firestore.firestore().collection("usersusers").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("Failed to fetch username for \(uid): \(error.localizedDescription)")
+                return
+            }
+            if let data = snapshot?.data(), let username = data["username"] as? String {
+                DispatchQueue.main.async {
+                    self.usernames[uid] = username
+                }
             }
         }
     }

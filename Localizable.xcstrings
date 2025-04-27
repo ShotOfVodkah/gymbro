@@ -774,7 +774,7 @@
         }
       }
     },
-    "Members: members" : {
+    "Members: %@" : {
 
     },
     "Mon" : {
@@ -845,9 +845,6 @@
         }
       }
     },
-    "Now" : {
-
-    },
     "OK" : {
       "localizations" : {
         "ru" : {
@@ -888,7 +885,7 @@
         }
       }
     },
-    "Owner: owner" : {
+    "Owner: %@" : {
 
     },
     "Password" : {
@@ -1157,7 +1154,7 @@
         }
       }
     },
-    "Team created: date" : {
+    "Team created: %@" : {
 
     },
     "Team name: %@" : {
