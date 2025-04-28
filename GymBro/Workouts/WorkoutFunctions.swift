@@ -116,6 +116,35 @@ func saveWorkoutDone(workout: Workout, comment: String) {
             } else {
                 sendWorkoutToAllFriends(woId: workoutDone.id)
                 updateUserStats(workoutDone: workoutDone, userId: uid)
+                let exercises = workout.exercises.map { $0.name }
+                getTeamIdForUser { teams in
+                    for team_id in teams {
+                        for exercise in exercises {
+                            Firestore.firestore().collection("team_challenge_progress").document(team_id).collection("team_challenges").whereField("exercise_id", isEqualTo: exercise)
+                                .whereField("status", isEqualTo: 1)
+                                .whereField("end_date", isGreaterThan: Date())
+                                .getDocuments() { documentSnapshot, error in
+                                if let error = error {
+                                    print("Failed to fetch \(team_id) challenges: \(error.localizedDescription)")
+                                    return
+                                }
+                                documentSnapshot?.documents.forEach { document in
+                                    if let exercise = exerciseData.first(where: { ($0["name"] as? String) == exercise }),
+                                       let reps = exercise["reps"] as? Int {
+                                        Firestore.firestore().collection("team_challenge_progress").document(team_id).collection("team_challenges").document(document.documentID).updateData(["progress_per_member.\(uid)": reps]) { error in
+                                            if let error = error {
+                                                print("Failed to udate: \(error.localizedDescription)")
+                                            } else {
+                                                print("Successfully updated number of reps")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    print("all good!")
+                }
                 Task {
                     await saveWorkoutDatesToSharedDefaults()
                 }
@@ -150,6 +179,26 @@ func saveWorkoutDone(workout: Workout, comment: String) {
                 }
             }
         }
+    }
+}
+
+func getTeamIdForUser(completion: @escaping ([String]) -> Void) {
+    guard let currentUser = Auth.auth().currentUser?.uid else {
+        completion([])
+        return
+    }
+    Firestore.firestore().collection("teams").whereField("members", arrayContains: currentUser).getDocuments { documentSnapshot, error in
+        if let error = error {
+            print("Failed to find user's teams: \(error.localizedDescription)")
+            completion([])
+            return
+        }
+        var result: [String] = []
+        documentSnapshot?.documents.forEach { document in
+            let team = Teams(data: document.data())
+            result.append(team.id)
+        }
+        completion(result)
     }
 }
 
