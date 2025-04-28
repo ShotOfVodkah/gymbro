@@ -131,7 +131,10 @@ func saveWorkoutDone(workout: Workout, comment: String) {
                                 documentSnapshot?.documents.forEach { document in
                                     if let exercise = exerciseData.first(where: { ($0["name"] as? String) == exercise }),
                                        let reps = exercise["reps"] as? Int {
-                                        Firestore.firestore().collection("team_challenge_progress").document(team_id).collection("team_challenges").document(document.documentID).updateData(["progress_per_member.\(uid)": reps]) { error in
+                                        Firestore.firestore().collection("team_challenge_progress").document(team_id).collection("team_challenges")
+                                            .document(document.documentID)
+                                            .updateData(["progress_per_member.\(uid)": FieldValue.increment(Int64(reps)),
+                                                         "total_progress": FieldValue.increment(Int64(reps))]) { error in
                                             if let error = error {
                                                 print("Failed to udate: \(error.localizedDescription)")
                                             } else {
