@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Challenges: View {
-    var team_id: String
+    var team: Teams
     @StateObject var vm = ChallengesViewModel()
     @Environment(\.dismiss) var dismiss
     
@@ -47,7 +47,7 @@ struct Challenges: View {
     
     private var challengesView: some View {
         ScrollView {
-            let availableChallenges = vm.availableChallenges.filter { !$0.teams_participating.contains(team_id) }
+            let availableChallenges = vm.availableChallenges.filter { !$0.teams_participating.contains(team.id) }
             
             if availableChallenges.isEmpty {
                 Text("No challenges available at the moment(((")
@@ -85,7 +85,8 @@ struct Challenges: View {
                                     if expandedChallengeId == challenge.id {
                                         expandedChallengeId = nil
                                     } else {
-                                        print("add")
+                                        vm.addChalengeToTeam(selectedChallenge: challenge, team: team)
+                                        dismiss()
                                     }
                                 }
                             }
@@ -124,5 +125,10 @@ struct Challenges: View {
 }
 
 #Preview {
-    Challenges(team_id: "B9zUkqddLyzp4gNUp4yE")
+    let data = ["id": "Sf7roo3RSbDkuaiSqY9d",
+                "team_name": "My first team",
+                "owner": "g9wEOL71fNeTFlLcEhhzWHua1wK2",
+                "members": ["v2vtxsjwRHNvazfmMHN2EUZz4U83", "Ssw2gP6bBPVOCzMLzrmQkGWMGx42", "H7BSrUZffMgXJVOdgy3mITSuU7p1", "g9wEOL71fNeTFlLcEhhzWHua1wK2"],
+                "created_at": Date()]
+    Challenges(team: Teams(data: data))
 }

@@ -38,7 +38,7 @@ struct TeamView: View {
             }
             Spacer()
             NavigationLink {
-                Challenges(team_id: team.id)
+                Challenges(team: team)
             } label: {
                 VStack(alignment: .trailing) {
                     Image(systemName: "plus.circle.fill")
@@ -56,6 +56,11 @@ struct TeamView: View {
         .background(.linearGradient(colors: [Color("PurpleColor"), .purple], startPoint: .leading, endPoint: .trailing))
     }
 }
+
+// 0 - haven't started
+// 1 - in progress
+// 2 - finished success
+// 3 - finished fail
 
 #Preview {
     let data = ["id": "Sf7roo3RSbDkuaiSqY9d",
