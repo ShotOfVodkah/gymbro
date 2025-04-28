@@ -15,6 +15,8 @@ struct Challenges: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                Color("Background").ignoresSafeArea()
+                BackgroundAnimation()
                 VStack {
                     challengesHeader
                     challengesView

@@ -130,6 +130,30 @@ struct Challenge: Identifiable {
     }
 }
 
+struct ProgressChallenges: Identifiable {
+    var id: String { challenge_id }
+    
+    let challenge_id: String
+    let team_id: String
+    let exercise_id: String
+    let start_date: Date
+    let end_date: Date
+    var progress_per_member: [String: Int]
+    var total_progress: Int
+    var status: Int
+    
+    init(data: [String: Any]) {
+        self.challenge_id = data["challenge_id"] as? String ?? ""
+        self.team_id = data["team_id"] as? String ?? ""
+        self.exercise_id = data["exercise_id"] as? String ?? ""
+        self.start_date = (data["start_date"] as? Timestamp)?.dateValue() ?? Date()
+        self.end_date = (data["end_date"] as? Timestamp)?.dateValue() ?? Date()
+        self.progress_per_member = data["progress_per_member"] as? [String: Int] ?? [:]
+        self.total_progress = data["total_progress"] as? Int ?? 0
+        self.status = data["status"] as? Int ?? 0
+    }
+}
+
 struct Workout: Identifiable, Codable, Equatable {
     let id: String
     let icon: String

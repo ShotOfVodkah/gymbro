@@ -24,6 +24,16 @@
         }
       }
     },
+    "%@: %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$lld"
+          }
+        }
+      }
+    },
     "%@%lld" : {
       "localizations" : {
         "en" : {
@@ -377,6 +387,9 @@
           }
         }
       }
+    },
+    "Challenge ID: %@" : {
+
     },
     "Chat activity" : {
       "localizations" : {
@@ -960,6 +973,9 @@
         }
       }
     },
+    "Progress per Member:" : {
+
+    },
     "Put your exercises in order" : {
       "localizations" : {
         "ru" : {
@@ -1121,6 +1137,9 @@
         }
       }
     },
+    "Status: %lld" : {
+
+    },
     "Streak" : {
       "localizations" : {
         "ru" : {
@@ -1219,6 +1238,9 @@
           }
         }
       }
+    },
+    "Total Progress: %lld" : {
+
     },
     "Total weight lifted" : {
       "extractionState" : "manual",

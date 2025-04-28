@@ -36,6 +36,9 @@ class ChallengesViewModel: ObservableObject {
         
         let challengeData = ["challenge_id": selectedChallenge.id,
                              "team_id": team.id,
+                             "exercise_id": selectedChallenge.exercise_id,
+                             "start_date": selectedChallenge.start_date,
+                             "end_date": selectedChallenge.end_date,
                              "total_progress": 0,
                              "progress_per_member": progressPerMember,
                              "status": 0] as [String : Any]

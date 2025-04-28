@@ -58,7 +58,7 @@ struct GroupAchievements: View {
         ScrollView {
             ForEach(vm.usersTeams.sorted(by: { $0.created_at > $1.created_at })) { team in
                 VStack {
-                    NavigationLink(destination: TeamView(team: team)) {
+                    NavigationLink(destination: Team(team: team)) {
                         HStack(spacing: 15) {
                             Image(systemName: "figure.socialdance.circle.fill")
                                 .font(.system(size: 40))
