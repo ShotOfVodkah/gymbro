@@ -71,7 +71,7 @@ struct Team: View {
     }
     
     private var currentTeamChallenges: some View {
-        ForEach(vm.currentTeamChallengesProgress) { challenge in
+        ForEach(vm.currentTeamChallengesProgress.sorted(by: { $0.status < $1.status })) { challenge in
             HStack() {
                 Spacer()
                 VStack(alignment: .leading) {
