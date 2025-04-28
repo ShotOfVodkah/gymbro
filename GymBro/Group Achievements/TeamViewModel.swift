@@ -24,7 +24,7 @@ class TeamViewModel: ObservableObject {
     // UPDATE STATUS
     
     func fetchChallengesProgress() {
-        Firestore.firestore().collection("team_challenge_progress").document(team.id).collection("team_challenges").getDocuments { documentSnapshot, error in
+        Firestore.firestore().collection("team_challenge_progress").document(team.id).collection("team_challenges").order(by: "status", descending: false).getDocuments { documentSnapshot, error in
             if let error = error {
                 print("Failed to fetch team challenges progress: \(error.localizedDescription)")
                 return
@@ -38,7 +38,7 @@ class TeamViewModel: ObservableObject {
                         return
                     }
                     self.challengesView[tmp.challenge_id] = Challenge(data: documentSnapshot?.data() ?? [:])
-                    print("Chalenge fetched")
+                    print("Challenge fetched")
                 }
             }
             print("All challenges fetched")

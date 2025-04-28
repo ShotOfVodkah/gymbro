@@ -388,9 +388,6 @@
         }
       }
     },
-    "Challenge ID: %@" : {
-
-    },
     "Chat activity" : {
       "localizations" : {
         "ru" : {
@@ -767,6 +764,9 @@
         }
       }
     },
+    "Left: %lld days" : {
+
+    },
     "Less words" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1137,9 +1137,6 @@
         }
       }
     },
-    "Status: %lld" : {
-
-    },
     "Streak" : {
       "localizations" : {
         "ru" : {
@@ -1173,6 +1170,16 @@
     },
     "Target: %@" : {
 
+    },
+    "Target: %@ for %lld reps" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Target: %1$@ for %2$lld reps"
+          }
+        }
+      }
     },
     "Targeted 3 different muscle groups in one workout" : {
       "extractionState" : "manual",
