@@ -36,8 +36,10 @@ struct ChatLogView: View {
                                     .id("empty")
                             }
                             .onReceive(vm.$count) { _ in
-                                withAnimation(.easeOut(duration: 0.2)) {
-                                    proxy.scrollTo("empty", anchor: .bottom)
+                                DispatchQueue.main.async {
+                                    withAnimation(.easeOut(duration: 0.2)) {
+                                        proxy.scrollTo("empty", anchor: .bottom)
+                                    }
                                 }
                             }
                             .onAppear {

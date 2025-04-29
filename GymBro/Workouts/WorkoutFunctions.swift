@@ -121,7 +121,7 @@ func saveWorkoutDone(workout: Workout, comment: String) {
                     for team_id in teams {
                         for exercise in exercises {
                             Firestore.firestore().collection("team_challenge_progress").document(team_id).collection("team_challenges").whereField("exercise_id", isEqualTo: exercise)
-                                .whereField("status", isEqualTo: 1)
+                                .whereField("start_date", isLessThan: Date())
                                 .whereField("end_date", isGreaterThan: Date())
                                 .getDocuments() { documentSnapshot, error in
                                 if let error = error {

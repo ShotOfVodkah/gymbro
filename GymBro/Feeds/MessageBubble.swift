@@ -89,13 +89,13 @@ struct MessageBubble: View {
                     
                     Text((currentWorkout?.comment).flatMap { $0.isEmpty ? "No comment" : $0 } ?? "")
                         .multilineTextAlignment(.leading)
-                    
-                    Text("")
+                        .lineLimit(2)
                     
                     Text(currentWorkout?.timestamp.formatted(.dateTime) ?? "")
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.system(size: 15, weight: .bold))
                 }
             }
+            .frame(height: 87)
             .frame(maxWidth: 300, alignment: .leading)
             .padding()
             .background(
@@ -178,8 +178,8 @@ struct MessageBubble: View {
 
     private func reactionView() -> some View {
         ScrollView(.horizontal) {
-            HStack(spacing: 10) {
-                ForEach(["💜", "👍", "💪", "🔥", "💅🏻", "✨", "👏", "😍", "🤩", "🙌", "😎", "🫶", "🥳", "🦾", "🏋️‍♂️", "🤸‍♀️", "🏃‍♂️", "🥵", "😤", "🏆", "🎯", "🦿"], id: \.self) { emoji in
+            HStack(spacing: 10) { // "✨", "👏", "😍", "🤩", "🙌", "😎", "🫶", "🥳", "🦾", "🏋️‍♂️", "🤸‍♀️", "🏃‍♂️", "🥵", "😤", "🏆", "🎯", "🦿"
+                ForEach(["💜", "👍", "💪", "🔥", "💅🏻", ], id: \.self) { emoji in
                     Text(emoji)
                         .font(.system(size: 25))
                         .padding(6)
@@ -271,13 +271,13 @@ struct MessageBubble: View {
 #Preview {
     @State var message = Message(
         documentId: "1",
-        fromId: "mHrAJHl1jtReIegIyJC8JbIxj7f1",
-        toId: "nwsy9PklqCb56PrRMnDWuw0195f1",
+        fromId: "g9wEOL71fNeTFlLcEhhzWHua1wK2",
+        toId: "G8Lpu03nKsRIPf0T28bQYLH22XA3",
         text: "Hakuna Matata",
         received: true,
         timestamp: Date(),
-        isWorkout: false,
-        workoutId: "uwk0BPZE3nbLhaoyqzuX",
+        isWorkout: true,
+        workoutId: "sZfRqj8v4qeYK8BioKl8",
         reactions: [""]
     )
 
