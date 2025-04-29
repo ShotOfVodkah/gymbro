@@ -31,6 +31,12 @@
             "state" : "new",
             "value" : "%1$@: %2$lld"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$lld"
+          }
         }
       }
     },
@@ -71,7 +77,14 @@
       }
     },
     "%lld teams already joined!" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld команд уже присоединилось!"
+          }
+        }
+      }
     },
     "%lld. %@" : {
       "localizations" : {
@@ -90,7 +103,14 @@
       }
     },
     "+ Create New Team" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ Создать новую команду"
+          }
+        }
+      }
     },
     "+ New Chat" : {
       "localizations" : {
@@ -246,7 +266,14 @@
       }
     },
     "Add challenge" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый челлендж"
+          }
+        }
+      }
     },
     "Add Friends" : {
       "localizations" : {
@@ -279,7 +306,14 @@
       }
     },
     "Aiming for: %lld reps" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цель: %lld повторений"
+          }
+        }
+      }
     },
     "Already a friend!" : {
       "localizations" : {
@@ -333,7 +367,14 @@
       }
     },
     "Available Challenges" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступные челленджи"
+          }
+        }
+      }
     },
     "Back" : {
       "extractionState" : "manual",
@@ -420,7 +461,14 @@
       }
     },
     "Choose members for your team" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите сокомандников"
+          }
+        }
+      }
     },
     "Choose someone to follow" : {
       "localizations" : {
@@ -540,7 +588,14 @@
       }
     },
     "Create" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать"
+          }
+        }
+      }
     },
     "Create Account" : {
       "localizations" : {
@@ -553,7 +608,14 @@
       }
     },
     "Create new team" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать команду"
+          }
+        }
+      }
     },
     "Created your own workout" : {
       "extractionState" : "manual",
@@ -593,6 +655,12 @@
             "state" : "new",
             "value" : "Duration: %1$@ - %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжительность: %1$@ - %2$@"
+          }
         }
       }
     },
@@ -628,7 +696,14 @@
       }
     },
     "enter team name" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "введите название команды"
+          }
+        }
+      }
     },
     "Enter your message here" : {
       "localizations" : {
@@ -751,7 +826,15 @@
       }
     },
     "Key" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        }
+      }
     },
     "Lazy Weekend" : {
       "extractionState" : "manual",
@@ -765,7 +848,14 @@
       }
     },
     "Left: %lld days" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Осталось: %lld дней"
+          }
+        }
+      }
     },
     "Less words" : {
       "extractionState" : "manual",
@@ -810,7 +900,14 @@
       }
     },
     "Members: %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Участники: %@"
+          }
+        }
+      }
     },
     "Mon" : {
       "extractionState" : "manual",
@@ -855,13 +952,34 @@
       }
     },
     "No challenges available at the moment(((" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В данный момент нет доступных челленджей((("
+          }
+        }
+      }
     },
     "No data available" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет данных"
+          }
+        }
+      }
     },
     "No workout data" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет данных о тренировке"
+          }
+        }
+      }
     },
     "Notification Permission Granted" : {
       "localizations" : {
@@ -924,7 +1042,14 @@
       }
     },
     "Owner: %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Владелец: %@"
+          }
+        }
+      }
     },
     "Password" : {
       "localizations" : {
@@ -974,7 +1099,14 @@
       }
     },
     "Progress per Member:" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прогресс на участника:"
+          }
+        }
+      }
     },
     "Put your exercises in order" : {
       "localizations" : {
@@ -1169,7 +1301,14 @@
       }
     },
     "Target: %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цель: %@"
+          }
+        }
+      }
     },
     "Target: %@ for %lld reps" : {
       "localizations" : {
@@ -1177,6 +1316,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Target: %1$@ for %2$lld reps"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цель: %1$@ на %2$lld повторений"
           }
         }
       }
@@ -1209,10 +1354,24 @@
       }
     },
     "Team created: %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команда создана: %@"
+          }
+        }
+      }
     },
     "Team name: %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название команды: %@"
+          }
+        }
+      }
     },
     "This app helps you manage your workouts and share success with your friends. \n\nCreated by Gritsaenko Alexandra and Polyakov Stepan — the legendary duo you didn’t know you needed. Probably stronger than your will to skip leg day! \n\nComing soon to a gym near you." : {
       "localizations" : {
@@ -1247,7 +1406,14 @@
       }
     },
     "Total Progress: %lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общий прогресс: %lld"
+          }
+        }
+      }
     },
     "Total weight lifted" : {
       "extractionState" : "manual",
@@ -1534,7 +1700,14 @@
       }
     },
     "Your team name:" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название команды:"
+          }
+        }
+      }
     },
     "Your weekly workout goal to keep streak" : {
       "localizations" : {
